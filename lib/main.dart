@@ -9,6 +9,7 @@ import 'package:medical_app/services/auth_respository.dart';
 import 'package:medical_app/view/common/app_style.dart';
 import 'package:medical_app/view/common/reusable_text.dart';
 import 'package:medical_app/view/ui/auth/confirmation/confirmation.dart';
+import 'package:medical_app/view/ui/auth/forgot_password.dart/forgot_password.dart';
 
 
 void main() {
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
             //     child:  const AuthNavigator(),
             //     ),
             // ),
-           home:const Confirmation(),
+           home:const ForgotPassword(),
           );
         });
   }

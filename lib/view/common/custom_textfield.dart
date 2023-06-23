@@ -17,8 +17,6 @@ class CustomTextField extends StatelessWidget {
   final bool? obscureText;
   final void Function(String)? onChange;
 
-
-  
   @override
   Widget build(BuildContext context) {
     return Container(
