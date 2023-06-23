@@ -1,10 +1,10 @@
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:medical_app/events/signin_event.dart';
+import 'package:medical_app/view/ui/auth/signin/signin_event.dart';
 import 'package:medical_app/services/auth_respository.dart';
-import 'package:medical_app/state/signin_state.dart';
+import 'package:medical_app/view/ui/auth/signin/signin_state.dart';
 
-import '../view/ui/auth/form_submission_status.dart';
+import '../form_submission_status.dart';
 
 class SigninBloc extends Bloc<SignInEvent,SigninState>{
   final AuthRepository authRepo;

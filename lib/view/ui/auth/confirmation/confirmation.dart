@@ -7,7 +7,7 @@ import 'package:medical_app/view/common/app_style.dart';
 import 'package:medical_app/view/common/code_field.dart';
 import 'package:medical_app/view/common/reusable_text.dart';
 
-import '../../common/custom_btn.dart';
+import '../../../common/custom_btn.dart';
 
 class Confirmation extends StatelessWidget {
   const Confirmation({super.key});

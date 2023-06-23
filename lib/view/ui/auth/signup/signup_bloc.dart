@@ -2,10 +2,10 @@
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../events/signup_event.dart';
-import '../services/auth_respository.dart';
-import '../state/signup_state.dart';
-import '../view/ui/auth/form_submission_status.dart';
+import 'signup_event.dart';
+import '../../../../services/auth_respository.dart';
+import 'signup_state.dart';
+import '../form_submission_status.dart';
 
 class SignupBloc extends Bloc<SignUpEvent,SignupState>{
   final AuthRepository authRepo;

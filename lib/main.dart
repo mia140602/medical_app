@@ -8,12 +8,8 @@ import 'package:medical_app/cubits/auth_navigator.dart';
 import 'package:medical_app/services/auth_respository.dart';
 import 'package:medical_app/view/common/app_style.dart';
 import 'package:medical_app/view/common/reusable_text.dart';
-import 'package:medical_app/view/ui/auth/confirmation.dart';
-import 'package:medical_app/view/ui/auth/signIn.dart';
-import 'package:medical_app/view/ui/auth/signUp.dart';
-import 'package:medical_app/view/ui/auth/let_you_in.dart';
-import 'package:medical_app/view/ui/onboarding/onboarding_screen.dart';
-import 'package:medical_app/view/ui/pages/splash_screen.dart';
+import 'package:medical_app/view/ui/auth/confirmation/confirmation.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -39,14 +35,14 @@ class MyApp extends StatelessWidget {
               
               primarySwatch: Colors.grey,
             ),
-            home: RepositoryProvider(
-              create: (context) => AuthRepository(),
-              child: BlocProvider(
-                create: (context)=> AuthCubit(),
-                child:  const AuthNavigator(),
-                ),
-            ),
-           
+            // home: RepositoryProvider(
+            //   create: (context) => AuthRepository(),
+            //   child: BlocProvider(
+            //     create: (context)=> AuthCubit(),
+            //     child:  const AuthNavigator(),
+            //     ),
+            // ),
+           home:const Confirmation(),
           );
         });
   }

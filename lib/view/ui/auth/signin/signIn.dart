@@ -6,11 +6,11 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:medical_app/bloc/signin_bloc.dart';
+import 'package:medical_app/view/ui/auth/signin/signin_bloc.dart';
 import 'package:medical_app/constains/app_constain.dart';
-import 'package:medical_app/events/signin_event.dart';
+import 'package:medical_app/view/ui/auth/signin/signin_event.dart';
 import 'package:medical_app/services/auth_respository.dart';
-import 'package:medical_app/state/signin_state.dart';
+import 'package:medical_app/view/ui/auth/signin/signin_state.dart';
 import 'package:medical_app/view/common/app_style.dart';
 import 'package:medical_app/view/common/custom_btn.dart';
 import 'package:medical_app/view/common/custom_textfield.dart';
@@ -19,7 +19,7 @@ import 'package:medical_app/view/common/icon_btn.dart';
 import 'package:medical_app/view/common/remember_me.dart';
 import 'package:medical_app/view/common/reusable_text.dart';
 import 'package:medical_app/view/ui/auth/form_submission_status.dart';
-import 'package:medical_app/view/ui/auth/signUp.dart';
+import 'package:medical_app/view/ui/auth/signup/signUp.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});

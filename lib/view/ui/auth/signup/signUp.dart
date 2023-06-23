@@ -6,7 +6,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:medical_app/bloc/signup_bloc.dart';
+import 'package:medical_app/view/ui/auth/signup/signup_bloc.dart';
 import 'package:medical_app/constains/app_constain.dart';
 import 'package:medical_app/services/auth_respository.dart';
 import 'package:medical_app/view/common/app_style.dart';
@@ -17,10 +17,10 @@ import 'package:medical_app/view/common/icon_btn.dart';
 import 'package:medical_app/view/common/remember_me.dart';
 import 'package:medical_app/view/common/reusable_text.dart';
 import 'package:medical_app/view/ui/auth/form_submission_status.dart';
-import 'package:medical_app/view/ui/auth/signIn.dart';
+import 'package:medical_app/view/ui/auth/signin/signIn.dart';
 
-import '../../../events/signup_event.dart';
-import '../../../state/signup_state.dart';
+import 'signup_event.dart';
+import 'signup_state.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
