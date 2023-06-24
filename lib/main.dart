@@ -8,8 +8,11 @@ import 'package:medical_app/cubits/auth_navigator.dart';
 import 'package:medical_app/services/auth_respository.dart';
 import 'package:medical_app/view/common/app_style.dart';
 import 'package:medical_app/view/common/reusable_text.dart';
-import 'package:medical_app/view/ui/auth/confirmation/confirmation.dart';
+import 'package:medical_app/view/ui/auth/forgot_password.dart/new_password.dart';
+import 'package:medical_app/view/ui/auth/otp_code/confirmation.dart';
 import 'package:medical_app/view/ui/auth/forgot_password.dart/forgot_password.dart';
+import 'package:medical_app/view/ui/auth/signin/signIn.dart';
+import 'package:medical_app/view/ui/auth/signup/signUp.dart';
 
 
 void main() {
@@ -43,7 +46,7 @@ class MyApp extends StatelessWidget {
             //     child:  const AuthNavigator(),
             //     ),
             // ),
-           home:const ForgotPassword(),
+           home:const NewPassword(),
           );
         });
   }

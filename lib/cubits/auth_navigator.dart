@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medical_app/cubits/auth_cubit.dart';
-import 'package:medical_app/view/ui/auth/confirmation/confirmation.dart';
+import 'package:medical_app/view/ui/auth/otp_code/confirmation.dart';
 import 'package:medical_app/view/ui/auth/let_you_in.dart';
 import 'package:medical_app/view/ui/auth/signup/signUp.dart';
 

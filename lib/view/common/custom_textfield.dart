@@ -61,9 +61,10 @@ class CustomTextField extends StatelessWidget {
         ),
         controller: controller,
         cursorHeight: 25,
-        style: appstyle(14, Colors.black.withOpacity(0.6), FontWeight.w500),
+        style: appstyle(14, Colors.black, FontWeight.w500),
         validator: validator,
         onChanged: onChange,
+
     )
     );
   }
