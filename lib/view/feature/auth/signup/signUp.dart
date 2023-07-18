@@ -1,32 +1,35 @@
 
 
 import 'package:flutter/material.dart';
-
+import 'package:flutter/src/widgets/container.dart';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:medical_app/view/ui/auth/signin/signin_bloc.dart';
+import 'package:medical_app/view/feature/auth/signup/signup_bloc.dart';
 import 'package:medical_app/constains/app_constain.dart';
-import 'package:medical_app/view/ui/auth/signin/signin_event.dart';
 import 'package:medical_app/services/auth_respository.dart';
-import 'package:medical_app/view/ui/auth/signin/signin_state.dart';
 import 'package:medical_app/view/common/app_style.dart';
 import 'package:medical_app/view/common/custom_btn.dart';
 import 'package:medical_app/view/common/custom_textfield.dart';
+import 'package:medical_app/view/common/custom_outline_btn.dart';
 import 'package:medical_app/view/common/icon_btn.dart';
 import 'package:medical_app/view/common/remember_me.dart';
 import 'package:medical_app/view/common/reusable_text.dart';
-import 'package:medical_app/view/ui/auth/form_submission_status.dart';
-import 'package:medical_app/view/ui/auth/signup/signUp.dart';
+import 'package:medical_app/view/feature/auth/form_submission_status.dart';
+import 'package:medical_app/view/feature/auth/signin/signIn.dart';
 
-class SignIn extends StatefulWidget {
-  const SignIn({super.key});
+import 'signup_event.dart';
+import 'signup_state.dart';
+
+class SignUp extends StatefulWidget {
+  const SignUp({super.key});
 
   @override
-  State<SignIn> createState() => _SignInState();
+  State<SignUp> createState() => _SignUpState();
 }
 
-class _SignInState extends State<SignIn> {
+class _SignUpState extends State<SignUp> {
   GlobalKey<FormState> _formkey= GlobalKey<FormState>();
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();
@@ -37,13 +40,13 @@ class _SignInState extends State<SignIn> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: BlocProvider(
-        create: (context)=> SigninBloc(
+        create: (context) => SignupBloc(
           authRepo: context.read<AuthRepository>()),
-        child: BlocListener<SigninBloc,SigninState>(
-          listener: (context,state){
+        child: BlocListener<SignupBloc,SignupState>(
+          listener: (context, state) {
             final formStatus= state.formStatus;
-            if(formStatus is SubmissionFailed){
-              _showSnackBar(context, formStatus.exception.toString());
+            if(formStatus is SubmissionFailed) {
+              _showSnackBar(context,formStatus.exception.toString());
             }
           },
           child: Form(
@@ -63,21 +66,21 @@ class _SignInState extends State<SignIn> {
                     SizedBox(height: 20.25.h,),
                     SvgPicture.asset(logo,width: 120.w,color: AppColor.mainColor,),
                     SizedBox(height: 20.25.h,),
-                    Text( "Login To Your Account", style: appstyle(30, AppColor.textColor1, FontWeight.w700),textAlign: TextAlign.center,),
+                    Text( "Creat new account", style: appstyle(32, AppColor.textColor1, FontWeight.w700),textAlign: TextAlign.center,),
                     SizedBox(height: 20.25.h,),
-                    BlocBuilder<SigninBloc,SigninState>(builder: (context, state) {
+                    BlocBuilder<SignupBloc,SignupState>(builder: (context, state) {
                       return  CustomTextField(controller: email , 
                     hintText: "Email", 
                     keyboardType: TextInputType.emailAddress,
                     validator: (value)=> state.isvalidEmail? null:"Email Should constain @",
-                      onChange: (value)=> context.read<SigninBloc>().add(
-                        SignInUseremailChanged(useremail: value)
+                      onChange: (value)=> context.read<SignupBloc>().add(
+                        SignUpUseremailChanged(useremail: value)
                       ),
           
                       );
                     },),
                      SizedBox(height: 10.h,),
-                     BlocBuilder<SigninBloc,SigninState>(builder: (context,state){
+                     BlocBuilder<SignupBloc,SignupState>(builder: (context,state){
                         return CustomTextField(
                       obscureText: true,
                       controller: password ,
@@ -90,31 +93,30 @@ class _SignInState extends State<SignIn> {
                         child: Icon(
                           Icons.visibility_off , color: AppColor.secondColor,)
                       ),
-                      validator: (value)=> state.isValidPassword?null: "Password is too short",
-                      onChange: (value)=> context.read<SigninBloc>().add(
-                        SignInUserpasswordChanged(userpassword: value)
+                      validator: (value)=> state.passwordValidator()?null: "Mật khẩu phải chứa ít nhất 1 chữ cái hoa, 1 chữ cái thường và 1 ký tự đặc biệt",
+                      onChange: (value)=> context.read<SignupBloc>().add(
+                        SignUpUserpasswordChanged(userpassword: value)
                       ),
                     );            
-                     }),
+                     }),    
                     RememberMe(),
-                    BlocBuilder<SigninBloc,SigninState>(
+                     BlocBuilder<SignupBloc,SignupState>(
                       builder: (context, state) {
                         return state.formStatus is FormSubmitting
                         ?Center(child: CircularProgressIndicator(color: AppColor.mainColor,))
-                        :CustomButton(text: "Sign in", width: 300, height: 50,
+                        :CustomButton(text: "Sign up", width: 300, height: 50,
                           outlineBtnColor: AppColor.mainColor, textColor: Colors.white,color: AppColor.mainColor,
                           onTap: () {
                             if(_formkey.currentState?.validate()??false){
-                              context.read<SigninBloc>().add(SignInSubmitted());
+                              context.read<SignupBloc>().add(SignUpSubmitted());
                             }
                           },);
                       }),
                      SizedBox(height: 20.h,),
-                     Column(
+                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
+              
                       children: [
-                        ReusableText(text: "Forgot the password?", style: appstyle(14, AppColor.mainColor, FontWeight.normal)),
-                        SizedBox(height: 20.h,),
                         ReusableText(text: "-Or continue with- ", style: appstyle(14, Colors.grey, FontWeight.normal)),
                        
                       ],
@@ -133,15 +135,14 @@ class _SignInState extends State<SignIn> {
                       mainAxisAlignment: MainAxisAlignment.center,
               
                       children: [
-                        ReusableText(text: "Don't have account? ", style: appstyle(14, Colors.grey, FontWeight.normal)),
+                        ReusableText(text: "Already have an account? ", style: appstyle(14, Colors.grey, FontWeight.normal)),
                         GestureDetector(
                           onTap: () {
-                            //sử lý chuyển trang đơn giản ko yêu cầu quản lý trạng thái phức tạp
-                            Navigator.of(context)
+                             Navigator.of(context)
                             .push(MaterialPageRoute(
-                              builder:(context)=> SignUp()));
+                              builder:(context)=> SignIn()));
                           },
-                          child: ReusableText(text: "Sign Up",style: appstyle(14, AppColor.mainColor, FontWeight.normal),))
+                          child: ReusableText(text: "Sign In",style: appstyle(14, AppColor.mainColor, FontWeight.normal),))
                       ],
                      )
                      
@@ -155,7 +156,6 @@ class _SignInState extends State<SignIn> {
     );
   }
 }
-
 void _showSnackBar(BuildContext context, String message){
   final snackBar= SnackBar(content: Text(message,));
   ScaffoldMessenger.of(context).showSnackBar(snackBar);

@@ -1,4 +1,4 @@
-import 'package:medical_app/view/ui/auth/form_submission_status.dart';
+import 'package:medical_app/view/feature/auth/form_submission_status.dart';
 
 class SignupState{
   final String useremail;

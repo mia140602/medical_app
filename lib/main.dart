@@ -1,18 +1,10 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:medical_app/constains/app_constain.dart';
-import 'package:medical_app/cubits/auth_cubit.dart';
-import 'package:medical_app/cubits/auth_navigator.dart';
-import 'package:medical_app/services/auth_respository.dart';
-import 'package:medical_app/view/common/app_style.dart';
-import 'package:medical_app/view/common/reusable_text.dart';
-import 'package:medical_app/view/ui/auth/forgot_password.dart/new_password.dart';
-import 'package:medical_app/view/ui/auth/otp_code/confirmation.dart';
-import 'package:medical_app/view/ui/auth/forgot_password.dart/forgot_password.dart';
-import 'package:medical_app/view/ui/auth/signin/signIn.dart';
-import 'package:medical_app/view/ui/auth/signup/signUp.dart';
+
+import 'package:medical_app/view/feature/home/home_screen.dart';
+
 
 
 void main() {
@@ -46,7 +38,7 @@ class MyApp extends StatelessWidget {
             //     child:  const AuthNavigator(),
             //     ),
             // ),
-           home:const NewPassword(),
+           home:const HomeScreen(),
           );
         });
   }

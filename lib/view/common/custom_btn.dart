@@ -15,7 +15,9 @@ class CustomButton extends StatelessWidget {
   final Color outlineBtnColor;
   final void Function()? onTap;
   final Color? textColor;
-  CustomButton({super.key, this.radius=100, this.height,
+  final bool wrapContentWidth;
+
+  CustomButton({super.key, this.radius=100, this.height, this.wrapContentWidth=false,
   required this.text, this.color, this.onTap,required this.width,required this.outlineBtnColor, this.textColor
   });
   @override
@@ -23,8 +25,9 @@ class CustomButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-      
-      width: width,
+      padding: EdgeInsets.only(left: 10, right: 10),
+      margin: EdgeInsets.only(right: 10),
+      width: wrapContentWidth? null: width,
       height: height,
       decoration: BoxDecoration(
         

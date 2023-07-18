@@ -6,7 +6,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:medical_app/constains/app_constain.dart';
 import 'package:medical_app/view/common/app_style.dart';
 import 'package:medical_app/view/common/reusable_text.dart';
-import 'package:medical_app/view/ui/onboarding/onboarding_screen.dart';
+import 'package:medical_app/view/feature/onboarding/onboarding_screen.dart';
 
 class SplashScreen1 extends StatefulWidget {
   const SplashScreen1({super.key});

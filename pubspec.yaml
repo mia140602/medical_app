@@ -29,15 +29,25 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  bloc: ^8.0.2
+  cloud_firestore: ^4.8.2
   cupertino_icons: ^1.0.2
+  email_validator: null
+  equatable: null
+  firebase_auth: ^4.6.3
+  firebase_core: null
   flutter:
     sdk: flutter
-  flutter_bloc: ^7.2.0
+  flutter_bloc: null
   flutter_riverpod: ^2.3.6
   flutter_screenutil: ^5.7.0
   flutter_spinkit: ^5.1.0
   flutter_svg: ^1.1.6
+  flutterfire_ui: ^0.4.3+20
   google_fonts: ^4.0.4
+  google_nav_bar: ^5.0.6
+  google_sign_in: null
+  ionicons: ^0.2.2
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -65,6 +75,7 @@ flutter:
     - assets/icons/Frame.svg
     - assets/icons/logo.svg
     - assets/img/onb2.png
+    - assets/icons/list_special/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see

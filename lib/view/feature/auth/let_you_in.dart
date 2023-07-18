@@ -9,8 +9,8 @@ import 'package:medical_app/view/common/app_style.dart';
 import 'package:medical_app/view/common/custom_btn.dart';
 import 'package:medical_app/view/common/custom_outline_btn.dart';
 import 'package:medical_app/view/common/reusable_text.dart';
-import 'package:medical_app/view/ui/auth/signin/signIn.dart';
-import 'package:medical_app/view/ui/auth/signup/signUp.dart';
+import 'package:medical_app/view/feature/auth/signin/signIn.dart';
+import 'package:medical_app/view/feature/auth/signup/signUp.dart';
 
 class LetIn extends StatefulWidget {
   const LetIn({super.key});
