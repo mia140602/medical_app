@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:medical_app/constains/app_constain.dart';
+import 'package:medical_app/config/app_constain.dart';
 import 'package:medical_app/view/common/app_style.dart';
 import 'package:medical_app/view/common/avt.dart';
-import 'package:medical_app/view/common/custom_outline_btn.dart';
-import 'package:medical_app/view/common/custom_textfield.dart';
 import 'package:medical_app/view/common/doctor_speciality.dart';
 import 'package:medical_app/view/common/reusable_text.dart';
+import 'package:medical_app/view/feature/Action_menu/favorite.dart';
+import 'package:medical_app/view/feature/Action_menu/notification.dart';
 
 import '../../common/custom_btn.dart';
 
 class HomeScreen extends StatefulWidget {
+  static const String routeName='/';
+
+  static Route route() {
+    return MaterialPageRoute(
+      settings: RouteSettings(name: routeName),
+      builder: (_)=> HomeScreen());
+  }
   const HomeScreen({super.key});
 
   @override
@@ -22,6 +26,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int _currentIndex = 0;
+
   List<DoctorIcon> doctorIcon= [
       DoctorIcon(icon: "more", name: "All"),
       DoctorIcon(icon: "general.svg", name: "General"),
@@ -40,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Colors.white,
       body:Container(
         margin: EdgeInsets.only(
-                top: 40.h, left: 20.w, right: 20.w, bottom: 60.h),
+                top: 40.h, left: 20.w, right: 20.w, bottom: 10.h),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -62,9 +68,17 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
-                Icon(Ionicons.notifications_outline, color: AppColor.textColor1,size: 28,),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/notification');
+                  },
+                  child: Icon(Ionicons.notifications_outline, color: AppColor.textColor1,size: 28,)),
                 SizedBox(width: 10.w,),
-                Icon(Ionicons.heart_outline, color: AppColor.textColor1,size: 28,),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/favorite');
+                  },
+                  child: Icon(Ionicons.heart_outline, color: AppColor.textColor1,size: 28,)),
                
               ],
             ),
@@ -145,7 +159,11 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ReusableText(text: "Doctor Speciality", style: appstyle(20, AppColor.textColor1, FontWeight.w700)),
-                ReusableText(text: "See all", style: appstyle(16, AppColor.mainColor, FontWeight.w700)),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/topDoctor');
+                  },
+                  child: Text( "See all", style: appstyle(16, AppColor.mainColor, FontWeight.w700))),
               ],
             ),
             const DoctorSpeciality(),
@@ -153,7 +171,11 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ReusableText(text: "Top Doctor", style: appstyle(20, AppColor.textColor1, FontWeight.w700)),
-                ReusableText(text: "See all", style: appstyle(16, AppColor.mainColor, FontWeight.w700)),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/topDoctor');
+                  },
+                  child: Text( "See all", style: appstyle(16, AppColor.mainColor, FontWeight.w700))),
               ],
             ),
             SizedBox(
@@ -185,6 +207,29 @@ class _HomeScreenState extends State<HomeScreen> {
         // showSelectedLabels: false,
         // showUnselectedLabels: false,
         selectedItemColor: AppColor.mainColor,
+        onTap: (index) {
+    setState(() {
+      _currentIndex = index;
+    });
+    switch (index) {
+      case 0:
+        Navigator.of(context).pushNamed('/');
+        break;
+      case 1:
+      Navigator.of(context).pushNamed(AppNotification.routeName);
+        break;
+      case 2:
+        Navigator.of(context).pushNamed(Favorite.routeName);
+        break;
+      case 3:
+        Navigator.of(context).pushNamed('/');
+        break;
+      case 4:
+        Navigator.of(context).pushNamed('/');
+        break;
+    }
+      },
+
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Ionicons.home_outline),

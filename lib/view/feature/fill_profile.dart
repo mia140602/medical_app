@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:medical_app/constains/app_constain.dart';
+import 'package:medical_app/config/app_constain.dart';
 import 'package:medical_app/view/common/custom_btn.dart';
 import 'package:medical_app/view/common/custom_textfield.dart';
 import 'package:medical_app/view/common/drop_down_form_field.dart';

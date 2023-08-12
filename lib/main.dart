@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:medical_app/config/app_router.dart';
 
 import 'package:medical_app/view/feature/home/home_screen.dart';
 
@@ -38,7 +39,9 @@ class MyApp extends StatelessWidget {
             //     child:  const AuthNavigator(),
             //     ),
             // ),
-           home:const HomeScreen(),
+           onGenerateRoute: AppRouter.onGenerateRoute,
+           initialRoute: HomeScreen.routeName,
+          
           );
         });
   }

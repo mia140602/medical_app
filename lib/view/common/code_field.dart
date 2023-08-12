@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:medical_app/constains/app_constain.dart';
+import 'package:medical_app/config/app_constain.dart';
 
 class CodeField extends StatefulWidget {
   

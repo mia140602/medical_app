@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:medical_app/constains/app_constain.dart';
+import 'package:medical_app/config/app_constain.dart';
 
 class IconBtn extends StatelessWidget {
   final double width;

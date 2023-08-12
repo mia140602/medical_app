@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:medical_app/constains/app_constain.dart';
+import 'package:medical_app/config/app_constain.dart';
 
 import 'app_style.dart';
 

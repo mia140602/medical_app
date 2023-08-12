@@ -35,7 +35,8 @@ dependencies:
   email_validator: null
   equatable: null
   firebase_auth: ^4.6.3
-  firebase_core: null
+  
+  firebase_core: ^2.15.0
   flutter:
     sdk: flutter
   flutter_bloc: null

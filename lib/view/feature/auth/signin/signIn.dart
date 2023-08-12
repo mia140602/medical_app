@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:medical_app/view/feature/auth/signin/signin_bloc.dart';
-import 'package:medical_app/constains/app_constain.dart';
+import 'package:medical_app/config/app_constain.dart';
 import 'package:medical_app/view/feature/auth/signin/signin_event.dart';
 import 'package:medical_app/services/auth_respository.dart';
 import 'package:medical_app/view/feature/auth/signin/signin_state.dart';
