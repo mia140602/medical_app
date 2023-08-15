@@ -4,6 +4,7 @@ import 'package:medical_app/view/feature/Action_menu/favorite.dart';
 import 'package:medical_app/view/feature/Action_menu/top_doctor.dart';
 import 'package:medical_app/view/feature/home/home_screen.dart';
 import 'package:medical_app/view/feature/Action_menu/notification.dart';
+import 'package:medical_app/view/feature/search/search_screen.dart';
 
 class AppRouter{
   static Route onGenerateRoute(RouteSettings settings){
@@ -19,6 +20,8 @@ class AppRouter{
         return Favorite.route();
       case TopDoctor.routeName:
         return TopDoctor.route();
+      case SearchScreen.routeName:
+        return SearchScreen.route();
 
       default:
         return _errorRoute();

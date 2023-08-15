@@ -65,9 +65,7 @@ class _NewPasswordState extends State<NewPassword> {
               RememberMe(),
               CustomButton(text: "Continue", width: double.maxFinite, height: 50,
                           outlineBtnColor: AppColor.mainColor, textColor: Colors.white,color: AppColor.mainColor,
-                          onTap: () {
-                            
-                          },),
+                          ),
           ],
         ),
       ),

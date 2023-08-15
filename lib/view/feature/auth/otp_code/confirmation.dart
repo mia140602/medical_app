@@ -59,9 +59,7 @@ class Confirmation extends StatelessWidget {
             
             CustomButton(text: "Verify", width: double.maxFinite, height: 50,
                           outlineBtnColor: AppColor.mainColor, textColor: Colors.white,color: AppColor.mainColor,
-                          onTap: () {
-                            
-                          },)
+                          )
           ],
         ),
       ),

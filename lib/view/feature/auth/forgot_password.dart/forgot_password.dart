@@ -37,9 +37,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             // ChooseBtn(imagePath: "assets/icons/mess.svg", text1: "via SMS", text2: "+1 111 ******99", hasCheckbox: true,price: "\$20", time: "/30 minutes",),
             CustomButton(text: "Continue", width: double.maxFinite, height: 50,
                           outlineBtnColor: AppColor.mainColor, textColor: Colors.white,color: AppColor.mainColor,
-                          onTap: () {
-                            
-                          },)
+                          )
           ],
         ),
       ),

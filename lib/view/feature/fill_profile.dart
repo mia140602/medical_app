@@ -115,7 +115,7 @@ class _FillProfileState extends State<FillProfile> {
                 text: "Continue",
                 width: 380,
                 outlineBtnColor: AppColor.mainColor,
-                onTap: () {},
+                // onTap: () {},
                 textColor: Colors.white,
                 color: AppColor.mainColor,
                 height: 50,

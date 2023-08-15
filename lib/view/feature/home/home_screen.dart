@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:medical_app/config/app_constain.dart';
 import 'package:medical_app/view/common/app_style.dart';
@@ -91,27 +92,27 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: AppColor.kTextField,
        
       ),
-              child: TextField(
-                
-                decoration: InputDecoration(
-                  icon: Icon(Ionicons.search_outline,size: 20,),
-                  hintText: "Search",
-                  
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.transparent,
-                    ),
+              child:GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/search');
+                },
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  width: double.maxFinite,
+                  height: 50.h,
+                  decoration: BoxDecoration(
+              
+                    color: AppColor.kTextField
                   ),
-
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.transparent,
-                    ),
-                   ),
+                  child: Row(
+                    children: [
+                      SvgPicture.asset("assets/icons/Search.svg",width: 20,),
+                      SizedBox(width: 20,),
+                      Text("Search"),
+                    ],
+                  ),
                 ),
-                
-                
-              ),
+              )
             ),
             Container(
                
@@ -138,9 +139,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             Text("Check your health condition regularly to minimize the incidence of disease in the future.",style: appstyle(12, Colors.white, FontWeight.normal),),
                             CustomButton(text: "Check Now", width: 115, height: 32,
                               outlineBtnColor: Colors.white, textColor: AppColor.mainColor,color: Colors.white,
-                              onTap: () {
-                                
-                              },),
+                              ),
                             
                           ],
                         ),

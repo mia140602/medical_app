@@ -20,3 +20,6 @@ List<String> textOnboard=[
 "Health checks & consultations easily anywhere anytime",
 "Let's start living healthy and well with us right now!"
 ];
+List<String> btnOnb=[
+"Next","Next","Get Started"
+];

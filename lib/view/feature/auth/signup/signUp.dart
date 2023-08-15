@@ -106,11 +106,7 @@ class _SignUpState extends State<SignUp> {
                         ?Center(child: CircularProgressIndicator(color: AppColor.mainColor,))
                         :CustomButton(text: "Sign up", width: 300, height: 50,
                           outlineBtnColor: AppColor.mainColor, textColor: Colors.white,color: AppColor.mainColor,
-                          onTap: () {
-                            if(_formkey.currentState?.validate()??false){
-                              context.read<SignupBloc>().add(SignUpSubmitted());
-                            }
-                          },);
+                          );
                       }),
                      SizedBox(height: 20.h,),
                      Row(
