@@ -1,18 +1,17 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_app/config/app_constain.dart';
+import 'package:medical_app/global.dart';
 import 'package:medical_app/view/common/app_style.dart';
 import 'package:medical_app/view/common/reusable_text.dart';
 import 'package:medical_app/view/feature/onboarding/bloc/onb_blocs.dart';
 import 'package:medical_app/view/feature/onboarding/bloc/onb_events.dart';
-
-import '../../common/custom_btn.dart';
 import 'bloc/onb_states.dart';
 
 class OnBoardingScreen extends StatefulWidget {
+
   const OnBoardingScreen({super.key});
 
   @override
@@ -31,29 +30,78 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     return Scaffold(
      body: BlocBuilder<OnbBloc,OnbState>(
       builder: (context, state) {
-        return SafeArea(child: Column(
-      
+        return Container(
+
+          child: Stack(
+            alignment: Alignment.center,
       children: [
-        Expanded(
-          
-        child:PageView.builder(
+        PageView(
           controller: pageController,
           onPageChanged: (index){
             state.page=index;
             BlocProvider.of<OnbBloc>(context).add(OnbEvent());
             
           },
+          children: [
+            _page(
+              1,
+              context,
+              "Next",
+              "Thousands of doctors & experts to help your health!",
+              "onb2.png"
+            ),
+            _page(
+              2,
+              context,
+              "Next",
+              "Health checks & consultations easily anywhere anytime",
+              "onb3.png"
+            ),
+            _page(
+              3,
+              context,
+              "Get Started",
+              "Let's start living healthy and well with us right now!",
+              "onb4.png"
+            ),
+            
+          ],
           
-          itemCount: img.length,
-          itemBuilder: (context, index) => 
-          Container(
+          
+          ),
+            Positioned(
+                bottom: 20.h,            
+              child: DotsIndicator(
+              position: state.page.toInt(),
+              dotsCount: 3,
+              mainAxisAlignment: MainAxisAlignment.center,
+              decorator: DotsDecorator(
+                color: AppColor.kTextField,
+                size: const Size.square(7.0),
+                activeSize:const Size(20.0,8.0),
+                activeColor: AppColor.mainColor,
+                activeShape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0)
+                )
+              ),
+
+              ),
+            )
+          ],
+     ));
+      },
+     )
+    );
+  }
+  Widget _page(int index, BuildContext context, String buttonName, String title, String imgPath){
+    return Container(
             height: double.maxFinite,
             child: Stack(
               children: [ 
                 Container(
                   height: height*0.6,
                   width: double.maxFinite,
-                  decoration: BoxDecoration(
+                  decoration:const BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage("assets/img/onbg.png")
                     )
@@ -63,7 +111,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   margin: const EdgeInsets.only(top: 20),
                   width: double.maxFinite,
                   height: height*0.8,
-                  child: Image.asset("assets/img/"+img[index], fit: BoxFit.fitHeight,),
+                  child: Image.asset("assets/img/"+imgPath, fit: BoxFit.fitHeight,),
                 ),
                 Positioned(
                   bottom: 0,
@@ -72,8 +120,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   child: Container(
                     width: double.maxFinite,
                     height: height*0.4,
-                    decoration: BoxDecoration(
-                      borderRadius:const BorderRadius.only(
+                    decoration:const BoxDecoration(
+                      borderRadius:BorderRadius.only(
                         topLeft: Radius.circular(50), 
                         topRight: Radius.circular(50)),
                         color: Colors.white,
@@ -84,8 +132,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         SizedBox(height: height*0.059,),
 
                         Container(
-                          width: width*0.8,
-                          child: Text(textOnboard[index],style: appstyle(30, AppColor.mainColor, FontWeight.w700),textAlign: TextAlign.center,),
+                          width: width*0.75,
+                          child: Text(title,style: appstyle(20, AppColor.mainColor, FontWeight.w700),textAlign: TextAlign.center,),
                         ),
                         SizedBox(height: height*0.05,),
                         GestureDetector(
@@ -97,15 +145,20 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                 duration: const Duration(milliseconds: 500), 
                                 curve: Curves.decelerate);
 
-                            }else{
+                            }else {
                               //jump to new page
+                              // Navigator.of(context).pushAndRemoveUntil(AppRoutes.LETIN, ((route) => false)); 
+                              Global.storageService.setBool(AppConstants.STORAGE_DEVICE_OPEN_FIRST_TIME, true);
+                              // print("the value is ${Global.storageService.getDeviceFirstOpen()}");
+                              Navigator.of(context).pushNamedAndRemoveUntil("/letin", (route) => false);
+                              
                             }
                           },
                           child: Container(
                             padding: EdgeInsets.only(left: 10, right: 10),
                             margin: EdgeInsets.only(left: 25,right: 25),
                             width: double.maxFinite,
-                            height: 50,
+                            height: 50.h,
                             decoration: BoxDecoration(
                               
                               color: AppColor.mainColor,
@@ -113,35 +166,11 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                               border: Border.all(width: 1, color: AppColor.mainColor)
                             ),
                             child: Center(
-                              child: ReusableText(text: btnOnb[index],
+                              child: ReusableText(text: buttonName,
                               style: appstyle(16, Colors.white, FontWeight.w600),),
                             ),
                             ),
-                        ),
-                        // GestureDetector(
-                        //   
-                        //   child: CustomButton(text: btnOnb[index], width: 300, height: 50,
-                        //     outlineBtnColor: AppColor.mainColor, textColor: Colors.white,color: AppColor.mainColor,
-                        //     ),
-                        // ),
-                          Align(
-                            
-                            child: DotsIndicator(
-                            position: state.page.toInt(),
-                            dotsCount: 3,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            decorator: DotsDecorator(
-                              color: AppColor.kTextField,
-                              size: const Size.square(7.0),
-                              activeSize:const Size(20.0,8.0),
-                              activeColor: AppColor.mainColor,
-                              activeShape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5.0)
-                              )
-                            ),
-
-                            ),
-                          )
+                        ),                  
                       ],
                     ),
                   
@@ -150,11 +179,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 )
               ],
             ),
-          )
-          ) )],
-     ));
-      },
-     )
-    );
+          );
   }
 }

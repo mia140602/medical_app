@@ -20,6 +20,7 @@ class HomeScreen extends StatefulWidget {
       settings: RouteSettings(name: routeName),
       builder: (_)=> HomeScreen());
   }
+
   const HomeScreen({super.key});
 
   @override

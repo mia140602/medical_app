@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:medical_app/config/app_constain.dart';
@@ -9,10 +7,16 @@ import 'package:medical_app/view/common/app_style.dart';
 import 'package:medical_app/view/common/custom_btn.dart';
 import 'package:medical_app/view/common/custom_outline_btn.dart';
 import 'package:medical_app/view/common/reusable_text.dart';
-import 'package:medical_app/view/feature/auth/signin/signIn.dart';
-import 'package:medical_app/view/feature/auth/signup/signUp.dart';
 
 class LetIn extends StatefulWidget {
+static const String routeName='/letIn';
+
+  static Route route() {
+    return MaterialPageRoute(
+      settings: RouteSettings(name: routeName),
+      builder: (_)=> LetIn());
+  }
+
   const LetIn({super.key});
 
   @override
@@ -38,7 +42,7 @@ class _LetInState extends State<LetIn> {
             SizedBox(height: 20.25.h,),
             SvgPicture.asset(Frame,width: 200.w,),
             SizedBox(height: 20.25.h,),
-            Text( "Let's you in", style: appstyle(48, AppColor.textColor1, FontWeight.w700),textAlign: TextAlign.center,),
+            Text( "Let's you in", style: appstyle(40.sp, AppColor.textColor1, FontWeight.w700),textAlign: TextAlign.center,),
             SizedBox(height: 20.25.h,),
             CustomOutlineBtn(svgImg: "fb.svg", width: 300, hieght: 50,
              color: AppColor.kBorder, text: "Continue with Facebook",textColor: AppColor.textColor1,),
@@ -46,18 +50,25 @@ class _LetInState extends State<LetIn> {
              CustomOutlineBtn(svgImg: "google.svg", width: 300, hieght: 50,
              color: AppColor.kBorder, text: "Continue with Email",textColor: AppColor.textColor1,
              onTap: () {
-               Navigator.of(context)
-                            .push(MaterialPageRoute(
-                              builder:(context)=> SignIn()));
+              //  Navigator.of(context)
+              //               .push(MaterialPageRoute(
+              //                 builder:(context)=> SignIn()));
+              Navigator.of(context).pushNamed("/signin");
              },),
              SizedBox(height: 10.h,),
              CustomOutlineBtn(svgImg: "apple.svg", width: 300, hieght: 50,
              color: AppColor.kBorder, text: "Continue with Apple",textColor: AppColor.textColor1,),
              SizedBox(height: 20.h,),
-             CustomButton(text: "-----------------or-----------------", width: 300, outlineBtnColor: Colors.white, textColor:Colors.grey.withOpacity(0.4) ,),
+             CustomButton(text: "-or-", width: 300, outlineBtnColor: Colors.white, textColor:Colors.grey.withOpacity(0.4) ,),
              SizedBox(height: 30.h,),
-             CustomButton(text: "Sign in with pasword", width: 300, height: 50,
-             outlineBtnColor: AppColor.mainColor, textColor: Colors.white,color: AppColor.mainColor,),
+             GestureDetector(
+              onTap: (){
+                Navigator.pushNamed(context, '/signin');
+              },
+               child: CustomButton(text: "Sign in with pasword", width: 300, height: 50,
+               outlineBtnColor: AppColor.mainColor, textColor: Colors.white,color: AppColor.mainColor,
+               ),
+             ),
              SizedBox(height: 30.h,),
              Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -66,9 +77,7 @@ class _LetInState extends State<LetIn> {
                 ReusableText(text: "Don't have account? ", style: appstyle(14, Colors.grey, FontWeight.normal)),
                 GestureDetector(
                   onTap: () {
-                    Navigator.of(context)
-                            .push(MaterialPageRoute(
-                              builder:(context)=> SignUp()));
+                   Navigator.pushNamed(context, '/signUp');
                   },
                   child: ReusableText(text: "Sign Up",style: appstyle(14, AppColor.mainColor, FontWeight.normal),))
               ],

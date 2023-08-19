@@ -1,17 +1,17 @@
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:medical_app/config/app_router.dart';
+import 'package:medical_app/global.dart';
+import 'package:medical_app/routes/routes.dart';
+Future <void> main() async {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp(
 
-import 'package:medical_app/view/feature/home/home_screen.dart';
-import 'package:medical_app/view/feature/onboarding/bloc/onb_blocs.dart';
-import 'package:medical_app/view/feature/onboarding/onboarding_screen.dart';
+  // );
+  await Global.init();
 
-
-
-void main() {
   runApp(const MyApp());
 }
 
@@ -21,8 +21,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return  BlocProvider(
-      create: (context) => OnbBloc(),
+    return  MultiBlocProvider(
+      
+      // providers: AppBlocProvider.allBlocProviders,
+      providers: [...AppPages.allBlocProviders( context),],
       child: ScreenUtilInit(
           useInheritedMediaQuery: true,
           designSize: const Size(375, 812),
@@ -37,9 +39,11 @@ class MyApp extends StatelessWidget {
                 
                 primarySwatch: Colors.grey,
               ),
-            //  onGenerateRoute: AppRouter.onGenerateRoute,
-            //  initialRoute: HomeScreen.routeName,
-            home: OnBoardingScreen(),
+
+               onGenerateRoute: AppPages.GenerateRouteSettings,
+              //   initialRoute: "/"
+            // home: ApplicationPage(),
+            
             );
           }),
     );

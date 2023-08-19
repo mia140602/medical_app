@@ -113,7 +113,8 @@ class _SplashScreen2State extends State<SplashScreen2> {
 
             Container(          
               width: width*0.8,
-                child:Text(textOnb1, style: appstyle(18, AppColor.textColor1, FontWeight.normal),textAlign: TextAlign.center,),
+                child:Text("The best online doctor appointment & consultation app of the century for your health and medical needs!",
+                 style: appstyle(18, AppColor.textColor1, FontWeight.normal),textAlign: TextAlign.center,),
               ),
             
           ],

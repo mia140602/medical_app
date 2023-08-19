@@ -64,6 +64,7 @@ class CustomTextField extends StatelessWidget {
         style: appstyle(14, Colors.black, FontWeight.w500),
         validator: validator,
         onChanged: onChange,
+        
 
     )
     );

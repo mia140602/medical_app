@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 double height = 812.h;
 double width = 375.w;
 
+
 class AppColor {
   static final Color mainColor= Color(0xff4285F4);
   static final Color textColor1= Color(0xff212121);
@@ -14,12 +15,10 @@ class AppColor {
   
 
 }
-String textOnb1="The best online doctor appointment & consultation app of the century for your health and medical needs!";
-List<String> textOnboard=[
-"Thousands of doctors & experts to help your health!",
-"Health checks & consultations easily anywhere anytime",
-"Let's start living healthy and well with us right now!"
-];
-List<String> btnOnb=[
-"Next","Next","Get Started"
-];
+class AppConstants{
+ static const String STORAGE_DEVICE_OPEN_FIRST_TIME='device_first_open';
+  static const String STORAGE_USER_TOKEN_KEY="user_token_key";
+  static const String STORAGE_USER_PROFILE_KEY="user_profile_key";
+}
+
+
