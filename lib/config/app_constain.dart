@@ -2,6 +2,8 @@ import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../view/feature/appointment/appointment_screen.dart';
+
 double height = 812.h;
 double width = 375.w;
 
@@ -19,6 +21,50 @@ class AppConstants{
  static const String STORAGE_DEVICE_OPEN_FIRST_TIME='device_first_open';
   static const String STORAGE_USER_TOKEN_KEY="user_token_key";
   static const String STORAGE_USER_PROFILE_KEY="user_profile_key";
+}
+extension FilterStatusExtension on FilterStatus {
+  String get displayName {
+    switch (this) {
+      case FilterStatus.upcoming:
+        return "Upcoming";
+      case FilterStatus.completed:
+        return "Completed";
+      case FilterStatus.cancel:
+        return "Cancelled";
+      default:
+        return "";
+    }
+  }
+}
+extension FilterTypeExtension on FilterType {
+  String get displayName {
+    switch (this) {
+      case FilterType.Call:
+        return "Voice Call";
+      case FilterType.Video:
+        return "Video Call";
+      case FilterType.Messaging:
+        return "Messaging";
+      case FilterType.Offline:
+        return "Offline";
+      default:
+        return "";
+    }
+  }
+  String get imgPath{
+    switch (this){
+      case FilterType.Call:
+        return "assets/icons/call.svg";
+      case FilterType.Video:
+        return "assets/icons/videoCall.svg";
+      case FilterType.Messaging:
+        return "assets/icons/mess.svg";
+      case FilterType.Offline:
+        return "assets/icons/mess.svg";
+      default:
+        return "assets/icons/mess.svg";
+    }
+  }
 }
 
 

@@ -17,13 +17,7 @@ import 'bloc/signup_event.dart';
 import 'bloc/signup_state.dart';
 
 class SignUp extends StatefulWidget {
-static const String routeName='/signUp';
 
-  static Route route() {
-    return MaterialPageRoute(
-      settings: RouteSettings(name: routeName),
-      builder: (_)=> SignUp());
-  }
 
   const SignUp({super.key});
 

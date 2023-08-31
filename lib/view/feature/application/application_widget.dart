@@ -1,13 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:medical_app/view/feature/appointment/appointment_screen.dart';
+import 'package:medical_app/view/feature/home/home_screen.dart';
+import 'package:medical_app/view/feature/profile.dart/profile.dart';
 
 Widget buildPage(int index){
   List<Widget> _widget=[
-    Center(child: Text("Home"),),
-    Center(child: Text("Appoinment"),),
+    const HomeScreen(),
+    AppointmentScreen(),
     Center(child: Text("History"),),
     Center(child: Text("Articles"),),
-    Center(child: Text("Profile"),),
+    ProfileScreen(),
     
   ];
   return _widget[index];

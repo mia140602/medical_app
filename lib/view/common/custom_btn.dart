@@ -16,11 +16,12 @@ class CustomButton extends StatelessWidget {
   // final void Function()? onTap;
   final Color? textColor;
   final bool wrapContentWidth;
+  final double? textSize;
 
   CustomButton({super.key, this.radius=100, this.height, this.wrapContentWidth=false,
   required this.text, this.color, 
   // this.onTap
-  required this.width,required this.outlineBtnColor, this.textColor
+  required this.width,required this.outlineBtnColor, this.textColor, this.textSize=16
   });
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,7 @@ class CustomButton extends StatelessWidget {
     ),
     child: Center(
        child: ReusableText(text: text,
-       style: appstyle(16, textColor!, FontWeight.w600),),
+       style: appstyle(textSize??16, textColor!, FontWeight.w600),),
     ),
     );
   }

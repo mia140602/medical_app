@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_app/global.dart';
 import 'package:medical_app/routes/routes.dart';
+import 'package:medical_app/theme/dark_theme.dart';
+import 'package:medical_app/theme/light_theme.dart';
 Future <void> main() async {
   // WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp(
@@ -34,11 +36,8 @@ class MyApp extends StatelessWidget {
             return MaterialApp(
               debugShowCheckedModeBanner: false,
               title: 'Thao JobApp',
-              theme: ThemeData(
-                
-                
-                primarySwatch: Colors.grey,
-              ),
+              theme: lightTheme,
+              darkTheme: darkTheme,
 
                onGenerateRoute: AppPages.GenerateRouteSettings,
               //   initialRoute: "/"

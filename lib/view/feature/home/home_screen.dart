@@ -13,13 +13,7 @@ import 'package:medical_app/view/feature/Action_menu/notification.dart';
 import '../../common/custom_btn.dart';
 
 class HomeScreen extends StatefulWidget {
-  static const String routeName='/';
-
-  static Route route() {
-    return MaterialPageRoute(
-      settings: RouteSettings(name: routeName),
-      builder: (_)=> HomeScreen());
-  }
+  
 
   const HomeScreen({super.key});
 
@@ -35,10 +29,10 @@ class _HomeScreenState extends State<HomeScreen> {
       DoctorIcon(icon: "general.svg", name: "General"),
       DoctorIcon(icon: "dentis.svg", name: "Dentis"),
       DoctorIcon(icon: "ophthal.svg", name: "Ophthal.."),
-      DoctorIcon(icon: "nutrition.svg", name: "Nutrition"),
+      DoctorIcon(icon: "nutrition.svg", name: "Nutritionít"),
       DoctorIcon(icon: "neurolo.svg", name: "Neurolo.."),
       DoctorIcon(icon: "pediatric.svg", name: "Pediatric"),
-      DoctorIcon(icon: "radiolo.svg", name: "Radiolo.."),
+      DoctorIcon(icon: "radiolo.svg", name: "Radiologycal"),
       DoctorIcon(icon: "more.svg", name: "More"),
     ];
     
@@ -48,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Colors.white,
       body:Container(
         margin: EdgeInsets.only(
-                top: 40.h, left: 20.w, right: 20.w, bottom: 10.h),
+                top: 10.h, left: 20.w, right: 20.w, bottom: 10.h),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -196,64 +190,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     textColor: AppColor.mainColor,
                     );
                 }),
-            )
+            ),
+            
             
           ],
         ),
       ) ,
       
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        // showSelectedLabels: false,
-        // showUnselectedLabels: false,
-        selectedItemColor: AppColor.mainColor,
-        onTap: (index) {
-    setState(() {
-      _currentIndex = index;
-    });
-    switch (index) {
-      case 0:
-        Navigator.of(context).pushNamed('/');
-        break;
-      case 1:
-      Navigator.of(context).pushNamed(AppNotification.routeName);
-        break;
-      case 2:
-        Navigator.of(context).pushNamed(Favorite.routeName);
-        break;
-      case 3:
-        Navigator.of(context).pushNamed('/');
-        break;
-      case 4:
-        Navigator.of(context).pushNamed('/');
-        break;
-    }
-      },
-
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Ionicons.home_outline),
-            label: "Home",
-            ),
-            BottomNavigationBarItem(
-            icon: Icon(Ionicons.calendar_outline),
-            label: "Appointm..",
-            ),
-            BottomNavigationBarItem(
-            icon: Icon(Ionicons.reader_outline),
-            label: "History",
-            ),
-            BottomNavigationBarItem(
-            icon: Icon(Ionicons.document_text_outline),
-            label: "Articles",
-            ),
-            
-            BottomNavigationBarItem(
-            icon: Icon(Ionicons.person_outline),
-            label: "Profile",
-            ),
-        ],
-      )
+    
     );
   }
 }

@@ -31,7 +31,7 @@ class SignupController {
         await credential.user?.sendEmailVerification();
         await credential.user?.updateDisplayName("Thảo");
         toastInfo(msg: "Xác minh email đã được gửi. Kiểm tra hòm thư của bạn");
-        Navigator.of(context).pop();
+        Navigator.of(context).pushNamed("/fillProfile");
       }
     }on FirebaseAuthException catch(e){
       if(e.code=='weak-passwork') {

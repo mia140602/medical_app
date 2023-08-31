@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import 'package:medical_app/config/app_constain.dart';
-
 import 'package:medical_app/view/common/app_style.dart';
 import 'package:medical_app/view/common/custom_btn.dart';
 import 'package:medical_app/view/common/custom_textfield.dart';
@@ -114,7 +112,9 @@ class _SignInState extends State<SignIn> {
                        Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          ReusableText(text: "Forgot the password?", style: appstyle(14, AppColor.mainColor, FontWeight.normal)),
+                          GestureDetector(
+                            onTap: () => Navigator.of(context).pushNamed("/forgotPassword"),
+                            child: ReusableText(text: "Forgot the password?", style: appstyle(14, AppColor.mainColor, FontWeight.normal))),
                           SizedBox(height: 20.h,),
                           ReusableText(text: "-Or continue with- ", style: appstyle(14, Colors.grey, FontWeight.normal)),
                          

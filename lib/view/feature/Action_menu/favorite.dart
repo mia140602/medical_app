@@ -5,13 +5,7 @@ import 'package:medical_app/view/common/title_section.dart';
 
 class Favorite extends StatefulWidget {
 
-  static const String routeName='/favorite';
 
-  static Route route() {
-    return MaterialPageRoute(
-      settings: RouteSettings(name: routeName),
-      builder: (_)=> Favorite());
-  }
   
   const Favorite({super.key});
 
@@ -26,12 +20,20 @@ class _FavoriteState extends State<Favorite> {
       backgroundColor: Colors.white,
       body: Container(
         margin: EdgeInsets.only(top: 60.h, left: 20.w, right: 20.w, bottom: 60.h),
-        child: Column(
-          children: [
-            TitleSection(text: "My Favorite Doctor", imagePaths: ["Search.svg","more.svg"],),
-            SizedBox(height: 20.h,),
-            DoctorCart()
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              TitleSection(text: "My Favorite Doctor", imagePaths: ["Search.svg","more.svg"],),
+              SizedBox(height: 20.h,),
+              Column(
+                children:List.generate(10, (index)  {
+                return DoctorCart(imgPath: "assets/img/doctor1.png", doctorName: "Alex Tran", category: "dental", clinic: "Phong kham1",
+                isfavotite: true,);
+              }) ,
+              )
+              
+            ],
+          ),
         ),
       ),
     );

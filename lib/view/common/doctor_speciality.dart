@@ -41,5 +41,16 @@ class DoctorIcon {
   String icon;
   String name;
 
+
   DoctorIcon({required this.icon, required this.name});
+}
+
+class Detail{
+  String svgPath;
+  String number;
+  String st;
+  
+  Detail({required this.svgPath,required this.number,required this.st});
+
+
 }

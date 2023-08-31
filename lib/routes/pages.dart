@@ -4,15 +4,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medical_app/global.dart';
 import 'package:medical_app/routes/routes.dart';
+import 'package:medical_app/view/feature/Action_menu/favorite.dart';
+import 'package:medical_app/view/feature/Action_menu/top_doctor.dart';
 import 'package:medical_app/view/feature/application/application_page.dart';
 import 'package:medical_app/view/feature/application/bloc/app_blocs.dart';
+import 'package:medical_app/view/feature/auth/forgot_password.dart/forgot_password.dart';
 import 'package:medical_app/view/feature/auth/let_you_in.dart';
 import 'package:medical_app/view/feature/auth/signin/bloc/signin_bloc.dart';
 import 'package:medical_app/view/feature/auth/signin/signIn.dart';
 import 'package:medical_app/view/feature/auth/signup/bloc/signup_bloc.dart';
 import 'package:medical_app/view/feature/auth/signup/signUp.dart';
+import 'package:medical_app/view/feature/doctor_appointment/doctor_detail.dart';
+import 'package:medical_app/view/feature/fill_profile.dart';
+import 'package:medical_app/view/feature/home/home_screen.dart';
 import 'package:medical_app/view/feature/onboarding/bloc/onb_blocs.dart';
 import 'package:medical_app/view/feature/onboarding/onboarding_screen.dart';
+import 'package:medical_app/view/feature/search/search_screen.dart';
 
 import 'names.dart';
 
@@ -38,6 +45,30 @@ class AppPages{
     PageEntity(route: AppRoutes.APPLICATION, 
               page: const ApplicationPage(), 
               bloc: BlocProvider(create: (_)=> AppBlocs(),)
+              ),
+    PageEntity(route: AppRoutes.SEARCH, 
+              page: const SearchScreen(), 
+              // bloc: BlocProvider(create: (_)=> AppBlocs(),)
+              ),
+    PageEntity(route: AppRoutes.FillPROFILE, 
+              page: const FillProfile(), 
+              // bloc: BlocProvider(create: (_)=> AppBlocs(),)
+              ),
+    PageEntity(route: AppRoutes.FORGOTPASSWORD, 
+              page: const ForgotPassword(), 
+              // bloc: BlocProvider(create: (_)=> AppBlocs(),)
+              ),
+    PageEntity(route: AppRoutes.TOPDOCTOR, 
+              page: const TopDoctor(), 
+              // bloc: BlocProvider(create: (_)=> AppBlocs(),)
+              ),
+    PageEntity(route: AppRoutes.FAVORITE, 
+              page: const Favorite(), 
+              // bloc: BlocProvider(create: (_)=> AppBlocs(),)
+              ),
+    PageEntity(route: AppRoutes.DOCTORDETAIL, 
+              page: const DoctorDetail(), 
+              // bloc: BlocProvider(create: (_)=> AppBlocs(),)
               ),
   ];
   }
@@ -68,12 +99,12 @@ static MaterialPageRoute GenerateRouteSettings( RouteSettings settings){
          return MaterialPageRoute(builder: (_)=> SignIn(),settings: settings);
         }
         return MaterialPageRoute(builder: (context) => result.first.page,settings: settings);
-        print("Valid route name: ${settings.name}");
+         print("Valid route name: ${settings.name}");
         return MaterialPageRoute(builder: (_)=> result.first.page,settings: settings);
       }
   }
-  print("Invalid route nảm ${settings.name}");
-  return MaterialPageRoute(builder: (_)=> SignIn(),settings: settings);
+  print("Invalid route name ${settings.name}");
+  return MaterialPageRoute(builder: (_)=> ApplicationPage(),settings: settings);
 }
 
 }

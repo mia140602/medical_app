@@ -77,7 +77,7 @@ class _LetInState extends State<LetIn> {
                 ReusableText(text: "Don't have account? ", style: appstyle(14, Colors.grey, FontWeight.normal)),
                 GestureDetector(
                   onTap: () {
-                   Navigator.pushNamed(context, '/signUp');
+                   Navigator.pushNamed(context, '/signup');
                   },
                   child: ReusableText(text: "Sign Up",style: appstyle(14, AppColor.mainColor, FontWeight.normal),))
               ],
