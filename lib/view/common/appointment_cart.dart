@@ -30,8 +30,8 @@ class AppointmentCart extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Container(
-                    width: 90.w,
-                    height: 90.h,
+                    width: 70.w,
+                    height: 70.h,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
                       image: DecorationImage(image: AssetImage(imgPath))

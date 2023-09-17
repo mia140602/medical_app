@@ -14,9 +14,9 @@ import 'package:medical_app/view/feature/auth/signin/bloc/signin_bloc.dart';
 import 'package:medical_app/view/feature/auth/signin/signIn.dart';
 import 'package:medical_app/view/feature/auth/signup/bloc/signup_bloc.dart';
 import 'package:medical_app/view/feature/auth/signup/signUp.dart';
+import 'package:medical_app/view/feature/booking/booking_page.dart';
 import 'package:medical_app/view/feature/doctor_appointment/doctor_detail.dart';
 import 'package:medical_app/view/feature/fill_profile.dart';
-import 'package:medical_app/view/feature/home/home_screen.dart';
 import 'package:medical_app/view/feature/onboarding/bloc/onb_blocs.dart';
 import 'package:medical_app/view/feature/onboarding/onboarding_screen.dart';
 import 'package:medical_app/view/feature/search/search_screen.dart';
@@ -68,6 +68,10 @@ class AppPages{
               ),
     PageEntity(route: AppRoutes.DOCTORDETAIL, 
               page: const DoctorDetail(), 
+              // bloc: BlocProvider(create: (_)=> AppBlocs(),)
+              ),
+    PageEntity(route: AppRoutes.BOOKINGPAGE, 
+              page: const BookingPage(), 
               // bloc: BlocProvider(create: (_)=> AppBlocs(),)
               ),
   ];

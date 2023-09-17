@@ -17,9 +17,11 @@ class CustomButton extends StatelessWidget {
   final Color? textColor;
   final bool wrapContentWidth;
   final double? textSize;
+  final bool? disable;
 
   CustomButton({super.key, this.radius=100, this.height, this.wrapContentWidth=false,
   required this.text, this.color, 
+  this.disable= false,
   // this.onTap
   required this.width,required this.outlineBtnColor, this.textColor, this.textSize=16
   });
@@ -32,13 +34,13 @@ class CustomButton extends StatelessWidget {
     height: height,
     decoration: BoxDecoration(
       
-      color: color,
+      color: disable==true?AppColor.kTextField: color,
       borderRadius: BorderRadius.all(Radius.circular(radius),),
-      border: Border.all(width: 1, color: outlineBtnColor)
+      border: Border.all(width: 1, color:disable==true?Colors.black: outlineBtnColor)
     ),
     child: Center(
        child: ReusableText(text: text,
-       style: appstyle(textSize??16, textColor!, FontWeight.w600),),
+       style: appstyle(textSize??16,disable==true?AppColor.secondColor: textColor!, FontWeight.w600),),
     ),
     );
   }

@@ -20,57 +20,59 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       body: Container(
         margin: EdgeInsets.only(top: 24.h, left: 20.w, right: 20.w, bottom: 30.h),
-        child: Column(
-          children: [
-            TitleSection(text: "Profile", imagePaths: ["more.svg"],),
-            SizedBox(height: 209.h,
-              child: Column(
-                children: [
-                  Container(
-                    alignment: Alignment.bottomRight,
-                    padding: EdgeInsets.only(right: 6.w),
-                    width: 140.w,
-                    height: 140.h,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      image: const DecorationImage(image: AssetImage("assets/img/avt1.png"))
-                    ),
-                    child: Image(
-                      width: 35.w,
-                      height: 35.h,
-                      image: const AssetImage("assets/img/edit_3.png"),
-                      // color: AppColor.mainColor,
-                    )),
-                  Text("Doan Thảo",style: appstyle(24.sp, AppColor.textColor1, FontWeight.bold), ),
-                  Text("+8497786680",style: appstyle(14.sp, AppColor.textColor1, FontWeight.normal), ),
-                 
-                ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              TitleSection(text: "Profile", imagePaths: ["more.svg"],),
+              SizedBox(height: 209.h,
+                child: Column(
+                  children: [
+                    Container(
+                      alignment: Alignment.bottomRight,
+                      padding: EdgeInsets.only(right: 6.w),
+                      width: 140.w,
+                      height: 140.h,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        image: const DecorationImage(image: AssetImage("assets/img/avt1.png"))
+                      ),
+                      child: Image(
+                        width: 35.w,
+                        height: 35.h,
+                        image: const AssetImage("assets/img/edit_3.png"),
+                        // color: AppColor.mainColor,
+                      )),
+                    Text("Doan Thảo",style: appstyle(24.sp, AppColor.textColor1, FontWeight.bold), ),
+                    Text("+8497786680",style: appstyle(14.sp, AppColor.textColor1, FontWeight.normal), ),
+                   
+                  ],
+                ),
               ),
-            ),
-            SizedBox(height: 24.h,),
-             _listProfile("Edit Profile", Ionicons.person_outline),
-             _listProfile("Notification", Ionicons.notifications_outline),
-             _listProfile("Payment", Icons.payment_rounded),
-             _listProfile("Securiry", Icons.security),
-             _listProfile("Language", Ionicons.language_outline),
-             _listProfile("Dart mode", Ionicons.eye_outline),
-             _listProfile("Help Center", Ionicons.help_circle_outline),
-             _listProfile("Invite Friend", Ionicons.person_add_outline),
-             
-             SizedBox(height: 10.h,),
-             GestureDetector(
-              onTap: () => Navigator.pushNamed(context, "/signin"),
-               child: Row(
-                children: [
-                  Icon(Ionicons.exit_outline,color: Colors.red,),
-                  SizedBox(width: 15.w,),
-                  Expanded(child: Text("Logout",style: appstyle(18.sp, Colors.red, FontWeight.normal),)),
-                  
-                ],
-               ),
-             )
-
-          ],
+              SizedBox(height: 24.h,),
+               _listProfile("Edit Profile", Ionicons.person_outline),
+               _listProfile("Notification", Ionicons.notifications_outline),
+               _listProfile("Payment", Icons.payment_rounded),
+               _listProfile("Securiry", Icons.security),
+               _listProfile("Language", Ionicons.language_outline),
+               _listProfile("Dart mode", Ionicons.eye_outline),
+               _listProfile("Help Center", Ionicons.help_circle_outline),
+               _listProfile("Invite Friend", Ionicons.person_add_outline),
+               
+               SizedBox(height: 10.h,),
+               GestureDetector(
+                onTap: () => Navigator.pushNamed(context, "/signin"),
+                 child: Row(
+                  children: [
+                    Icon(Ionicons.exit_outline,color: Colors.red,),
+                    SizedBox(width: 15.w,),
+                    Expanded(child: Text("Logout",style: appstyle(18.sp, Colors.red, FontWeight.normal),)),
+                    
+                  ],
+                 ),
+               )
+        
+            ],
+          ),
         ),
       ),
     );

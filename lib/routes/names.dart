@@ -1,7 +1,3 @@
-import 'package:medical_app/view/feature/Action_menu/top_doctor.dart';
-import 'package:medical_app/view/feature/auth/forgot_password.dart/forgot_password.dart';
-import 'package:medical_app/view/feature/auth/let_you_in.dart';
-import 'package:medical_app/view/feature/fill_profile.dart';
 
 class AppRoutes{
 //Onb
@@ -27,5 +23,7 @@ class AppRoutes{
   static const FAVORITE="/favorite";
 
   static const DOCTORDETAIL ='/detail';
+
+  static const BOOKINGPAGE='/booking';
 
 }

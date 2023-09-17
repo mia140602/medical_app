@@ -6,7 +6,8 @@ import '../view/feature/appointment/appointment_screen.dart';
 
 double height = 812.h;
 double width = 375.w;
-
+final url='http://192.168.1.8:3000/';
+final registration= url+"registration";
 
 class AppColor {
   static final Color mainColor= Color(0xff4285F4);
@@ -14,6 +15,7 @@ class AppColor {
   static final Color secondColor= Color(0xff9E9E9E);
   static final Color kTextField = Colors.grey.shade200;
   static final Color kBorder= Color(0xffEEEEEE);
+  static final Color ktable= Color(0xFFEEF4FF);
   
 
 }

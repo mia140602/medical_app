@@ -115,7 +115,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                             );
                           },
                           child: Center(
-                            child: Text(filterStatus.name,style: appstyle(18.sp, AppColor.secondColor, FontWeight.w600),),
+                            child: Text(filterStatus.name,style: appstyle(15.sp, AppColor.secondColor, FontWeight.w600),),
                           ),
                         ),
                       )
@@ -127,7 +127,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
               ),
               AnimatedAlign(alignment: _alignment, duration: const Duration(microseconds: 200),
             child: Container(
-              width: 100.w,
+              width: 110.w,
               height: 40,
               decoration: BoxDecoration(
                 color: AppColor.mainColor,
@@ -136,7 +136,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
               child: Center(
                 child: Text(
                   status.name,
-                  style: appstyle(18.sp, Colors.white, FontWeight.bold),
+                  style: appstyle(15.sp, Colors.white, FontWeight.bold),
                 ),
               ),
             ),
