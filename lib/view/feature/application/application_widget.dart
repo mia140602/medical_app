@@ -1,16 +1,27 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:medical_app/view/feature/appointment/appointment_screen.dart';
 import 'package:medical_app/view/feature/home/home_screen.dart';
+import 'package:medical_app/view/feature/profile.dart/bloc/profile_bloc.dart';
 import 'package:medical_app/view/feature/profile.dart/profile.dart';
+
+import '../home/bloc/home_bloc.dart';
+import '../profile.dart/fillprofile/fillProfile_controller.dart';
 
 Widget buildPage(int index){
   List<Widget> _widget=[
-    const HomeScreen(),
+    BlocProvider(
+      create: (context) => HomeBloc(controller: FillProfileController()),
+      child: HomeScreen(),
+    ),
     AppointmentScreen(),
     Center(child: Text("History"),),
     Center(child: Text("Articles"),),
-    ProfileScreen(),
+    BlocProvider(
+      create: (context) => ProfileBloc(controller: FillProfileController()),
+      child: ProfileScreen(),
+    ),
     
   ];
   return _widget[index];

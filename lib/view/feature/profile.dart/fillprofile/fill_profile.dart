@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:medical_app/config/app_constain.dart';
@@ -6,6 +7,9 @@ import 'package:medical_app/view/common/custom_btn.dart';
 import 'package:medical_app/view/common/custom_textfield.dart';
 import 'package:medical_app/view/common/drop_down_form_field.dart';
 import 'package:medical_app/view/common/title_section.dart';
+import 'package:medical_app/view/feature/profile.dart/fillprofile/bloc/fill_bloc.dart';
+import 'package:medical_app/view/feature/profile.dart/fillprofile/bloc/fill_event.dart';
+import 'package:medical_app/view/feature/profile.dart/fillprofile/bloc/fill_state.dart';
 
 class FillProfile extends StatefulWidget {
   const FillProfile({super.key});
@@ -15,14 +19,45 @@ class FillProfile extends StatefulWidget {
 }
 
 class _FillProfileState extends State<FillProfile> {
+@override
+  void initState() {
+    super.initState();
+    context.read<FillProfileBloc>().add(GetUserInfo());
+  }
+  String? genderValue;
   final TextEditingController name = TextEditingController();
   final TextEditingController nickName = TextEditingController();
   final TextEditingController dateBirthday = TextEditingController();
   final TextEditingController email = TextEditingController();
+  final TextEditingController gender= TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return BlocConsumer<FillProfileBloc, FillProfileState>(
+  listener: (context, state) {
+    if (state is ProfileUpdated) {
+      Navigator.pushNamed(context, "/application");
+    }
+  },
+  builder: (context, state) {
+    String emailHintText = "email";
+    String nameHintText = "Tên";
+    String nickNameHintText = "Biệt danh";
+    String genderHintText = "Giới tính";
+    String birthdayHintText = "Ngày sinh";
+    if (state is FillProfileLoaded){
+      emailHintText = state.email;
+    }
+    
+    if (state is UserInfoLoaded) {
+      emailHintText = state.userInfo.email;
+      nameHintText =state.userInfo.name?? "Tên";
+      nickNameHintText= state.userInfo.nickName?? "Biệt Danh";
+      genderHintText= state.userInfo.gender?? "Giới tính";
+      birthdayHintText=state.userInfo.birthday??"Ngày sinh";
+      
+    }
+        return Scaffold(
       body: SingleChildScrollView(
         child: Container(
             margin: EdgeInsets.only(
@@ -39,7 +74,7 @@ class _FillProfileState extends State<FillProfile> {
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(100),
                         child:
-                            Image.asset("assets/img/profile/emptyProfile.png")),
+                            Image.asset("assets/img/avt1.png")),
                   ),
                   SizedBox(
                     height: 24.h,
@@ -62,21 +97,21 @@ class _FillProfileState extends State<FillProfile> {
                   ),
                   CustomTextField(
                       controller: name,
-                      hintText: "Full Name",
+                      hintText: nameHintText,
                       keyboardType: TextInputType.name),
                   SizedBox(
                     height: 24.h,
                   ),
                   CustomTextField(
                       controller: nickName,
-                      hintText: "Nickname",
+                      hintText: nickNameHintText,
                       keyboardType: TextInputType.name),
                   SizedBox(
                     height: 24.h,
                   ),
                   CustomTextField(
                     controller: dateBirthday,
-                    hintText: "Date of Birth",
+                    hintText: birthdayHintText,
                     keyboardType: TextInputType.datetime,
                     suffixIcon: GestureDetector(
                       onTap: () {},
@@ -87,8 +122,9 @@ class _FillProfileState extends State<FillProfile> {
                     height: 24.h,
                   ),
                   CustomTextField(
+                    enable: false,
                     controller: email,
-                    hintText: "Email",
+                    hintText: emailHintText,
                     keyboardType: TextInputType.emailAddress,
                     suffixIcon: GestureDetector(
                       onTap: () {},
@@ -99,29 +135,58 @@ class _FillProfileState extends State<FillProfile> {
                     height: 24.h,
                   ),
                   //DropDownField(productSizeList: ["Male", "Female", "Others"])
-                  CustomTextField(
-                      controller: email,
-                      hintText: "Gender",
-                      keyboardType: TextInputType.emailAddress,
-                      suffixIcon: DropDownField(
-                        productSizeList: ["Male", "Female", "Others"],
-                      )),
+                  Container(
+                    padding: EdgeInsets.only(left: 10,right: 10),
+                    decoration:  BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: Colors.transparent, width: 1),
+                    color: AppColor.kTextField,
+                  
+                  ),
+                    child: DropdownButtonFormField<String>(
+                      value: genderValue,
+                      hint: Text(genderHintText),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          genderValue = newValue;
+                        });
+                        },
+                        items: <String>['Nam', 'Nữ', 'Khác']
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                      ),
+                  )
                 ],
               )),
               SizedBox(
                 height: 24.h,
               ),
-              CustomButton(
-                text: "Continue",
-                width: 380,
-                outlineBtnColor: AppColor.mainColor,
-                // onTap: () {},
-                textColor: Colors.white,
-                color: AppColor.mainColor,
-                height: 50,
+              GestureDetector(
+                onTap: () {
+                  context.read<FillProfileBloc>().add(UpdateProfile(
+                      name: name.text,
+                      nickName: nickName.text,
+                      birthday: dateBirthday.text,
+                      gender: genderValue??'', 
+    ));
+                },
+                child: CustomButton(
+                  text: "Continue",
+                  width: 380,
+                  outlineBtnColor: AppColor.mainColor,
+                  
+                  textColor: Colors.white,
+                  color: AppColor.mainColor,
+                  height: 50,
+                ),
               )
             ])),
       ),
     );
+      });
   }
 }

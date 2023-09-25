@@ -44,7 +44,7 @@ class SignupController {
       if (response.statusCode == 200) {
         print('Đăng ký thành công');
          toastInfo(msg: "Xác minh email đã được gửi. Kiểm tra hòm thư của bạn");
-        // Tiến hành xác minh email tại đây nếu bạn muốn
+        // Tiến hành xác minh email 
         // Trường hợp thành công, điều hướng đến trang đăng nhập
         Navigator.of(context).pushNamed("/signin");
       } else {

@@ -6,8 +6,22 @@ import '../view/feature/appointment/appointment_screen.dart';
 
 double height = 812.h;
 double width = 375.w;
-final url='http://192.168.1.8:3000/';
+// 
+// final url='http://192.168.1.8:8000/';
+// final url='http://192.168.5.24:8000/';
+// final url= ''
+
+//ở trường:
+// final url='http://172.16.39.170:8000/';
+//cty
+final url='http://192.168.5.18:8000/';
+
 final registration= url+"registration";
+final login= url+"login";
+final updateUserProfile= url +"updateProfile";
+final getUserProfileInfo= url+"/getUserInfo";
+
+
 
 class AppColor {
   static final Color mainColor= Color(0xff4285F4);

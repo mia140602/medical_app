@@ -1,5 +1,6 @@
 class AppStates{
   final int index;
-  const AppStates({this.index=0});
+  final String token;
+  const AppStates({this.index=0, this.token=''});
   
 }

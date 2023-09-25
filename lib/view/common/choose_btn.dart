@@ -14,8 +14,11 @@ class ChooseBtn extends StatefulWidget {
   final String text2;
   final String? price;
   final String? time;
+  // final double? size;
   final bool hasCheckbox;
-  const ChooseBtn({super.key,required this.imagePath, required this.text1, required this.text2, this.hasCheckbox = false, this.price, this.time});
+  const ChooseBtn({super.key,
+  // this.size=80,
+  required this.imagePath, required this.text1, required this.text2, this.hasCheckbox = false, this.price, this.time});
 
   @override
   State<ChooseBtn> createState() => _ChooseBtnState();

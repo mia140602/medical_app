@@ -1,5 +1,6 @@
 
 
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medical_app/global.dart';
@@ -15,12 +16,19 @@ import 'package:medical_app/view/feature/auth/signin/signIn.dart';
 import 'package:medical_app/view/feature/auth/signup/bloc/signup_bloc.dart';
 import 'package:medical_app/view/feature/auth/signup/signUp.dart';
 import 'package:medical_app/view/feature/booking/booking_page.dart';
+import 'package:medical_app/view/feature/booking/selectType.dart';
 import 'package:medical_app/view/feature/doctor_appointment/doctor_detail.dart';
-import 'package:medical_app/view/feature/fill_profile.dart';
+
 import 'package:medical_app/view/feature/onboarding/bloc/onb_blocs.dart';
 import 'package:medical_app/view/feature/onboarding/onboarding_screen.dart';
+import 'package:medical_app/view/feature/profile.dart/fillprofile/bloc/fill_bloc.dart';
+import 'package:medical_app/view/feature/profile.dart/fillprofile/fillProfile_controller.dart';
+import 'package:medical_app/view/feature/profile.dart/profile.dart';
 import 'package:medical_app/view/feature/search/search_screen.dart';
 
+import '../view/feature/home/bloc/home_bloc.dart';
+import '../view/feature/home/home_screen.dart';
+import '../view/feature/profile.dart/fillprofile/fill_profile.dart';
 import 'names.dart';
 
 class AppPages{
@@ -52,7 +60,8 @@ class AppPages{
               ),
     PageEntity(route: AppRoutes.FillPROFILE, 
               page: const FillProfile(), 
-              // bloc: BlocProvider(create: (_)=> AppBlocs(),)
+              bloc: BlocProvider(create: (_)=> FillProfileBloc(controller: FillProfileController() ),
+              child: FillProfile(),)
               ),
     PageEntity(route: AppRoutes.FORGOTPASSWORD, 
               page: const ForgotPassword(), 
@@ -74,6 +83,14 @@ class AppPages{
               page: const BookingPage(), 
               // bloc: BlocProvider(create: (_)=> AppBlocs(),)
               ),
+    PageEntity(route: AppRoutes.PROFILE, 
+              page: const ProfileScreen(), 
+              // bloc: BlocProvider(create: (_)=> AppBlocs(),)
+              ),
+    PageEntity(route: AppRoutes.SECLECTPACKAGE, 
+              page: const SelectType(), 
+              // bloc: BlocProvider(create: (_)=> AppBlocs(),)
+              ),
   ];
   }
   static List<dynamic> allBlocProviders(BuildContext context){
@@ -85,7 +102,7 @@ class AppPages{
   }
   return blocProviders;
 }
-static MaterialPageRoute GenerateRouteSettings( RouteSettings settings){
+static MaterialPageRoute GenerateRouteSettings( RouteSettings settings, ){
   if(settings.name != null){
     //check route name matching when navigator gets triggered
       var result = routes().where((element) => element.route== settings.name);

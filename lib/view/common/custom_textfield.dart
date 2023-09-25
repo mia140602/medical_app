@@ -7,8 +7,8 @@ import 'app_style.dart';
 class CustomTextField extends StatelessWidget {
   CustomTextField({super.key, this.onChange,
 
-  required this.controller, required this.hintText, required this.keyboardType, this.validator, this.suffixIcon,  this.obscureText, });
-  
+  required this.controller,this.enable=true, required this.hintText, required this.keyboardType, this.validator, this.suffixIcon,  this.obscureText, });
+  final bool? enable;
   final TextEditingController controller;
   final String hintText;
   final TextInputType keyboardType;
@@ -29,7 +29,7 @@ class CustomTextField extends StatelessWidget {
       
       
       child: TextFormField(
-        
+        enabled: enable,
         keyboardType: keyboardType,
         obscureText: obscureText?? false,
         decoration: InputDecoration(

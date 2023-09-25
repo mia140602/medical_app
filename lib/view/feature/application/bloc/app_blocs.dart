@@ -6,8 +6,12 @@ class AppBlocs extends Bloc<AppEvent,AppStates>{
   AppBlocs():super(const AppStates()){
     on<TriggerAppEvent>((event,emit){
       // print("My tappted index: ${event.index}");
-    emit(AppStates(index: event.index));
+    emit(AppStates(index: event.index, token: state.token));
   });
+  on<UpdateTokenEvent>((event, emit) {
+      emit(AppStates(index: state.index, token: event.token));
+    });
+
   }
   
 }

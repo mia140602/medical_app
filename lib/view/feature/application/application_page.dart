@@ -11,7 +11,8 @@ import 'package:medical_app/view/feature/application/bloc/app_states.dart';
 import '../../../config/app_constain.dart';
 
 class ApplicationPage extends StatefulWidget {
-  const ApplicationPage({super.key});
+  
+  const ApplicationPage({super.key,});
 
   @override
   State<ApplicationPage> createState() => _ApplicationPageState();

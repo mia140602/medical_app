@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_app/config/app_constain.dart';
 import 'package:medical_app/view/common/app_style.dart';
 import 'package:medical_app/view/common/title_section.dart';
+import 'package:medical_app/widgets/flutter_toast.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../common/custom_btn.dart';
@@ -27,7 +28,9 @@ class _BookingPageState extends State<BookingPage> {
   bool _isWeekend=false;
   bool _dateSelected=false;
   bool _timeSelected=false;
-  
+  // List<String> time=[
+  //   "9:00 AM","9:30 AM", '10:00 AM','10:30 AM','11:00 AM','11:30 AM','14:00 PM','14;30 PM','15:00 PM','15:30 PM','16:00 PM'
+  // ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,8 +61,10 @@ class _BookingPageState extends State<BookingPage> {
                   ),
                  ): SliverGrid(
                   delegate: SliverChildBuilderDelegate((context, index) {
+                    
                     return InkWell(
                       splashColor: Colors.transparent,
+                      
                       onTap: () {
                         //khi bấm chọn, update curentIndex và settime thành true
                         setState(() {
@@ -78,13 +83,16 @@ class _BookingPageState extends State<BookingPage> {
                           
                         ),
                         alignment: Alignment.center,
-                        child: Text('${index+9}:00${index +9>11?"PM":"AM"}',
+                        child: Text( 
+                          // '${index ~/ 2 + 9}:${(index % 2 == 0) ? '00' : '30'}${index + 9 >= 12 ? "PM" : "AM"}',
+                          index > 5? '${(index + 4) ~/ 2 + 9}:${((index + 4) % 2 == 0) ? '00' : '30'}${(index + 4) + 9 >= 12 ? "PM" : "AM"}' : '${index ~/ 2 + 9}:${(index % 2 == 0) ? '00' : '30'}${index + 9 >= 12 ? "PM" : "AM"}',
+                          // '${index+9}:00${index +9>11?"PM":"AM"}',
                         style: TextStyle(fontWeight: FontWeight.bold,
                         color: _currentIndex==index?Colors.white:null)),
                       ),
                     );
                   },
-                  childCount: 8,
+                  childCount: 12,
                   ),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 4,
@@ -93,9 +101,19 @@ class _BookingPageState extends State<BookingPage> {
                     SliverToBoxAdapter(
                       child: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 50),
-                        child: CustomButton(text: "Next", width: double.maxFinite, height: 50,
-                        outlineBtnColor: AppColor.mainColor, textColor: Colors.white,color: AppColor.mainColor,
-                        disable: _timeSelected&&_dateSelected? false:true,
+                        child: GestureDetector(
+                          onTap: () {
+                            if(_timeSelected==false){
+                              toastInfo(msg: "Vui lòng chọn giờ khám");
+                            }else{
+                              Navigator.pushNamed(context, "/selectPackage");
+                            }
+                            
+                          },
+                          child: CustomButton(text: "Next", width: double.maxFinite, height: 50,
+                          outlineBtnColor: AppColor.mainColor, textColor: Colors.white,color: AppColor.mainColor,
+                          disable: _timeSelected&&_dateSelected? false:true,
+                          ),
                         ),
                       ),
                     )

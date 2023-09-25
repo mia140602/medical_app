@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ionicons/ionicons.dart';
@@ -9,6 +10,11 @@ import 'package:medical_app/view/common/doctor_speciality.dart';
 import 'package:medical_app/view/common/reusable_text.dart';
 import 'package:medical_app/view/feature/Action_menu/favorite.dart';
 import 'package:medical_app/view/feature/Action_menu/notification.dart';
+import 'package:medical_app/view/feature/home/bloc/home_bloc.dart';
+import 'package:medical_app/view/feature/home/bloc/home_event.dart';
+import 'package:medical_app/view/feature/home/bloc/home_state.dart';
+import 'package:medical_app/view/feature/profile.dart/fillprofile/bloc/fill_event.dart';
+import 'package:medical_app/view/feature/profile.dart/fillprofile/fillProfile_controller.dart';
 
 import '../../common/custom_btn.dart';
 
@@ -22,6 +28,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  @override
+void initState() {
+  super.initState();
+  context.read<HomeBloc>().add(HomeGetUserInfo());
+}
+
   int _currentIndex = 0;
 
   List<DoctorIcon> doctorIcon= [
@@ -38,7 +50,13 @@ class _HomeScreenState extends State<HomeScreen> {
     
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return BlocBuilder<HomeBloc,HomeState>(
+      builder: (context,state){
+         String nickName='Loading...';
+        if(state is UserInfoLoaded ){
+          nickName= state.userInfo.nickName??"Test";
+        }
+        return Scaffold(
       backgroundColor: Colors.white,
       body:Container(
         margin: EdgeInsets.only(
@@ -50,7 +68,9 @@ class _HomeScreenState extends State<HomeScreen> {
               
               children: [
                
-                Avatar(size: 48, img: "avt1.png"), 
+                GestureDetector(
+                  onTap: () => Navigator.pushNamed(context, "/profile"),
+                  child: Avatar(size: 48, img: "avt1.png")), 
                 SizedBox(width: 10.w,),
                 SizedBox(
                   height: 60.h,
@@ -60,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text( "Good Morning", style: appstyle(16.sp, AppColor.secondColor, FontWeight.normal)),
-                      Text( "Doan Thao", style: appstyle(20.sp, AppColor.textColor1, FontWeight.bold)),
+                      Text(nickName, style: appstyle(20.sp, AppColor.textColor1, FontWeight.bold)),
                     ],
                   ),
                 ),
@@ -199,5 +219,6 @@ class _HomeScreenState extends State<HomeScreen> {
       
     
     );
+      });
   }
 }

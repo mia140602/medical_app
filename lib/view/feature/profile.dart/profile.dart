@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:medical_app/config/app_constain.dart';
 import 'package:medical_app/view/common/app_style.dart';
 import 'package:medical_app/view/common/avt.dart';
 import 'package:medical_app/view/common/title_section.dart';
+import 'package:medical_app/view/feature/onboarding/onboarding_screen.dart';
+import 'package:medical_app/view/feature/profile.dart/bloc/profile_bloc.dart';
+import 'package:medical_app/view/feature/profile.dart/bloc/profile_event.dart';
+import 'package:medical_app/view/feature/profile.dart/bloc/profile_state.dart';
 
 
 class ProfileScreen extends StatefulWidget {
@@ -15,9 +20,22 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+
+  @override
+  void initState(){
+    super.initState();
+    context.read<ProfileBloc>().add(ProfileGetUserInfo());
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return BlocBuilder<ProfileBloc,ProfileState>(
+      builder: (context,state){
+        String name='Loading...';
+        if (state is UserInfoLoaded){
+          name=state.userInfo.name??"Không thể hiển thị";
+        }
+        return Scaffold(
       body: Container(
         margin: EdgeInsets.only(top: 24.h, left: 20.w, right: 20.w, bottom: 30.h),
         child: SingleChildScrollView(
@@ -42,14 +60,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         image: const AssetImage("assets/img/edit_3.png"),
                         // color: AppColor.mainColor,
                       )),
-                    Text("Doan Thảo",style: appstyle(24.sp, AppColor.textColor1, FontWeight.bold), ),
+                    Text(name,style: appstyle(24.sp, AppColor.textColor1, FontWeight.bold), ),
                     Text("+8497786680",style: appstyle(14.sp, AppColor.textColor1, FontWeight.normal), ),
                    
                   ],
                 ),
               ),
               SizedBox(height: 24.h,),
-               _listProfile("Edit Profile", Ionicons.person_outline),
+               GestureDetector(
+                onTap: () => Navigator.pushNamed(context, "/fillProfile"),
+                child: _listProfile("Edit Profile", Ionicons.person_outline)),
                _listProfile("Notification", Ionicons.notifications_outline),
                _listProfile("Payment", Icons.payment_rounded),
                _listProfile("Securiry", Icons.security),
@@ -60,7 +80,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                
                SizedBox(height: 10.h,),
                GestureDetector(
-                onTap: () => Navigator.pushNamed(context, "/signin"),
+                onTap: () => Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => OnBoardingScreen()), (route) => false),
                  child: Row(
                   children: [
                     Icon(Ionicons.exit_outline,color: Colors.red,),
@@ -76,6 +96,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       ),
     );
+      } );
   }
     Widget _listProfile(
       // int index, BuildContext context, 

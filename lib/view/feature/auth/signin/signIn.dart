@@ -17,13 +17,13 @@ import 'package:medical_app/view/feature/auth/signin/bloc/signin_state.dart';
 import 'package:medical_app/view/feature/auth/signin/sign_in_controller.dart';
 
 class SignIn extends StatefulWidget {
-static const String routeName='/signIn';
+// static const String routeName='/signIn';
 
-  static Route route() {
-    return MaterialPageRoute(
-      settings: RouteSettings(name: routeName),
-      builder: (_)=> SignIn());
-  }
+//   static Route route() {
+//     return MaterialPageRoute(
+//       settings: RouteSettings(name: routeName),
+//       builder: (_)=> SignIn());
+//   }
 
   const SignIn({super.key});
 

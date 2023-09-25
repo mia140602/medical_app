@@ -4,6 +4,8 @@ class AppRoutes{
   static const INITIAL = "/";
   // application
   static const APPLICATION ="/application";
+
+  static const HOME="/home";
   //signin
   static const SIGNIN ="/signin";
   //
@@ -12,6 +14,9 @@ class AppRoutes{
   static const SIGNUP ='/signup';
 
   static const SEARCH='/search';
+
+  static const PROFILE='/profile';
+
   static const FillPROFILE='/fillProfile';
   
   static const FORGOTPASSWORD='/forgotPassword';
@@ -25,5 +30,7 @@ class AppRoutes{
   static const DOCTORDETAIL ='/detail';
 
   static const BOOKINGPAGE='/booking';
+
+  static const SECLECTPACKAGE="/selectPackage";
 
 }
