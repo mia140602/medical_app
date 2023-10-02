@@ -1,4 +1,4 @@
-import 'package:medical_app/config/app_constain.dart';
+import 'package:medical_app/config/app_constant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class StorageService{

@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:medical_app/config/app_constain.dart';
+import 'package:medical_app/config/app_constant.dart';
 import 'package:medical_app/view/common/app_style.dart';
 import 'package:medical_app/view/common/appointment_cart.dart';
 import 'package:medical_app/view/common/title_section.dart';

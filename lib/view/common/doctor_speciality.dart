@@ -3,7 +3,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:medical_app/config/app_constain.dart';
+import 'package:medical_app/config/app_constant.dart';
 
 class DoctorSpeciality extends StatelessWidget {
   const DoctorSpeciality({super.key});

@@ -5,7 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:medical_app/config/app_constain.dart';
+import 'package:medical_app/config/app_constant.dart';
 import 'package:medical_app/view/common/app_style.dart';
 import 'package:medical_app/view/common/avt.dart';
 import 'package:medical_app/view/common/star_rate.dart';
@@ -22,7 +22,7 @@ class ReviewCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
              CircleAvatar(backgroundImage: AssetImage("assets/img/avt1.png"),),
-             Text("Tui La bup be than yeu",style: appstyle(16.sp, AppColor.textColor1, FontWeight.bold),
+             Text("Tui La bup be than yeu",style: appstyle(13.sp, AppColor.textColor1, FontWeight.bold),
              
              ),
              StarRate(star: "5"),

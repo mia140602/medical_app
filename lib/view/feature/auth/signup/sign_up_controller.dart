@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:medical_app/config/app_constain.dart';
+import 'package:medical_app/config/app_constant.dart';
 import 'package:medical_app/widgets/flutter_toast.dart';
 import 'package:medical_app/view/feature/auth/signup/bloc/signup_bloc.dart';
 import 'package:http/http.dart' as http;

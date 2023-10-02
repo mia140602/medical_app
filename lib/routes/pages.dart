@@ -16,6 +16,8 @@ import 'package:medical_app/view/feature/auth/signin/signIn.dart';
 import 'package:medical_app/view/feature/auth/signup/bloc/signup_bloc.dart';
 import 'package:medical_app/view/feature/auth/signup/signUp.dart';
 import 'package:medical_app/view/feature/booking/booking_page.dart';
+import 'package:medical_app/view/feature/booking/patien_detail/patien_detail.dart';
+import 'package:medical_app/view/feature/booking/payment.dart';
 import 'package:medical_app/view/feature/booking/selectType.dart';
 import 'package:medical_app/view/feature/doctor_appointment/doctor_detail.dart';
 
@@ -26,8 +28,8 @@ import 'package:medical_app/view/feature/profile.dart/fillprofile/fillProfile_co
 import 'package:medical_app/view/feature/profile.dart/profile.dart';
 import 'package:medical_app/view/feature/search/search_screen.dart';
 
-import '../view/feature/home/bloc/home_bloc.dart';
-import '../view/feature/home/home_screen.dart';
+
+import '../view/feature/profile.dart/bloc/profile_bloc.dart';
 import '../view/feature/profile.dart/fillprofile/fill_profile.dart';
 import 'names.dart';
 
@@ -85,10 +87,18 @@ class AppPages{
               ),
     PageEntity(route: AppRoutes.PROFILE, 
               page: const ProfileScreen(), 
-              // bloc: BlocProvider(create: (_)=> AppBlocs(),)
+              bloc: BlocProvider(create: (_)=> ProfileBloc(controller: FillProfileController()),)
               ),
     PageEntity(route: AppRoutes.SECLECTPACKAGE, 
               page: const SelectType(), 
+              // bloc: BlocProvider(create: (_)=> AppBlocs(),)
+              ),
+    PageEntity(route: AppRoutes.PATIENDETAIL, 
+              page: const PatienDetail(), 
+              // bloc: BlocProvider(create: (_)=> AppBlocs(),)
+              ),
+    PageEntity(route: AppRoutes.PAYMENT, 
+              page: const Payment(), 
               // bloc: BlocProvider(create: (_)=> AppBlocs(),)
               ),
   ];

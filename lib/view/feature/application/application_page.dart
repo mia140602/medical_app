@@ -8,7 +8,7 @@ import 'package:medical_app/view/feature/application/bloc/app_blocs.dart';
 import 'package:medical_app/view/feature/application/bloc/app_events.dart';
 import 'package:medical_app/view/feature/application/bloc/app_states.dart';
 
-import '../../../config/app_constain.dart';
+import '../../../config/app_constant.dart';
 
 class ApplicationPage extends StatefulWidget {
   

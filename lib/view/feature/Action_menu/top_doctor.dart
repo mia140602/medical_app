@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_app/view/common/title_section.dart';
 
-import '../../../config/app_constain.dart';
+import '../../../config/app_constant.dart';
 import '../../common/custom_btn.dart';
 import '../../common/doctor_cart.dart';
 import '../../common/doctor_speciality.dart';

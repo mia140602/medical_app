@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../../../F_Document/group-project"
+		},
+		{
+			"path": "E:/flutter project/travelapp"
+		},
+		{
+			"path": "../../../../thuctapPitagon"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Hospital-Management-System-main"
+	}
+}

@@ -1,4 +1,5 @@
 
+
 class AppRoutes{
 //Onb
   static const INITIAL = "/";
@@ -33,4 +34,7 @@ class AppRoutes{
 
   static const SECLECTPACKAGE="/selectPackage";
 
+  static const PATIENDETAIL='/patienDetail';
+
+  static const PAYMENT='/payment';
 }

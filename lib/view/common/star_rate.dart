@@ -6,7 +6,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:medical_app/config/app_constain.dart';
+import 'package:medical_app/config/app_constant.dart';
 import 'package:medical_app/view/common/reusable_text.dart';
 
 import 'app_style.dart';
@@ -34,10 +34,10 @@ class StarRate extends StatelessWidget {
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
        children: [
-        Icon(Ionicons.star, color: AppColor.mainColor, size: 13,),
+        Icon(Ionicons.star, color: AppColor.mainColor, size: 10,),
         SizedBox(width: 5.w,),
         ReusableText(text: star,
-       style: appstyle(16,AppColor.mainColor, FontWeight.w600),),
+       style: appstyle(12,AppColor.mainColor, FontWeight.w600),),
        
 
 

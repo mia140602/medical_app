@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:medical_app/view/feature/appointment/appointment_screen.dart';
 
-import '../../config/app_constain.dart';
+import '../../config/app_constant.dart';
 import 'app_style.dart';
 import 'custom_btn.dart';
 

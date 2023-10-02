@@ -7,14 +7,17 @@ import '../view/feature/appointment/appointment_screen.dart';
 double height = 812.h;
 double width = 375.w;
 // 
-// final url='http://192.168.1.8:8000/';
+final url='http://192.168.1.8:8000/';
 // final url='http://192.168.5.24:8000/';
 // final url= ''
-
+//điện thoại
+// final url='http://172.16.0.14:8000/';
+//ở lớp:
+// final url='http://172.16.44.243:8000/';
 //ở trường:
 // final url='http://172.16.39.170:8000/';
 //cty
-final url='http://192.168.5.18:8000/';
+// final url='http://192.168.5.18:8000/';
 
 final registration= url+"registration";
 final login= url+"login";
@@ -82,5 +85,10 @@ extension FilterTypeExtension on FilterType {
     }
   }
 }
-
+ 
+class AppInfo {
+  static final int APP_ID= 2554;
+  static final String MAC_KEY="sdngKKJmqEMzvh5QQcdD2A9XBSKUNaYn";
+  
+}
 
