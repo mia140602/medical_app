@@ -7,22 +7,33 @@ import '../view/feature/appointment/appointment_screen.dart';
 double height = 812.h;
 double width = 375.w;
 // 
-final url='http://192.168.1.8:8000/';
+final url='http://192.168.1.4:3000';
 // final url='http://192.168.5.24:8000/';
 // final url= ''
 //điện thoại
 // final url='http://172.16.0.14:8000/';
 //ở lớp:
-// final url='http://172.16.44.243:8000/';
+// final url='http://172.16.32.211:3000/';
 //ở trường:
 // final url='http://172.16.39.170:8000/';
 //cty
 // final url='http://192.168.5.18:8000/';
 
-final registration= url+"registration";
-final login= url+"login";
-final updateUserProfile= url +"updateProfile";
+final registration= url+"/registration";
+final login= url+"/userLogin";
+final updateUserProfile= url +"/updateProfile";
 final getUserProfileInfo= url+"/getUserInfo";
+//chat
+final createChat= url+'/userCreateChat';
+final getChat= url+'/getChat';
+//message
+final userSendMess= url+ '/userSendMessage';
+final userMess= url+ '/userMessage/:id';
+
+
+//doctor
+final getDoctor=url+ '/api/doctors';
+
 
 
 

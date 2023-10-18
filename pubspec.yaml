@@ -34,6 +34,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   dots_indicator: null
   email_validator: null
+  emoji_picker_flutter: ^1.6.2
   equatable: ^2.0.5
   firebase_auth: ^4.6.3
   firebase_core: ^2.15.0
@@ -52,6 +53,7 @@ dependencies:
   ionicons: ^0.2.2
   jwt_decoder: ^2.0.1
   shared_preferences: ^2.2.0
+  socket_io_client: ^2.0.3+1
   table_calendar: ^3.0.9
 
 dev_dependencies:

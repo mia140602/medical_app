@@ -5,7 +5,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:medical_app/config/app_constant.dart';
 import 'package:medical_app/view/common/custom_btn.dart';
 import 'package:medical_app/view/common/custom_textfield.dart';
-import 'package:medical_app/view/common/drop_down_form_field.dart';
 import 'package:medical_app/view/common/title_section.dart';
 import 'package:medical_app/view/feature/profile.dart/fillprofile/bloc/fill_bloc.dart';
 import 'package:medical_app/view/feature/profile.dart/fillprofile/bloc/fill_event.dart';
@@ -40,7 +39,7 @@ class _FillProfileState extends State<FillProfile> {
     }
   },
   builder: (context, state) {
-    String emailHintText = "email";
+    String emailHintText = "Email";
     String nameHintText = "Tên";
     String nickNameHintText = "Biệt danh";
     String genderHintText = "Giới tính";

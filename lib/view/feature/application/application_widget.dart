@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:medical_app/view/feature/appointment/appointment_screen.dart';
 import 'package:medical_app/view/feature/home/home_screen.dart';
+import 'package:medical_app/view/feature/meeting/ChatPage.dart';
+import 'package:medical_app/view/feature/meeting/IndividualPage.dart';
+import 'package:medical_app/view/feature/meeting/chat_screen.dart';
 import 'package:medical_app/view/feature/profile.dart/bloc/profile_bloc.dart';
 import 'package:medical_app/view/feature/profile.dart/profile.dart';
 
@@ -10,6 +13,7 @@ import '../home/bloc/home_bloc.dart';
 import '../profile.dart/fillprofile/fillProfile_controller.dart';
 
 Widget buildPage(int index){
+  
   List<Widget> _widget=[
     BlocProvider(
       create: (context) => HomeBloc(controller: FillProfileController()),
@@ -17,7 +21,10 @@ Widget buildPage(int index){
     ),
     AppointmentScreen(),
     Center(child: Text("History"),),
+    // IndividualPage(chatModel: chatmodels[index], sourchat: sourceChat[index]),
+    
     Center(child: Text("Articles"),),
+    // Chatscreen(chatmodels: chatmodels, sourchat: sourceChat[index]),
     BlocProvider(
       create: (context) => ProfileBloc(controller: FillProfileController()),
       child: ProfileScreen(),

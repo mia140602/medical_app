@@ -6,7 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medical_app/global.dart';
 import 'package:medical_app/routes/routes.dart';
 import 'package:medical_app/view/feature/Action_menu/favorite.dart';
-import 'package:medical_app/view/feature/Action_menu/top_doctor.dart';
+import 'package:medical_app/view/feature/Action_menu/topDoctor/bloc/topDoctor_bloc.dart';
+import 'package:medical_app/view/feature/Action_menu/topDoctor/top_doctor.dart';
 import 'package:medical_app/view/feature/application/application_page.dart';
 import 'package:medical_app/view/feature/application/bloc/app_blocs.dart';
 import 'package:medical_app/view/feature/auth/forgot_password.dart/forgot_password.dart';
@@ -71,7 +72,7 @@ class AppPages{
               ),
     PageEntity(route: AppRoutes.TOPDOCTOR, 
               page: const TopDoctor(), 
-              // bloc: BlocProvider(create: (_)=> AppBlocs(),)
+              bloc: BlocProvider(create: (_)=> TopDoctorBloc(),)
               ),
     PageEntity(route: AppRoutes.FAVORITE, 
               page: const Favorite(), 

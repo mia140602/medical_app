@@ -45,7 +45,8 @@ class DoctorCart extends StatelessWidget {
                       height: 110.h,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        image: DecorationImage(image: AssetImage(imgPath))
+                        image: DecorationImage(
+                          image: NetworkImage(imgPath))
                       ),
                     ),
                     SizedBox(width:10.w ,),
