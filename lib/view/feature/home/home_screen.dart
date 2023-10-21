@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:medical_app/config/app_constant.dart';
+import 'package:medical_app/model/department_model.dart';
 import 'package:medical_app/view/common/app_style.dart';
 import 'package:medical_app/view/common/avt.dart';
 import 'package:medical_app/view/common/doctor_speciality.dart';
@@ -16,6 +17,7 @@ import 'package:medical_app/view/feature/home/bloc/home_state.dart';
 import 'package:medical_app/view/feature/profile.dart/fillprofile/bloc/fill_event.dart';
 import 'package:medical_app/view/feature/profile.dart/fillprofile/fillProfile_controller.dart';
 
+import '../../../services/department_service.dart';
 import '../../common/custom_btn.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -36,17 +38,7 @@ void initState() {
 
   int _currentIndex = 0;
 
-  List<DoctorIcon> doctorIcon= [
-      DoctorIcon(icon: "more", name: "All"),
-      DoctorIcon(icon: "general.svg", name: "General"),
-      DoctorIcon(icon: "dentis.svg", name: "Dentis"),
-      DoctorIcon(icon: "ophthal.svg", name: "Ophthal.."),
-      DoctorIcon(icon: "nutrition.svg", name: "Nutritionít"),
-      DoctorIcon(icon: "neurolo.svg", name: "Neurolo.."),
-      DoctorIcon(icon: "pediatric.svg", name: "Pediatric"),
-      DoctorIcon(icon: "radiolo.svg", name: "Radiologycal"),
-      DoctorIcon(icon: "more.svg", name: "More"),
-    ];
+
     
   @override
   Widget build(BuildContext context) {
@@ -172,12 +164,12 @@ void initState() {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ReusableText(text: "Doctor Speciality", style: appstyle(20, AppColor.textColor1, FontWeight.w700)),
+                ReusableText(text: "Chuyên khoa", style: appstyle(20, AppColor.textColor1, FontWeight.w700)),
                 GestureDetector(
                   onTap: () {
                     Navigator.pushNamed(context, '/topDoctor');
                   },
-                  child: Text( "See all", style: appstyle(16, AppColor.mainColor, FontWeight.w700))),
+                  child: Text( "Xem tất cả", style: appstyle(16, AppColor.mainColor, FontWeight.w700))),
               ],
             ),
             const DoctorSpeciality(),
@@ -189,27 +181,38 @@ void initState() {
                   onTap: () {
                     Navigator.pushNamed(context, '/topDoctor');
                   },
-                  child: Text( "See all", style: appstyle(16, AppColor.mainColor, FontWeight.w700))),
+                  child: Text( "Xem tất cả", style: appstyle(16, AppColor.mainColor, FontWeight.w700))),
               ],
             ),
             SizedBox(
-              
               height: 50.h,
               width: double.maxFinite,
-              child: ListView.builder(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemCount: doctorIcon.length,
-                itemBuilder: (context,index) {
-                  return CustomButton(
-                    text: doctorIcon[index].name, 
-                    width: 100, 
-                    wrapContentWidth: true,
-                    height: 50.h,
-                    outlineBtnColor: AppColor.mainColor,
-                    textColor: AppColor.mainColor,
+              child: FutureBuilder<List<DepartmentModel>>(
+                future: fetchDepartments(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(child: CircularProgressIndicator());
+                  } else if (snapshot.hasError) {
+                    return Text('${snapshot.error}');
+                  } else {
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: (context, index) {
+                        return CustomButton(
+                          text: snapshot.data![index].departmentName,
+                          width: 100,
+                          wrapContentWidth: true,
+                          height: 50.h,
+                          outlineBtnColor: AppColor.mainColor,
+                          textColor: AppColor.mainColor,
+                        );
+                      },
                     );
-                }),
+                  }
+                },
+              ),
             ),
             
             

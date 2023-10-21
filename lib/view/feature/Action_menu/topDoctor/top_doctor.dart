@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:medical_app/bloc/booking/booking_event.dart';
 import 'package:medical_app/view/common/title_section.dart';
 
+import '../../../../bloc/booking/booking_bloc.dart';
+import '../../../../bloc/doctor/doctor_bloc.dart';
+import '../../../../bloc/doctor/doctor_event.dart';
 import '../../../../config/app_constant.dart';
+import '../../../../model/department_model.dart';
+import '../../../../services/department_service.dart';
 import '../../../common/custom_btn.dart';
 import '../../../common/doctor_cart.dart';
-import '../../../common/doctor_speciality.dart';
 import 'bloc/topDoctor_bloc.dart';
 import 'bloc/topDoctor_event.dart';
 import 'bloc/topDoctor_state.dart';
@@ -22,17 +27,7 @@ class TopDoctor extends StatefulWidget {
 
 class _TopDoctorState extends State<TopDoctor> {
   late TopDoctorBloc _bloc;
-    List<DoctorIcon> doctorIcon= [
-      DoctorIcon(icon: "more", name: "All"),
-      DoctorIcon(icon: "general.svg", name: "General"),
-      DoctorIcon(icon: "dentis.svg", name: "Dentis"),
-      DoctorIcon(icon: "ophthal.svg", name: "Ophthal.."),
-      DoctorIcon(icon: "nutrition.svg", name: "Nutritionít"),
-      DoctorIcon(icon: "neurolo.svg", name: "Neurolo.."),
-      DoctorIcon(icon: "pediatric.svg", name: "Pediatric"),
-      DoctorIcon(icon: "radiolo.svg", name: "Radiologycal"),
-      DoctorIcon(icon: "more.svg", name: "More"),
-    ];
+
     @override
   void initState() {
     super.initState();
@@ -58,29 +53,43 @@ class _TopDoctorState extends State<TopDoctor> {
               TitleSection(text: "Top Doctor", imagePaths: ["Search.svg","more.svg"],),
               SizedBox(height: 20.h,),
               SizedBox(
-              
               height: 50.h,
               width: double.maxFinite,
-              child: ListView.builder(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemCount: doctorIcon.length,
-                itemBuilder: (context,index) {
-                  return CustomButton(
-                    text: doctorIcon[index].name, 
-                    width: 100, 
-                    wrapContentWidth: true,
-                    height: 50.h,
-                    outlineBtnColor: AppColor.mainColor,
-                    textColor: AppColor.mainColor,
+              child: FutureBuilder<List<DepartmentModel>>(
+                future: fetchDepartments(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(child: CircularProgressIndicator());
+                  } else if (snapshot.hasError) {
+                    return Text('${snapshot.error}');
+                  } else {
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: (context, index) {
+                        return CustomButton(
+                          text: snapshot.data![index].departmentName,
+                          width: 100,
+                          wrapContentWidth: true,
+                          height: 50.h,
+                          outlineBtnColor: AppColor.mainColor,
+                          textColor: AppColor.mainColor,
+                        );
+                      },
                     );
-                }),
+                  }
+                },
+              ),
             ),
             SizedBox(height: 24.h,),
                 Column(
                   children:state.doctors.map((doctor) {
                     return GestureDetector(
                       onTap: () {
+                        
+                        context.read<BookingBloc>().add(ChooseSelectDoctorEvent(doctor));
+                        context.read<DoctorBloc>().add(SelectDoctorEvent(doctor));
                         Navigator.pushNamed(context,'/detail' );
                       },
                       child: DoctorCart(

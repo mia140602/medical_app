@@ -60,6 +60,7 @@ class SignInController {
           final user = UserModel.fromJson(jsonResponse['data']);
           final userJson = jsonEncode(user.toJson());
           await prefs.setString('user', userJson);
+          await prefs.setString('userId', user.id); // Lưu trữ id của người dùng
           print('Response from server: $jsonResponse');
           
             print('User data: ${user.toString()}');

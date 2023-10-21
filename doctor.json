@@ -1,0 +1,50 @@
+[{
+  "_id": {
+    "$oid": "651be45991febeb9b73135b5"
+  },
+  "userName": "thao",
+  "email": "11203622@st.neu.edu.vn",
+  "password": "12345678",
+  "__v": 0,
+  "biography": "Bác sĩ y khoa còn gọi là Thầy thuốc là người duy trì, phục hồi sức khỏe con người bằng cách nghiên cứu, chẩn đoán và chữa trị bệnh tật và thương tật dựa trên kiến thức về cơ thể con người.",
+  "avatar": "https://i.imgur.com/zj9vg2n.png", 
+  "department":{
+    "$oid": "651ecf0a717bb483950aa6d5"
+  }
+},{
+  "_id": {
+    "$oid": "651e58e96ed7f0adcbbfcc86"
+  },
+  "userName": "Bảo Hân",
+  "email": "ngoclinh140602@gmail.com",
+  "password": "12345678",
+  "__v": 0,
+  "avatar": "https://i.imgur.com/KPJKQrS.png",
+  "department":{
+    "$oid": "65338bb78130a6ff6e002442"
+  }
+},{
+  "_id": {
+    "$oid": "651e5acb0bc1f21dae3badad"
+  },
+  "userName": "thanhthao",
+  "email": "yomatix454@armablog.com",
+  "password": "12345678",
+  "__v": 0,
+  "avatar": "https://i.imgur.com/0JAp6Cg.png",
+  "department":{
+    "$oid": "65338bd88130a6ff6e002443"
+  }
+},{
+  "_id": {
+    "$oid": "651e5f4880e7d1d6d1b7b7fc"
+  },
+  "userName": "Sơn Tùng",
+  "email": "thao@gmail.com",
+  "password": "12345678",
+  "__v": 0,
+  "avatar": "https://i.imgur.com/vrkMvH3.png",
+  "department":{
+    "$oid": "651ecf0a717bb483950aa6d5"
+  }
+}]

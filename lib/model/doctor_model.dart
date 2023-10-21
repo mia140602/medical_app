@@ -34,18 +34,26 @@ import 'package:equatable/equatable.dart';
 // }
 
 class Doctor {
+  final String id;
   final String userName;
   final String? biography;
   final String? department;
   final String? avatar;
 
-  Doctor({required this.userName, this.biography, this.department, this.avatar});
+  Doctor({required this.id, required this.userName, this.biography, this.department, this.avatar});
+      Doctor.initial()
+      : id = '12345678',
+        userName = 'Cao Thu Hương',
+        avatar = '',
+        biography='',
+        department = ''; 
 
   factory Doctor.fromJson(Map<String, dynamic> json) {
     return Doctor(
+      id: json['_id'] ,
       userName: json['userName'],
       biography: json['biography'] ?? '',
-      department: json['department'] ?? '',
+      department: json['department']['department_name'] ?? '',
       avatar: json['avatar'] ?? '',
     );
   }

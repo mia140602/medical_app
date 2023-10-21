@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:medical_app/bloc/booking/booking_bloc.dart';
+import 'package:medical_app/bloc/booking/booking_event.dart';
+import 'package:medical_app/bloc/booking/booking_state.dart';
 import 'package:medical_app/view/common/custom_radio.dart';
 
 import '../../../config/app_constant.dart';
@@ -20,8 +24,14 @@ class _SelectTypeState extends State<SelectType> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: BlocListener<BookingBloc, BookingState>(
+        listener: (context, state) {
+          if (state is TypeSelectedState) {
+            print("Loại tư vấn được chọn: " + state.type);
+          }
+        },
       
-      body: Container(
+      child: Container(
         color: Colors.grey.shade100,
         padding: EdgeInsets.only(left: 20.w,top: 40.h, right: 20.w,bottom: 40),
         child: Column(
@@ -42,6 +52,7 @@ class _SelectTypeState extends State<SelectType> {
                 setState(() {
                   _value= value!;
                 });
+                context.read<BookingBloc>().add(SelectTypeEvent('chat'));
               },
               ),
             
@@ -52,6 +63,7 @@ class _SelectTypeState extends State<SelectType> {
                 setState(() {
                   _value= value!;
                 });
+                context.read<BookingBloc>().add(SelectTypeEvent('voiceCall'));
               },),
             SizedBox(height: 24.h,),
             CustomRadio(value: 3, groupValue: _value, 
@@ -60,6 +72,7 @@ class _SelectTypeState extends State<SelectType> {
                 setState(() {
                   _value= value!;
                 });
+                context.read<BookingBloc>().add(SelectTypeEvent('videoCall'));
               },),
             SizedBox(height: 80.h,),
             GestureDetector(
@@ -71,6 +84,7 @@ class _SelectTypeState extends State<SelectType> {
           ],
         ),
       ),
+    )
     );
   }
 }

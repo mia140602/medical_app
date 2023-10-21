@@ -1,17 +1,24 @@
+
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:medical_app/bloc/doctor/doctor_bloc.dart';
+import 'package:medical_app/bloc/doctor/doctor_state.dart';
 import 'package:medical_app/config/app_constant.dart';
 import 'package:medical_app/view/common/app_style.dart';
 import 'package:medical_app/view/common/custom_btn.dart';
 import 'package:medical_app/view/common/doctor_cart.dart';
-import 'package:medical_app/view/common/doctor_speciality.dart';
 import 'package:medical_app/view/common/review_cart.dart';
 import 'package:medical_app/view/common/title_section.dart';
 
+import '../../../model/doctor_model.dart';
+
 class DoctorDetail extends StatefulWidget {
-  const DoctorDetail({super.key});
+  
+   DoctorDetail({super.key});
 
   @override
   State<DoctorDetail> createState() => _DoctorDetailState();
@@ -32,7 +39,15 @@ class _DoctorDetailState extends State<DoctorDetail> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    final state = context.read<DoctorBloc>().state;
+    Doctor? doctor;
+    if (state is DoctorSelectedState) {
+      doctor = state.doctor;
+    }
+
+    // Kiểm tra nếu doctor không null trước khi sử dụng
+    if (doctor != null) {
+      return Scaffold(
             backgroundColor: Colors.white,
 
       body: Stack(
@@ -42,9 +57,9 @@ class _DoctorDetailState extends State<DoctorDetail> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                TitleSection(text: "Dr. jeny Watson", imagePaths: ["heart.svg","more.svg"],),
+                TitleSection(text: "Bác sĩ "+ doctor.userName, imagePaths: ["heart.svg","more.svg"],),
                 SizedBox(height: 24.h,),
-                DoctorCart(imgPath: "assets/img/doctor1.png", doctorName: "Alice", category: "Dental", clinic: "Phong kham"),
+                DoctorCart(imgPath: doctor.avatar??'', doctorName: doctor.userName, category: doctor.department??"Chưa xác định", clinic: "Phong kham"),
                 SizedBox(height: 16.h,),
            
                 SizedBox(
@@ -77,8 +92,8 @@ class _DoctorDetailState extends State<DoctorDetail> {
                   Container(
                     width: double.maxFinite,
                     height: 80.h,
-                    child: Text(
-                      "Dr. Jenny Watson is the top most Immunologists specialist in Christ Hospital at London. She achived several awards for her wonderful contribution in medical field. She is available for private consultation.",
+                    child: Text(doctor.biography??
+                      "Dr is the top most Immunologists specialist in Christ Hospital at London. She achived several awards for her wonderful contribution in medical field. She is available for private consultation.",
                       // overflow: TextOverflow.ellipsis,
                       softWrap: true,
                       textAlign: TextAlign.justify,
@@ -126,5 +141,20 @@ class _DoctorDetailState extends State<DoctorDetail> {
         ]
       ),
     );
+    } else {
+      return Scaffold(
+        // Hiển thị một widget khác nếu `doctor` là null
+        // ...
+
+      );
+    }
   }
 }
+
+class Detail{
+  String svgPath;
+  String number;
+  String st;
+  Detail({ required this.svgPath, required this.number, required this.st});
+} 
+

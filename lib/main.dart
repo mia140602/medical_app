@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:medical_app/bloc/booking/booking_bloc.dart';
 import 'package:medical_app/global.dart';
 import 'package:medical_app/routes/routes.dart';
 import 'package:medical_app/theme/dark_theme.dart';
@@ -23,7 +24,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return  MultiBlocProvider(
+    return  BlocProvider(
+      create: (_)=> BookingBloc(),
+      child: MultiBlocProvider(
       
       // providers: AppBlocProvider.allBlocProviders,
       providers: [...AppPages.allBlocProviders( context),],
@@ -45,6 +48,8 @@ class MyApp extends StatelessWidget {
             
             );
           }),
+    ),
+    
     );
   }
 }

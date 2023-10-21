@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:medical_app/bloc/booking/booking_bloc.dart';
 
+import '../../../bloc/booking/booking_event.dart';
 import '../../../config/app_constant.dart';
 import '../../common/app_style.dart';
+import '../../common/custom_btn.dart';
 import '../../common/title_section.dart';
 
 class Payment extends StatefulWidget {
@@ -16,7 +20,7 @@ class Payment extends StatefulWidget {
 class _PaymentState extends State<Payment> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return  Scaffold(
       body: Container(
         margin: EdgeInsets.only(
                 top: 40.h, left: 20.w, right: 20.w, bottom: 40.h),
@@ -37,6 +41,20 @@ class _PaymentState extends State<Payment> {
                 children: [
                   SvgPicture.asset("assets/icons/zalopay.svg")
                 ],
+
+              ),
+            ),
+            SizedBox(height: 400.h,),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child:  GestureDetector(
+                onTap: () {
+                  print('Booking Data: ${context.read<BookingBloc>().bookingData}');
+                  context.read<BookingBloc>().add(CreateAppointmentEvent());
+                },
+                child: CustomButton(text: "Xác Nhận đặt lịch", width: double.maxFinite, height: 50,
+                              outlineBtnColor: AppColor.mainColor, textColor: Colors.white,color: AppColor.mainColor,
+                              ),
               ),
             )
 

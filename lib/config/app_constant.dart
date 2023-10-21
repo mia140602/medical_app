@@ -7,7 +7,7 @@ import '../view/feature/appointment/appointment_screen.dart';
 double height = 812.h;
 double width = 375.w;
 // 
-final url='http://192.168.1.4:3000';
+final url='http://192.168.1.111:3000';
 // final url='http://192.168.5.24:8000/';
 // final url= ''
 //điện thoại
@@ -35,7 +35,12 @@ final userMess= url+ '/userMessage/:id';
 final getDoctor=url+ '/api/doctors';
 
 
+// appointment
+final getDoctorAppointment= url+'/api/appointments/doctorAppointment';
+final userCreatAppointment= url+'/api/appointments/creatAppointment';
 
+//department
+final getAllDepartment = url+ '/api/departments/getAllDepartment';
 
 class AppColor {
   static final Color mainColor= Color(0xff4285F4);

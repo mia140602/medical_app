@@ -3,6 +3,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medical_app/bloc/booking/booking_bloc.dart';
+import 'package:medical_app/bloc/doctor/doctor_bloc.dart';
 import 'package:medical_app/global.dart';
 import 'package:medical_app/routes/routes.dart';
 import 'package:medical_app/view/feature/Action_menu/favorite.dart';
@@ -28,7 +30,6 @@ import 'package:medical_app/view/feature/profile.dart/fillprofile/bloc/fill_bloc
 import 'package:medical_app/view/feature/profile.dart/fillprofile/fillProfile_controller.dart';
 import 'package:medical_app/view/feature/profile.dart/profile.dart';
 import 'package:medical_app/view/feature/search/search_screen.dart';
-
 
 import '../view/feature/profile.dart/bloc/profile_bloc.dart';
 import '../view/feature/profile.dart/fillprofile/fill_profile.dart';
@@ -70,20 +71,36 @@ class AppPages{
               page: const ForgotPassword(), 
               // bloc: BlocProvider(create: (_)=> AppBlocs(),)
               ),
-    PageEntity(route: AppRoutes.TOPDOCTOR, 
-              page: const TopDoctor(), 
-              bloc: BlocProvider(create: (_)=> TopDoctorBloc(),)
+    // PageEntity(route: AppRoutes.TOPDOCTOR, 
+    //           page: const TopDoctor(), 
+    //           bloc: BlocProvider(create: (_)=> TopDoctorBloc(),)
+    //           ),
+    PageEntity(
+              route: AppRoutes.TOPDOCTOR, 
+              page: Builder(
+                builder: (context) => BlocProvider.value(
+                  value: BlocProvider.of<BookingBloc>(context),
+                  child: const TopDoctor(),
+                ),
               ),
+              bloc: BlocProvider(create: (_) => TopDoctorBloc()),
+            ),
     PageEntity(route: AppRoutes.FAVORITE, 
               page: const Favorite(), 
               // bloc: BlocProvider(create: (_)=> AppBlocs(),)
               ),
     PageEntity(route: AppRoutes.DOCTORDETAIL, 
-              page: const DoctorDetail(), 
-              // bloc: BlocProvider(create: (_)=> AppBlocs(),)
+              page: DoctorDetail(), 
+              bloc: BlocProvider(create: (_)=> DoctorBloc(),)
               ),
     PageEntity(route: AppRoutes.BOOKINGPAGE, 
-              page: const BookingPage(), 
+              page: Builder(
+                builder: (context) => BlocProvider.value(
+                  value: BlocProvider.of<BookingBloc>(context),
+                  child: const BookingPage(),
+                ),
+              ),
+              // page: const BookingPage(), 
               // bloc: BlocProvider(create: (_)=> AppBlocs(),)
               ),
     PageEntity(route: AppRoutes.PROFILE, 
@@ -91,17 +108,34 @@ class AppPages{
               bloc: BlocProvider(create: (_)=> ProfileBloc(controller: FillProfileController()),)
               ),
     PageEntity(route: AppRoutes.SECLECTPACKAGE, 
-              page: const SelectType(), 
+              page: Builder(
+                builder: (context) => BlocProvider.value(
+                  value: BlocProvider.of<BookingBloc>(context),
+                  child: const SelectType(),
+                ),
+              ), 
               // bloc: BlocProvider(create: (_)=> AppBlocs(),)
               ),
     PageEntity(route: AppRoutes.PATIENDETAIL, 
-              page: const PatienDetail(), 
+              page: Builder(
+                builder: (context) => BlocProvider.value(
+                  value: BlocProvider.of<BookingBloc>(context),
+                  child: const PatienDetail(),
+                ),
+              ),
               // bloc: BlocProvider(create: (_)=> AppBlocs(),)
               ),
-    PageEntity(route: AppRoutes.PAYMENT, 
-              page: const Payment(), 
-              // bloc: BlocProvider(create: (_)=> AppBlocs(),)
+    PageEntity(
+              route: AppRoutes.PAYMENT,
+              page: Builder(
+                builder: (context) => BlocProvider.value(
+                  value: BlocProvider.of<BookingBloc>(context),
+                  child: const Payment(),
+                ),
               ),
+            ),
+            
+              
   ];
   }
   static List<dynamic> allBlocProviders(BuildContext context){
@@ -130,6 +164,7 @@ static MaterialPageRoute GenerateRouteSettings( RouteSettings settings, ){
 
          return MaterialPageRoute(builder: (_)=> SignIn(),settings: settings);
         }
+       
         return MaterialPageRoute(builder: (context) => result.first.page,settings: settings);
          print("Valid route name: ${settings.name}");
         return MaterialPageRoute(builder: (_)=> result.first.page,settings: settings);

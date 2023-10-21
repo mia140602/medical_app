@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:medical_app/bloc/booking/booking_event.dart';
 import 'package:medical_app/config/app_constant.dart';
 import 'package:medical_app/view/common/custom_btn.dart';
 import 'package:medical_app/view/common/custom_textfield.dart';
@@ -10,6 +11,7 @@ import 'package:medical_app/view/common/title_section.dart';
 import 'package:medical_app/view/feature/profile.dart/bloc/profile_state.dart';
 
 
+import '../../../../bloc/booking/booking_bloc.dart';
 import '../../../common/app_style.dart';
 import '../../profile.dart/bloc/profile_bloc.dart';
 import '../../profile.dart/bloc/profile_event.dart';
@@ -29,6 +31,7 @@ class _PatienDetailState extends State<PatienDetail> {
   final TextEditingController dateBirthday = TextEditingController();
   final TextEditingController email = TextEditingController();
   final TextEditingController gender= TextEditingController();
+  final TextEditingController age= TextEditingController();
 
   @override
   void initState(){
@@ -112,8 +115,8 @@ class _PatienDetailState extends State<PatienDetail> {
                     height: 24.h,
                   ),
                   CustomTextField(
-                      controller: nickName,
-                      hintText: "nickNameHintText",
+                      controller: age,
+                      hintText: "Tuổi",
                       keyboardType: TextInputType.number),
                   SizedBox(
                     height: 24.h,
@@ -130,7 +133,13 @@ class _PatienDetailState extends State<PatienDetail> {
                       borderRadius: BorderRadius.circular(16),
                     ),
                     child: TextFormField(
-                      
+                       onFieldSubmitted: (String problem) {
+                        context.read<BookingBloc>().add(PatientProblemEvent(problem));
+                        },
+                        onChanged: (String problem) {
+                          context.read<BookingBloc>().add(PatientProblemEvent(problem));
+                            },
+                                            
                       keyboardType: TextInputType.multiline,
                       maxLines: null,
                       decoration: InputDecoration(
