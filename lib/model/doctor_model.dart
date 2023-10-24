@@ -50,11 +50,20 @@ class Doctor {
 
   factory Doctor.fromJson(Map<String, dynamic> json) {
     return Doctor(
-      id: json['_id'] ,
-      userName: json['userName'],
-      biography: json['biography'] ?? '',
-      department: json['department']['department_name'] ?? '',
-      avatar: json['avatar'] ?? '',
-    );
+    id: json['_id'],
+    userName: json['userName'],
+    biography: json['biography'] ?? '',
+    department: json['department'] != null ? json['department']['department_name'] : '',
+    avatar: json['avatar'] ?? '',
+  );
+  }
+  Map<String, dynamic> toJson() {
+    return {
+      '_id': id,
+      'userName': userName,
+      'biography': biography,
+      'department': department,
+      'avatar': avatar,
+    };
   }
 }

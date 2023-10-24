@@ -3,11 +3,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:medical_app/bloc/booking/booking_bloc.dart';
 import 'package:medical_app/global.dart';
 import 'package:medical_app/routes/routes.dart';
 import 'package:medical_app/theme/dark_theme.dart';
 import 'package:medical_app/theme/light_theme.dart';
+
+import 'bloc/booking/booking_bloc.dart';
 Future <void> main() async {
   // WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp(
@@ -24,12 +25,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return  BlocProvider(
-      create: (_)=> BookingBloc(),
-      child: MultiBlocProvider(
+    return  
+     MultiBlocProvider(
       
       // providers: AppBlocProvider.allBlocProviders,
-      providers: [...AppPages.allBlocProviders( context),],
+      providers: [...AppPages.allBlocProviders( context),
+      BlocProvider<BookingBloc>(
+          create: (context) => BookingBloc(),
+        ),
+      ],
       child: ScreenUtilInit(
           useInheritedMediaQuery: true,
           designSize: const Size(375, 812),
@@ -48,9 +52,9 @@ class MyApp extends StatelessWidget {
             
             );
           }),
-    ),
-    
     );
+    
+    
   }
 }
 
