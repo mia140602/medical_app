@@ -2,133 +2,103 @@
 // import 'package:chatapp/CustomUI/CameraUI.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_chat_bubble/chat_bubble.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:medical_app/config/app_constant.dart';
 import 'package:medical_app/model/response/messaging/messaging_res.dart';
-
-import 'package:medical_app/view/common/app_style.dart';
-import 'package:medical_app/view/common/reusable_text.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
-import '../../../../bloc/chat/chat_bloc.dart';
-import '../../../../bloc/chat/chat_state.dart';
-import '../../../../model/request/messaging/sendMess_model.dart';
-import '../../../../services/helpers/messaging_helper.dart';
+import '../../../../model/appointment_model.dart';
+import '../../../../model/mess_model.dart';
+import '../../../../services/chat_service.dart';
 
 
 
 class ChatPage extends StatefulWidget {
-  ChatPage({super.key,});
+  final AppointmentModel appointment;
+  ChatPage({super.key,required this.appointment});
 
   @override
   _ChatPageState createState() => _ChatPageState();
 }
 
 class _ChatPageState extends State<ChatPage> {
-  int offset=1;
+late ApiService apiService;
+
+
+
   late Future<List<ReceivedMessage>> msgList;
   bool show = false;
   FocusNode focusNode = FocusNode();
   bool sendButton = false;
   // List<MessageModel> messages = [];
   TextEditingController _controller = TextEditingController();
-  ScrollController _scrollController = ScrollController();
-  List<ReceivedMessage> messages=[];
+  // ScrollController _scrollController = ScrollController();
+  List<Message> messages=[];
 
 
   late IO.Socket socket;
   @override
   void initState() {
     super.initState();
-    getMessages();
-    // loadMessages();
+    apiService = ApiService();
 
-    // focusNode.addListener(() {
-    //   if (focusNode.hasFocus) {
-    //     setState(() {
-    //       show = false;
-    //     });
-    //   }
-    // });
-    // connect();
-  }
-  void getMessages(){
-    msgList= MessagingHelper.getMessage("652d084a5bb992ff4f037fa0", offset);
-  }
-  void loadMessages() async{
-    String chatId='652d084a5bb992ff4f037fa0';
-    // int offset=0;
-    List <ReceivedMessage> newMessages= await MessagingHelper.getMessage(chatId, offset);
-    setState(() {
-      messages.addAll(newMessages);
+     apiService.getInitialMessages(widget.appointment.id);
+    
+    fetchMessages();
+    focusNode.addListener(() {
+      if (focusNode.hasFocus) {
+        setState(() {
+          show = false;
+        });
+      }
     });
+   
+
+   
+   
   }
-   void sendMessage(String content) async {
-    String chatId = '652d084a5bb992ff4f037fa0'; 
-    SendMess model = SendMess(content: content, chatId: chatId,doctorId: "651be45991febeb9b73135b5");
-    List<dynamic> result = await MessagingHelper.sendMessage(model);
-    if (result[0] == true) {
-      ReceivedMessage message = result[1];
-      setState(() {
-        messages.add(message);
-      });
-    }
+
+   void sendMessage(String content, String appointmentId) async {
+  print('Content: $content');
+  print('Appointment ID: $appointmentId');
+  try {
+    await apiService.sendMessage(content, appointmentId, widget.appointment.doctor.id);
+    
+  } catch (error) {
+    print('Lỗi khi gửi tin nhắn: $error');
+    // Hiển thị thông báo lỗi
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Lỗi khi gửi tin nhắn: $error'),
+      ),
+    );
   }
-  // void connect() {
-  //   // MessageModel messageModel = MessageModel(sourceId: widget.sourceChat.id.toString(),targetId: );
-  //   socket = IO.io(url, <String, dynamic>{
-  //     "transports": ["websocket"],
-  //     "autoConnect": false,
-  //   });
-  //   socket.connect();
-  //   socket.onConnect((data) => print("Connected"));
-  //   print(socket.connected);
-  //   socket.emit("/test","Test connect");
-  //   // socket.emit("signin", widget.sourchat.id);
-  //   // socket.onConnect((data) {
-  //   //   print("Connected");
-  //   //   socket.on("message", (msg) {
-  //   //     print(msg);
-  //   //     setMessage("destination", msg["message"]);
-  //   //     _scrollController.animateTo(_scrollController.position.maxScrollExtent,
-  //   //         duration: Duration(milliseconds: 300), curve: Curves.easeOut);
-  //   //   });
-  //   // });
-  //   print(socket.connected);
-  // }
+}
+void fetchMessages() async {
+  try {
+    final messages = await apiService.getMessagesByAppointmentId(widget.appointment.id);
+    setState(() {
+      this.messages = messages;
+       print('setState được gọi, có ${messages.length} tin nhắn');
+    });
+  } catch (error) {
+    // Hiển thị thông báo lỗi
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Lỗi khi tải tin nhắn: $error'),
+      ),
+    );
+  }
+}
 
-  // void sendMessage(String message, int sourceId, int targetId) {
-  //   setMessage("source", message);
-  //   socket.emit("message",
-  //       {"message": message, "sourceId": sourceId, "targetId": targetId});
-  // }
-
-  // void setMessage(String type, String message) {
-  //   MessageModel messageModel = MessageModel(
-  //       type: type,
-  //       message: message,
-  //       time: DateTime.now().toString().substring(10, 16));
-  //   print(messages);
-
-  //   setState(() {
-  //     messages.add(messageModel);
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Image.asset(
-          "assets/whatsapp_Back.png",
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          fit: BoxFit.cover,
-        ),
+        
         Scaffold(
-          backgroundColor: Colors.transparent,
+          backgroundColor:Colors.white,
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(60),
             child: AppBar(
@@ -146,13 +116,13 @@ class _ChatPageState extends State<ChatPage> {
                       size: 24,
                     ),
                     CircleAvatar(
-                      child: SvgPicture.asset(
-                        // widget.chatModel.isGroup
-                        //     ? "assets/groups.svg"
-                             "assets/person.svg",
-                        color: Colors.white,
-                        height: 36,
-                        width: 36,
+                     
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          image: DecorationImage(image: NetworkImage(widget.appointment.doctor.avatar??''))
+                        ),
+                       
                       ),
                       radius: 20,
                       backgroundColor: Colors.blueGrey,
@@ -164,12 +134,12 @@ class _ChatPageState extends State<ChatPage> {
                 onTap: () {},
                 child: Container(
                   margin: EdgeInsets.all(6),
-                  child:const Column(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Bác sĩ A",
+                        widget.appointment.doctor.userName,
                         style: TextStyle(
                           fontSize: 18.5,
                           fontWeight: FontWeight.bold,
@@ -232,51 +202,72 @@ class _ChatPageState extends State<ChatPage> {
               child: Column(
                 children: [
                   Expanded(
-                    child: BlocBuilder<ChatBloc,ChatState>(
-                      builder: (context,state){
-                        if (state is ChatLoadingState) {
-                          return const Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        } else if (state is ChatErrorState) {
-                          return ReusableText(text: "Error", style: appstyle(20, AppColor.textColor1, FontWeight.bold));
-                        } else if (state is ChatLoadedState) {
-                          if (state.chats.isEmpty) {
-                            return Center(
-                              child: Text("Chưa có tin nhắn nào"),
-                            );
-                          } else {
-                            final chats = state.chats;
-                            return ListView.builder(
-                              shrinkWrap: true,
-                              controller: _scrollController,
-                              itemCount: chats.length,
-                              itemBuilder: (context, index) {
-                                final data = chats[index];
-                                
-                                return Padding(
-                                  padding: EdgeInsets.only(top: 8, bottom: 12.h),
-                                  child: Column(
-                                    children: [
-                                      ReusableText(
-                                        text: context.read<ChatBloc>().msgTime(state.chats[index].updatedAt.toString()), 
-                                      style: appstyle(24, AppColor.textColor1,FontWeight.normal)),
+                    // height: MediaQuery.of(context).size.height - 150,
+                    child: StreamBuilder<List<Message>>(
+                      stream: apiService.messagesStream,
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.waiting) {
+                          return const Center(child: CircularProgressIndicator());
+                        }
 
-                                      SizedBox( height: 15.h ,),
-                                      ChatBubble(
-                                        // alignment: data.sender.id== ,
-                                      )
-                                    ],
+                        final messages = snapshot.data ?? [];
+                        if (messages.isEmpty) {
+                          return const Center(child: Text('Không có tin nhắn nào'));
+                        }
+                        // Cuộn đến vị trí cuối cùng sau khi dữ liệu đã sẵn sàng
+                        // WidgetsBinding.instance.addPostFrameCallback((_) {
+                        //   if (_scrollController.hasClients) {
+                        //     _scrollController.animateTo(
+                        //       _scrollController.position.maxScrollExtent,
+                        //       duration: Duration(milliseconds: 500),
+                        //       curve: Curves.easeOut,
+                        //     );
+                        //   }
+                        // });
+
+                        return ListView.builder(
+                          // controller: _scrollController,
+                          itemCount: messages.length,
+                          itemBuilder: (context, index) {
+                            final message = messages[index];
+                            if (message.isCurrentUser == true) {
+                                // Hiển thị tin nhắn ở bên phải với màu xanh
+                                return  ChatBubble(
+                                  clipper: ChatBubbleClipper3(type: BubbleType.sendBubble),
+                                  alignment: Alignment.topRight,
+                                  margin: EdgeInsets.only(top: 20),
+                                  backGroundColor: AppColor.mainColor,
+                                  child: Container(
+                                    constraints: BoxConstraints(
+                                      maxWidth: MediaQuery.of(context).size.width * 0.7,
+                                    ),
+                                    child: Text(
+                                    message.content,
+                                      style: TextStyle(color: Colors.white),
+                                    ),
                                   ),
                                 );
-                              },
-                            );
-                          }
-                        } else {
-                          return Container();
-                        }
-                        }
-                      )
+                              } else {
+                                // Hiển thị tin nhắn ở bên trái
+                                return  ChatBubble(
+                                    clipper: ChatBubbleClipper3(type: BubbleType.receiverBubble),
+                                    backGroundColor: Color(0xffE7E7ED),
+                                    margin: EdgeInsets.only(top: 20),
+                                    child: Container(
+                                      constraints: BoxConstraints(
+                                        maxWidth: MediaQuery.of(context).size.width * 0.7,
+                                      ),
+                                      child: Text(
+                                        message.content,
+                                        style: TextStyle(color: Colors.black),
+                                      ),
+                                    ),
+                                  );
+                              }
+                          },
+                        );
+                      },
+                    ),
                     
                   ),
                   Align(
@@ -381,20 +372,17 @@ class _ChatPageState extends State<ChatPage> {
                                     ),
                                     onPressed: () {
                                       if (sendButton) {
-                                        _scrollController.animateTo(
-                                            _scrollController
-                                                .position.maxScrollExtent,
-                                            duration:
-                                                Duration(milliseconds: 300),
-                                            curve: Curves.easeOut);
-                                        sendMessage(
-                                            _controller.text,
-                                          
-                                           );
-                                        _controller.clear();
-                                        setState(() {
-                                          sendButton = false;
-                                        });
+                                        // _scrollController.animateTo(
+                                        //     _scrollController
+                                        //         .position.maxScrollExtent,
+                                        //     duration:
+                                        //         Duration(milliseconds: 300),
+                                        //     curve: Curves.easeOut);
+                                        sendMessage(_controller.text, widget.appointment.id);
+                                          _controller.clear();
+                                          setState(() {
+                                            sendButton = false;
+                                          });
                                       }
                                     },
                                   ),
@@ -421,6 +409,8 @@ class _ChatPageState extends State<ChatPage> {
               },
             ),
           ),
+          
+          
         ),
       ],
     );
@@ -518,4 +508,5 @@ class _ChatPageState extends State<ChatPage> {
   //       });
   // }
 }
+
 

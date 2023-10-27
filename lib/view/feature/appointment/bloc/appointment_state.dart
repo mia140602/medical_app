@@ -1,37 +1,24 @@
-// import 'package:equatable/equatable.dart';
+import 'package:equatable/equatable.dart';
+import 'package:medical_app/model/appointment_model.dart';
 
+abstract class AppointmentState extends Equatable {
+  const AppointmentState();
 
-// abstract class AppointmentState extends Equatable {
-//   const AppointmentState();
-
-//   @override
-//   List<Object?> get props => [];
-// }
-
-// class AppointmentInitial extends AppointmentState {}
-
-// class AppointmentsLoaded extends AppointmentState {
-//   final List<dynamic> filteredSchedules;
-
-//   AppointmentsLoaded({required this.filteredSchedules});
-
-//   @override
-//   List<Object?> get props => [filteredSchedules];
-// }
-import 'dart:async';
-
-class AppointmentState {
-  const AppointmentState({
-    this.status = AppointmentStatus.upcoming,
-    this.types = const [AppointmentType.messaging],
-  });
-
-  final AppointmentStatus status;
-  final List<AppointmentType> types;
-
-  static const AppointmentState initial = AppointmentState();
+  @override
+  List<Object> get props => [];
 }
 
-enum  AppointmentStatus { upcoming, completed, cancel }
+class AppointmentInitial extends AppointmentState {}
 
-enum AppointmentType { messaging, video, call, offline }
+class AppointmentLoading extends AppointmentState {}
+
+class AppointmentsLoaded extends AppointmentState {
+  final List<AppointmentModel> appointments;
+
+  AppointmentsLoaded({required this.appointments});
+
+  @override
+  List<Object> get props => [appointments];
+}
+
+class AppointmentError extends AppointmentState {}

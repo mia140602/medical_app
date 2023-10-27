@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:medical_app/bloc/booking/booking_bloc.dart';
+import 'package:medical_app/view/feature/application/application_page.dart';
+import 'package:medical_app/widgets/flutter_toast.dart';
 
 import '../../../bloc/booking/booking_event.dart';
 import '../../../config/app_constant.dart';
@@ -51,6 +53,12 @@ class _PaymentState extends State<Payment> {
                 onTap: () {
                   print('Booking Data: ${context.read<BookingBloc>().bookingData}');
                   context.read<BookingBloc>().add(CreateAppointmentEvent());
+                  toastInfo(msg: "Đặt lịch thành công");
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ApplicationPage()),
+                  );
+                                  
                 },
                 child: CustomButton(text: "Xác Nhận đặt lịch", width: double.maxFinite, height: 50,
                               outlineBtnColor: AppColor.mainColor, textColor: Colors.white,color: AppColor.mainColor,

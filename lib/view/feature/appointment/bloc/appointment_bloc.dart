@@ -1,26 +1,22 @@
-// import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'appointment_event.dart';
-// import 'appointment_state.dart';
+import 'dart:async';
+import 'package:bloc/bloc.dart';
+import 'package:medical_app/view/feature/appointment/bloc/appointment_event.dart';
+import 'package:medical_app/view/feature/appointment/bloc/appointment_state.dart';
+import '../../../../services/appointment_service.dart';
 
-// import 'dart:async';
+class AppointmentBloc extends Bloc<AppointmentEvent, AppointmentState> {
+  AppointmentBloc() : super(AppointmentInitial()) {
+    on<LoadAppointments>(loadAppointments);
+  }
 
-// import 'package:flutter_bloc/flutter_bloc.dart';
-
-// class AppointmentBloc extends Bloc<AppointmentEvent, AppointmentState> {
-//   AppointmentBloc() : super(AppointmentState.initial());
-
-//   @override
-//   Stream<AppointmentState> mapEventToState(AppointmentEvent event) async* {
-//     if (event is AppointmentStatusChanged) {
-//       yield AppointmentState(
-//         status: event.status,
-//         types: state.types,
-//       );
-//     } else if (event is AppointmentTypeChanged) {
-//       yield AppointmentState(
-//         status: state.status,
-//         types: event.types,
-//       );
-//     }
-//   }
-// }
+  Future<void> loadAppointments(LoadAppointments event, Emitter<AppointmentState> emit) async {
+  emit(AppointmentLoading());
+  try {
+    final appointments = await AppointmentService.fetchAppointments();
+    emit(AppointmentsLoaded(appointments: appointments));
+  } catch (error) {
+    print('Error loading appointments: $error');
+    emit(AppointmentError());
+  }
+}
+}

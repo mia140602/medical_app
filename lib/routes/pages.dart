@@ -8,6 +8,7 @@ import 'package:medical_app/bloc/doctor/doctor_bloc.dart';
 import 'package:medical_app/global.dart';
 import 'package:medical_app/routes/routes.dart';
 import 'package:medical_app/view/feature/Action_menu/favorite.dart';
+import 'package:medical_app/view/feature/Action_menu/notification.dart';
 import 'package:medical_app/view/feature/Action_menu/topDoctor/bloc/topDoctor_bloc.dart';
 import 'package:medical_app/view/feature/Action_menu/topDoctor/top_doctor.dart';
 import 'package:medical_app/view/feature/application/application_page.dart';
@@ -76,15 +77,17 @@ class AppPages{
     //           bloc: BlocProvider(create: (_)=> TopDoctorBloc(),)
     //           ),
     PageEntity(
-              route: AppRoutes.TOPDOCTOR, 
-              page: Builder(
-                builder: (context) => BlocProvider.value(
-                  value: BlocProvider.of<BookingBloc>(context),
-                  child: const TopDoctor(),
+                route: AppRoutes.TOPDOCTOR, 
+                page: Builder(
+                  builder: (context) => MultiBlocProvider(
+                    providers: [
+                      BlocProvider.value(value: BlocProvider.of<BookingBloc>(context)),
+                      BlocProvider(create: (_) => TopDoctorBloc()),
+                    ],
+                    child: const TopDoctor(),
+                  ),
                 ),
               ),
-              bloc: BlocProvider(create: (_) => TopDoctorBloc()),
-            ),
     PageEntity(route: AppRoutes.FAVORITE, 
               page: const Favorite(), 
               // bloc: BlocProvider(create: (_)=> AppBlocs(),)
@@ -134,6 +137,10 @@ class AppPages{
                 ),
               ),
             ),
+    PageEntity(route: AppRoutes.NOTIFICATION, 
+              page: const AppNotification(), 
+              // bloc: BlocProvider(create: (_)=> AppBlocs(),)
+              ),
             
               
   ];

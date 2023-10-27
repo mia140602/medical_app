@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:medical_app/bloc/chat/chat_bloc.dart';
 import 'package:medical_app/view/feature/appointment/appointment_screen.dart';
+import 'package:medical_app/view/feature/appointment/bloc/appointment_bloc.dart';
 import 'package:medical_app/view/feature/home/home_screen.dart';
 import 'package:medical_app/view/feature/meeting/chat/chat_page.dart';
 import 'package:medical_app/view/feature/profile.dart/bloc/profile_bloc.dart';
@@ -18,13 +18,14 @@ Widget buildPage(int index){
       create: (context) => HomeBloc(controller: FillProfileController()),
       child: HomeScreen(),
     ),
-    AppointmentScreen(),
-     BlocProvider(
-      create: (context) => ChatBloc(),
-      child: ChatPage(),
+    BlocProvider(
+      create: (context) => AppointmentBloc(),
+      child: AppointmentScreen(),
     ),
     
-    // Center(child: Text("History"),),
+    //  ChatPage(),
+    
+    Center(child: Text("History"),),
     
     
     Center(child: Text("Articles"),),

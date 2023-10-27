@@ -5,6 +5,8 @@ import 'package:medical_app/config/app_constant.dart';
 
 import 'package:medical_app/model/department_model.dart';
 
+import '../model/doctor_model.dart';
+
 Future<List<DepartmentModel>> fetchDepartments() async {
   final response = await http.get(Uri.parse(getAllDepartment),);
 

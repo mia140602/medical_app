@@ -7,7 +7,7 @@ import '../view/feature/appointment/appointment_screen.dart';
 double height = 812.h;
 double width = 375.w;
 // 
-final url='http://192.168.1.7:3000';
+final url='http://192.168.19.100:3000';
 
 
 
@@ -20,7 +20,8 @@ final createChat= url+'/userCreateChat';
 final getChat= url+'/getChat';
 //message ( sửa cả ở mess helper huhu)
 final userSendMess= url+ '/userSendMessage';
-final userMess= url+ '/userMessage/:id';// cái này ở mess helper
+final userMess= url+ '/userMessage/';// cái này ở mess helper
+final getAppointmentMess= url+'/messages';
 
 
 //doctor
@@ -30,9 +31,14 @@ final getDoctor=url+ '/api/doctors';
 // appointment
 final getDoctorAppointment= url+'/api/appointments/doctorAppointment';
 final userCreatAppointment= url+'/api/appointments/creatAppointment';
-
+final usergetAppointment=url+ '/api/appointments';
 //department
 final getAllDepartment = url+ '/api/departments/getAllDepartment';
+final getDepartmentDoctor = url+'/api/departments/getDoctorsByDepartment';
+
+
+//notification
+final getnotification= url+'/notification';
 
 class AppColor {
   static final Color mainColor= Color(0xff4285F4);
@@ -54,7 +60,7 @@ extension FilterStatusExtension on FilterStatus {
     switch (this) {
       case FilterStatus.upcoming:
         return "Upcoming";
-      case FilterStatus.completed:
+      case FilterStatus.unconfimred:
         return "Completed";
       case FilterStatus.cancel:
         return "Cancelled";
@@ -72,8 +78,7 @@ extension FilterTypeExtension on FilterType {
         return "Video Call";
       case FilterType.Messaging:
         return "Messaging";
-      case FilterType.Offline:
-        return "Offline";
+      
       default:
         return "";
     }
@@ -93,10 +98,5 @@ extension FilterTypeExtension on FilterType {
     }
   }
 }
- 
-class AppInfo {
-  static final int APP_ID= 2554;
-  static final String MAC_KEY="sdngKKJmqEMzvh5QQcdD2A9XBSKUNaYn";
-  
-}
+
 

@@ -3,6 +3,7 @@ import 'package:medical_app/view/feature/Action_menu/topDoctor/bloc/topDoctor_ev
 import 'package:medical_app/view/feature/Action_menu/topDoctor/bloc/topDoctor_state.dart';
 
 import '../../../../../model/doctor_model.dart';
+import '../../../../../services/department_service.dart';
 import '../../../../../services/doctor_Service.dart';
 
 class TopDoctorBloc extends Bloc<TopDoctorEvent, TopDoctorState> {
@@ -11,6 +12,16 @@ class TopDoctorBloc extends Bloc<TopDoctorEvent, TopDoctorState> {
       emit(DoctorsLoadingState());
       try {
         List<Doctor> doctors = await DoctorService.fetchDoctors();
+        emit(DoctorsLoadedState(doctors: doctors));
+      } catch (e) {
+        emit(DoctorsErrorState(message: e.toString()));
+      }
+    });
+
+     on<GetDoctorsByDepartmentEvent>((event, emit) async {
+      emit(DoctorsLoadingState());
+      try {
+        List<Doctor> doctors = await DoctorService.fetchDoctorsByDepartment(event.departmentId??'');
         emit(DoctorsLoadedState(doctors: doctors));
       } catch (e) {
         emit(DoctorsErrorState(message: e.toString()));

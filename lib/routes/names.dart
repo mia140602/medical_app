@@ -37,4 +37,6 @@ class AppRoutes{
   static const PATIENDETAIL='/patienDetail';
 
   static const PAYMENT='/payment';
+
+  static const NOTIFICATION ='/notification';
 }
