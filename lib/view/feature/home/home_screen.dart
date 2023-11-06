@@ -9,13 +9,11 @@ import 'package:medical_app/view/common/app_style.dart';
 import 'package:medical_app/view/common/avt.dart';
 import 'package:medical_app/view/common/doctor_speciality.dart';
 import 'package:medical_app/view/common/reusable_text.dart';
-import 'package:medical_app/view/feature/Action_menu/favorite.dart';
-import 'package:medical_app/view/feature/Action_menu/notification.dart';
+
 import 'package:medical_app/view/feature/home/bloc/home_bloc.dart';
 import 'package:medical_app/view/feature/home/bloc/home_event.dart';
 import 'package:medical_app/view/feature/home/bloc/home_state.dart';
-import 'package:medical_app/view/feature/profile.dart/fillprofile/bloc/fill_event.dart';
-import 'package:medical_app/view/feature/profile.dart/fillprofile/fillProfile_controller.dart';
+
 
 import '../../../services/department_service.dart';
 import '../../common/custom_btn.dart';
@@ -71,7 +69,7 @@ void initState() {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text( "Good Morning", style: appstyle(16.sp, AppColor.secondColor, FontWeight.normal)),
+                      Text( "Xin chào", style: appstyle(16.sp, AppColor.secondColor, FontWeight.normal)),
                       Text(nickName, style: appstyle(20.sp, AppColor.textColor1, FontWeight.bold)),
                     ],
                   ),
@@ -115,7 +113,7 @@ void initState() {
                     children: [
                       SvgPicture.asset("assets/icons/Search.svg",width: 20,),
                       SizedBox(width: 20,),
-                      Text("Search"),
+                      Text("Tìm kiếm"),
                     ],
                   ),
                 ),
@@ -142,9 +140,9 @@ void initState() {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            ReusableText(text: "Medical Checks!", style: appstyle(24, Colors.white, FontWeight.bold)),
-                            Text("Check your health condition regularly to minimize the incidence of disease in the future.",style: appstyle(12, Colors.white, FontWeight.normal),),
-                            CustomButton(text: "Check Now", width: 115, height: 32,
+                            ReusableText(text: "Kiểm tra sức khỏe!", style: appstyle(24, Colors.white, FontWeight.bold)),
+                            Text("Hãy kiểm tra tình trạng sức khỏe của mình thường xuyên để giảm thiểu tỷ lệ mắc bệnh trong tương lai.",style: appstyle(12, Colors.white, FontWeight.normal),),
+                            CustomButton(text: "Kiểm tra ngay", width: 115, height: 32,
                               outlineBtnColor: Colors.white, textColor: AppColor.mainColor,color: Colors.white,
                               ),
                             
@@ -176,7 +174,7 @@ void initState() {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ReusableText(text: "Top Doctor", style: appstyle(20, AppColor.textColor1, FontWeight.w700)),
+                ReusableText(text: "Bác sĩ", style: appstyle(20, AppColor.textColor1, FontWeight.w700)),
                 GestureDetector(
                   onTap: () {
                     Navigator.pushNamed(context, '/topDoctor');

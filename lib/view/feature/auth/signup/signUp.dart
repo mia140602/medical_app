@@ -52,13 +52,13 @@ class _SignUpState extends State<SignUp> {
                             onTap: () {
                               Navigator.of(context).pop();
                             },
-                            child: Icon(Icons.arrow_back,color:Colors.black ,size: 28,)),
+                            child:const Icon(Icons.arrow_back,color:Colors.black ,size: 28,)),
                         ],
                       ),
                       SizedBox(height: 20.25.h,),
                       SvgPicture.asset(logo,width: 120.w,color: AppColor.mainColor,),
                       SizedBox(height: 20.25.h,),
-                      Text( "Creat new account", style: appstyle(32, AppColor.textColor1, FontWeight.w700),textAlign: TextAlign.center,),
+                      Text( "Tạo tài khoản", style: appstyle(32, AppColor.textColor1, FontWeight.w700),textAlign: TextAlign.center,),
                       SizedBox(height: 20.25.h,),
                       CustomTextField(controller: email , 
                       hintText: "Email", 
@@ -74,7 +74,7 @@ class _SignUpState extends State<SignUp> {
                         obscureText: true,
                         controller: password ,
                         keyboardType: TextInputType.visiblePassword,
-                        hintText: "Password",
+                        hintText: "Mật khẩu",
                 
                         suffixIcon: GestureDetector(
                           onTap: (() {      
@@ -92,7 +92,7 @@ class _SignUpState extends State<SignUp> {
                         onTap: () {
                           SignupController(context:context).handleEmailSignup();
                         },
-                        child: CustomButton(text: "Sign up", width: 300, height: 50,
+                        child: CustomButton(text: "Đăng ký", width: 300, height: 50,
                               outlineBtnColor: AppColor.mainColor, textColor: Colors.white,color: AppColor.mainColor,
                               ),
                       ),
@@ -101,7 +101,7 @@ class _SignUpState extends State<SignUp> {
                         mainAxisAlignment: MainAxisAlignment.center,
                 
                         children: [
-                          ReusableText(text: "-Or continue with- ", style: appstyle(14, Colors.grey, FontWeight.normal)),
+                          ReusableText(text: "-Hoặc đăng nhập bằng- ", style: appstyle(14, Colors.grey, FontWeight.normal)),
                          
                         ],
                        ),
@@ -119,7 +119,7 @@ class _SignUpState extends State<SignUp> {
                         mainAxisAlignment: MainAxisAlignment.center,
                 
                         children: [
-                          ReusableText(text: "Already have an account? ", style: appstyle(14, Colors.grey, FontWeight.normal)),
+                          ReusableText(text: "Đã có tài khoản? ", style: appstyle(14, Colors.grey, FontWeight.normal)),
                           GestureDetector(
                             onTap: () {
                               //  Navigator.of(context)
@@ -127,7 +127,7 @@ class _SignUpState extends State<SignUp> {
                               //   builder:(context)=> SignIn()));
                               Navigator.of(context).pushNamed("/signin");
                             },
-                            child: ReusableText(text: "Sign In",style: appstyle(14, AppColor.mainColor, FontWeight.normal),))
+                            child: ReusableText(text: "Đăng nhập",style: appstyle(14, AppColor.mainColor, FontWeight.normal),))
                         ],
                        )
                        

@@ -6,7 +6,6 @@ import 'package:medical_app/bloc/booking/booking_bloc.dart';
 import 'package:medical_app/bloc/booking/booking_state.dart';
 import 'package:medical_app/bloc/doctor/doctor_bloc.dart';
 import 'package:medical_app/config/app_constant.dart';
-import 'package:medical_app/model/appointment_model.dart';
 import 'package:medical_app/view/common/app_style.dart';
 import 'package:medical_app/view/common/title_section.dart';
 import 'package:medical_app/widgets/flutter_toast.dart';
@@ -29,7 +28,7 @@ class _BookingPageState extends State<BookingPage> {
   List<String> appointments = [];
   List<String> times=[
     "9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM",
-    "2:00 PM", "2:30 PM", "3:00 PM", "3:30 PM", "4:00 PM", "4:40 PM"
+    "2:00 PM", "2:30 PM", "3:00 PM", "3:30 PM", "4:00 PM", "4:30 PM"
   ];
  
 
@@ -68,13 +67,13 @@ class _BookingPageState extends State<BookingPage> {
                    child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TitleSection(text: "Booking Appointment",),
+                      TitleSection(text: "Đặt lịch khám",),
                       SizedBox(height: 24.h,),
-                      Text("Select Date",style: appstyle(18.sp, AppColor.textColor1, FontWeight.w700),),
+                      Text("Chọn ngày",style: appstyle(18.sp, AppColor.textColor1, FontWeight.w700),),
                       SizedBox(height: 24.h,),
                       _tableCalendar(),
                       SizedBox(height: 24.h,),
-                      Text("Select Hour",style: appstyle(18.sp, AppColor.textColor1, FontWeight.w700),),
+                      Text("Chọn giờ",style: appstyle(18.sp, AppColor.textColor1, FontWeight.w700),),
                       SizedBox(height: 24.h,),
                     ],
                                  ),
@@ -134,6 +133,7 @@ class _BookingPageState extends State<BookingPage> {
                         alignment: Alignment.center,
                         child: Text( 
                           times[index],
+                          textAlign: TextAlign.center,
                         style: TextStyle(fontWeight: FontWeight.bold,
                         color: _currentIndex==index?Colors.white:null)),
                       ),
@@ -157,7 +157,7 @@ class _BookingPageState extends State<BookingPage> {
                             }
                             
                           },
-                          child: CustomButton(text: "Next", width: double.maxFinite, height: 50,
+                          child: CustomButton(text: "Tiếp tục", width: double.maxFinite, height: 50,
                           outlineBtnColor: AppColor.mainColor, textColor: Colors.white,color: AppColor.mainColor,
                           disable: _timeSelected&&_dateSelected? false:true,
                           ),

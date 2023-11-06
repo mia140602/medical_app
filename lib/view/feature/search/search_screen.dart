@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ionicons/ionicons.dart';
 import 'package:medical_app/config/app_constant.dart';
 
 class SearchScreen extends StatelessWidget {
@@ -43,7 +42,7 @@ static const String routeName='/search';
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       prefixIcon: Icon(Icons.search),
-                      hintText: "Search",
+                      hintText: "Tìm kiếm",
                       suffixIcon: Icon(Icons.sort)
                     ),
                   ),

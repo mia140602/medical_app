@@ -30,12 +30,12 @@ class _NewPasswordState extends State<NewPassword> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
         
           children: [
-            TitleSection(text: "Create new password",),
+            TitleSection(text: "Đặt lại mật khẩu",),
             SvgPicture.asset(Frame,width: 300.w,),
-            Text("Create your new password",style: appstyle(18.sp, AppColor.textColor1, FontWeight.normal),),
+            Text("Đặt lại mật khẩu mới",style: appstyle(18.sp, AppColor.textColor1, FontWeight.normal),),
             CustomTextField(
               controller: newpassword, 
-              hintText: "Enter your new password", 
+              hintText: "Điền mật khẩu mới", 
               keyboardType: TextInputType.emailAddress,
               suffixIcon: GestureDetector(
                         onTap: (() {    
@@ -48,7 +48,7 @@ class _NewPasswordState extends State<NewPassword> {
               ),
               CustomTextField(
               controller: typeagain, 
-              hintText: "Enter your new password", 
+              hintText: "Điền mật khẩu mới", 
               keyboardType: TextInputType.emailAddress,
               suffixIcon: GestureDetector(
                         onTap: (() {    
@@ -60,7 +60,7 @@ class _NewPasswordState extends State<NewPassword> {
                     
               ),
               RememberMe(),
-              CustomButton(text: "Continue", width: double.maxFinite, height: 50,
+              CustomButton(text: "Tiếp tục", width: double.maxFinite, height: 50,
                           outlineBtnColor: AppColor.mainColor, textColor: Colors.white,color: AppColor.mainColor,
                           ),
           ],

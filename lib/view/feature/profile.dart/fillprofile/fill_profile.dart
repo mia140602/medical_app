@@ -63,7 +63,7 @@ class _FillProfileState extends State<FillProfile> {
                 top: 40.h, left: 20.w, right: 20.w, bottom: 60.h),
             child: Column(children: [
               TitleSection(
-                text: "Fill Your Profile",
+                text: "Cập nhật hồ sơ",
               ),
               Stack(
                 children: [
@@ -174,7 +174,7 @@ class _FillProfileState extends State<FillProfile> {
     ));
                 },
                 child: CustomButton(
-                  text: "Continue",
+                  text: "Tiếp tục",
                   width: 380,
                   outlineBtnColor: AppColor.mainColor,
                   

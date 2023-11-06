@@ -29,13 +29,13 @@ class _ForgotPasswordState extends State<ForgotPassword> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            TitleSection(text: "Forgot password",),
+            TitleSection(text: "Quên mật khẩu",),
             SvgPicture.asset(Frame,width: 200.w,),
-            Text("Select which contact details should we use to reset your password",style: appstyle(18.sp, AppColor.textColor1, FontWeight.normal),),
+            Text("Chọn hình thức liên hệ để đặt lại mật khẩu",style: appstyle(18.sp, AppColor.textColor1, FontWeight.normal),),
             ChooseBtn(imagePath: "assets/icons/mess.svg", text1: "via SMS", text2: "+1 111 ******99"),
             ChooseBtn(imagePath: "assets/icons/email.svg", text1: "via Email", text2: "and***ley@yourdomain.com"),
             // ChooseBtn(imagePath: "assets/icons/mess.svg", text1: "via SMS", text2: "+1 111 ******99", hasCheckbox: true,price: "\$20", time: "/30 minutes",),
-            CustomButton(text: "Continue", width: double.maxFinite, height: 50,
+            CustomButton(text: "Tiếp tục", width: double.maxFinite, height: 50,
                           outlineBtnColor: AppColor.mainColor, textColor: Colors.white,color: AppColor.mainColor,
                           )
           ],

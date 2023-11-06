@@ -49,7 +49,7 @@ class _TopDoctorState extends State<TopDoctor> {
               return SingleChildScrollView(
                 child: Column(
                   children: [
-                    TitleSection(text: "Top Doctor", imagePaths: ["Search.svg","more.svg"],),
+                    TitleSection(text: "Bác sĩ hàng đầu", imagePaths: ["Search.svg","more.svg"],),
                     SizedBox(height: 20.h,),
                     SizedBox(
                       height: 50.h,

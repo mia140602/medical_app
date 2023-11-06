@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:medical_app/view/feature/appointment/appointment_screen.dart';
+import 'package:intl/intl.dart';
+import 'package:medical_app/services/meeting_service.dart';
+import 'package:medical_app/widgets/flutter_toast.dart';
+
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../config/app_constant.dart';
 import '../../model/appointment_model.dart';
+import '../../model/meeting_model.dart';
 import '../feature/meeting/chat/chat_page.dart';
 import 'app_style.dart';
 import 'custom_btn.dart';
@@ -145,13 +150,44 @@ class AppointmentCart extends StatelessWidget {
                   //   ),
                    if (status=="Xác nhận") 
                      GestureDetector(
-                      onTap: () {
+                      onTap: () async {
+                         // Chuyển đổi date và time thành DateTime
+                          DateFormat format = DateFormat("yyyy-MM-dd h:mm a");
+                          DateTime appointmentStartTime = format.parse('${appointment.date} ${appointment.time}');
+                          DateTime appointmentEndTime = appointmentStartTime.add(Duration(minutes: 30));
+
+                          if (DateTime.now().isBefore(appointmentStartTime)) {
+                            // Nếu chưa đến thời gian bắt đầu, hiển thị thông báo toast và không làm gì cả
+                            toastInfo(msg: "Cuộc hẹn chưa bắt đầu");
+                            return;
+                          } else if (DateTime.now().isAfter(appointmentEndTime)) {
+                            // Nếu đã qua thời gian kết thúc, hiển thị thông báo toast và không làm gì cả
+                            toastInfo(msg: "Cuộc họp đã kết thúc");
+                            return;
+                          
+                          }
                          if (type == "chat") {
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) => ChatPage(appointment: appointment,)),
                             );
                          } 
+                        else if (type == "videoCall" || type=="voiceCall") {
+                          // Fetch the meeting model from the server
+                          MeetingModel meetingModel = await MeetingService.fetchMeetingModel(appointment.id);
+                          String zoomMeetingUrl = meetingModel.zoomMeetingUrl;
+                          // await MeetingService().joinMeeting(appointment.id, meetingModel.user, socketId);
+                          // Open the Zoom meeting URL in the default browser
+                          if (await canLaunchUrl(Uri.parse(zoomMeetingUrl))) {
+                                await launchUrl(Uri.parse(zoomMeetingUrl));
+                              } else {
+                                throw 'Could not launch $zoomMeetingUrl';
+                              }
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(builder: (context) => MeetingPage(appointmentId: appointment.id, meetingModel: meetingModel)),
+                          // );
+} 
                       },
                        child: CustomButton(
                                          text: "Tham gia tư vấn", 

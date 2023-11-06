@@ -37,17 +37,17 @@ class _SelectTypeState extends State<SelectType> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TitleSection(text: "Seclect Package",),
+            TitleSection(text: "Chọn hình thức khám",),
             SizedBox(height: 24.h,),
-            Text("Select Duration",style: appstyle(18.sp, AppColor.textColor1, FontWeight.w700),),
+            Text("Thời gian",style: appstyle(18.sp, AppColor.textColor1, FontWeight.w700),),
             SizedBox(height: 24.h,),
             Text("Thời gian tham gia tư vấn mặc định là 30'",style: appstyle(18.sp, AppColor.secondColor, FontWeight.normal),),
             SizedBox(height: 24.h,),
-            Text("Select Package",style: appstyle(18.sp, AppColor.textColor1, FontWeight.w700),),
+            Text("Chọn hình thức",style: appstyle(18.sp, AppColor.textColor1, FontWeight.w700),),
             SizedBox(height: 24.h,),
            
             CustomRadio(value: 1, groupValue: _value, 
-              svgImg: "mess.svg", titleText: "Messaging", decriptionText: "Chat messages with doctor", dolar: 20,
+              svgImg: "mess.svg", titleText: "Nhắn tin", decriptionText: "Nhắn tin với bác sĩ", dolar: 20,
               onChanged: (int? value){
                 setState(() {
                   _value= value!;
@@ -58,7 +58,7 @@ class _SelectTypeState extends State<SelectType> {
             
             SizedBox(height: 24.h,),
             CustomRadio(value: 2, groupValue: _value, 
-              svgImg: "call.svg", titleText: "Voice Call", decriptionText: "Voice Call with doctor", dolar: 40,
+              svgImg: "call.svg", titleText: "Voice Call", decriptionText: "Voice Call với bác sĩ", dolar: 40,
               onChanged: (int? value){
                 setState(() {
                   _value= value!;
@@ -67,7 +67,7 @@ class _SelectTypeState extends State<SelectType> {
               },),
             SizedBox(height: 24.h,),
             CustomRadio(value: 3, groupValue: _value, 
-              svgImg: "videoCall.svg", titleText: "Video Call", decriptionText: "Video call with doctor", dolar: 60,
+              svgImg: "videoCall.svg", titleText: "Video Call", decriptionText: "Video call với bác sĩ", dolar: 60,
               onChanged: (int? value){
                 setState(() {
                   _value= value!;
@@ -77,7 +77,7 @@ class _SelectTypeState extends State<SelectType> {
             SizedBox(height: 80.h,),
             GestureDetector(
               onTap: () => Navigator.pushNamed(context, "/patienDetail"),
-              child: CustomButton(text: "Next", width: double.maxFinite, height: 50,
+              child: CustomButton(text: "Tiếp tục", width: double.maxFinite, height: 50,
                             outlineBtnColor: AppColor.mainColor, textColor: Colors.white,color: AppColor.mainColor,
                             ),
             ),

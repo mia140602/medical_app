@@ -46,22 +46,22 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             _page(
               1,
               context,
-              "Next",
-              "Thousands of doctors & experts to help your health!",
+              "Tiếp theo",
+              "Bác sĩ và chuyên gia luôn hỗ trợ cho sức khỏe của bạn!",
               "onb2.png"
             ),
             _page(
               2,
               context,
-              "Next",
-              "Health checks & consultations easily anywhere anytime",
+              "Tiếp theo",
+              "Kiểm tra & tư vấn sức khỏe dễ dàng mọi lúc mọi nơi!",
               "onb3.png"
             ),
             _page(
               3,
               context,
-              "Get Started",
-              "Let's start living healthy and well with us right now!",
+              "Bắt đầu",
+              "Hãy bắt đầu cùng chúng tôi ngay bây giờ!",
               "onb4.png"
             ),
             

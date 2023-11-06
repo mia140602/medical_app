@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:medical_app/bloc/booking/booking_event.dart';
 import 'package:medical_app/config/app_constant.dart';
 import 'package:medical_app/view/common/custom_btn.dart';
 import 'package:medical_app/view/common/custom_textfield.dart';
-import 'package:medical_app/view/common/drop_down_form_field.dart';
 import 'package:medical_app/view/common/title_section.dart';
 import 'package:medical_app/view/feature/profile.dart/bloc/profile_state.dart';
 
@@ -43,7 +41,7 @@ class _PatienDetailState extends State<PatienDetail> {
     return BlocBuilder<ProfileBloc,ProfileState>(
       builder: (context,state){
         String namehinttext =" Điền tên của bạn";
-        String genderHintText =" Điền tên của bạn";
+        String genderHintText =" Giới tính";
         if (state is UserInfoLoaded){
           namehinttext= state.userInfo.name??"Điền tên đầy đủ của bạn";
           genderHintText=state.userInfo.gender??"Khác";
@@ -56,7 +54,7 @@ class _PatienDetailState extends State<PatienDetail> {
             child: Column(
               children: [
               TitleSection(
-                text: "Patient Detail",
+                text: "Thông tin bệnh nhân",
               ),
               SizedBox(
                     height: 30.h,
@@ -65,7 +63,7 @@ class _PatienDetailState extends State<PatienDetail> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Full Name",style: appstyle(18.sp, AppColor.textColor1, FontWeight.w700),),
+                  Text("Tên đầy đủ",style: appstyle(18.sp, AppColor.textColor1, FontWeight.w700),),
                   SizedBox(
                     height: 24.h,
                   ),
@@ -77,7 +75,7 @@ class _PatienDetailState extends State<PatienDetail> {
                   SizedBox(
                     height: 24.h,
                   ),
-                  Text("Gender",style: appstyle(18.sp, AppColor.textColor1, FontWeight.w700),),
+                  Text("Giới tính",style: appstyle(18.sp, AppColor.textColor1, FontWeight.w700),),
                   SizedBox(
                     height: 24.h,
                   ),
@@ -110,7 +108,7 @@ class _PatienDetailState extends State<PatienDetail> {
                   SizedBox(
                     height: 24.h,
                   ),
-                  Text("Your Age",style: appstyle(18.sp, AppColor.textColor1, FontWeight.w700),),
+                  Text("Tuổi của bạn",style: appstyle(18.sp, AppColor.textColor1, FontWeight.w700),),
                   SizedBox(
                     height: 24.h,
                   ),
@@ -121,7 +119,7 @@ class _PatienDetailState extends State<PatienDetail> {
                   SizedBox(
                     height: 24.h,
                   ),
-                  Text("Write your problem",style: appstyle(18.sp, AppColor.textColor1, FontWeight.w700),),
+                  Text("Mô tả vấn đề bạn đang gặp",style: appstyle(18.sp, AppColor.textColor1, FontWeight.w700),),
                   SizedBox(
                     height: 24.h,
                   ),
@@ -187,7 +185,7 @@ class _PatienDetailState extends State<PatienDetail> {
               GestureDetector(
                 onTap: () => Navigator.pushNamed(context, "/payment"),
                 child: CustomButton(
-                  text: "Continue",
+                  text: "Tiếp tục",
                   width: 380,
                   outlineBtnColor: AppColor.mainColor,
                   

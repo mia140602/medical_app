@@ -22,7 +22,7 @@ class DoctorCart extends StatelessWidget {
     return Container(
       // margin: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
      
-      height: 150,
+      height: 160.h,
       child: GestureDetector(
         child: Card(
           elevation: 5,

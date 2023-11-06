@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 import 'package:medical_app/config/app_constant.dart';
 import 'package:medical_app/view/common/app_style.dart';
 import 'package:medical_app/view/common/appointment_cart.dart';
@@ -18,7 +19,7 @@ class AppointmentScreen extends StatefulWidget {
 }
 
 enum FilterStatus {upcoming,unconfimred,cancel}
-enum FilterType {Messaging, Video, Call,Offline}
+enum FilterType {Messaging, Video, Call}
 
 class _AppointmentScreenState extends State<AppointmentScreen> {
   late AppointmentBloc _appointmentBloc;
@@ -32,8 +33,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
 
   FilterStatus status= FilterStatus.upcoming; //trạng thái ban đầu
   FilterType type= FilterType.Messaging;
-  String btn1="Book again";
-  String btn2="Reschedule";
+ 
   Alignment _alignment= Alignment.centerLeft;
 
   @override
@@ -70,18 +70,15 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                                       if (filterStatus== FilterStatus.upcoming){
                                         status= FilterStatus.upcoming;
                                         _alignment= Alignment.centerLeft;
-                                        btn1="Cancel Appointment";
-                                        btn2="Reschedule";
+                                      
                                       } else if(filterStatus== FilterStatus.unconfimred){
                                         status=FilterStatus.unconfimred;
                                         _alignment=Alignment.center;
-                                        btn1="Book again";
-                                        btn2="Leave a review";
+                                 
                                       } else if(filterStatus== FilterStatus.cancel){
                                         status=FilterStatus.cancel;
                                         _alignment=Alignment.centerRight;
-                                        btn1="Book again";
-                                        btn2="Delete";
+                                        
                                       }
                                     });
                                   },
@@ -112,20 +109,20 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                     ]
                   ),
                   SizedBox(height: 24.h,),
-                 Center(child: Text("Bạn chưa có cuộc hẹn nào, vui lòng đặt lịch để sử dụng")),
+                 Center(child: Text("Bạn chưa đặt lịch khám")),
                 ],
               ),
             ),
           );
           }else{
 
-          // Now you can use `appointments` to build your UI.
+          
           return Scaffold(
             body: Container(
               margin: EdgeInsets.only(top: 24.h, left: 20.w, right: 20.w, bottom: 30.h),
               child: Column(
                 children: [
-                  TitleSection(text: "My Appointment", imagePaths: ["Search.svg","more.svg"],),
+                  TitleSection(text: "Lịch hẹn đã đặt", imagePaths: ["Search.svg","more.svg"],),
                   SizedBox(height: 24.h,),
                   Stack(
                     children:[
@@ -187,26 +184,33 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                  Expanded(
                     child: ListView.builder(
                       itemCount: appointments.where((appointment) {
+                         DateFormat format = DateFormat("yyyy-MM-dd h:mm a");
+                          DateTime appointmentStartTime = format.parse('${appointment.date} ${appointment.time}');
+                          DateTime appointmentEndTime = appointmentStartTime.add(Duration(minutes: 30));
                         switch (status) {
                           case FilterStatus.upcoming:
-                            return appointment.status == "Xác nhận";
+                            return appointment.status == "Xác nhận" && DateTime.now().isBefore(appointmentEndTime);
                           case FilterStatus.unconfimred:
-                            return appointment.status == "Chưa xác nhận";
+                            return appointment.status == "Chưa xác nhận" && DateTime.now().isBefore(appointmentEndTime);
                           case FilterStatus.cancel:
-                            return appointment.status == "Từ chối";
+                            return appointment.status == "Từ chối" && DateTime.now().isBefore(appointmentEndTime);
                           default:
                             return false;
                         }
                       }).toList().length,
                       itemBuilder: ((context, index) {
                         var appointment = appointments.where((appointment) {
+                          DateFormat format = DateFormat("yyyy-MM-dd h:mm a");
+                          DateTime appointmentStartTime = format.parse('${appointment.date} ${appointment.time}');
+                          DateTime appointmentEndTime = appointmentStartTime.add(Duration(minutes: 30));
+
                           switch (status) {
                             case FilterStatus.upcoming:
-                              return appointment.status == "Xác nhận";
+                              return appointment.status == "Xác nhận" && DateTime.now().isBefore(appointmentEndTime);
                             case FilterStatus.unconfimred:
-                              return appointment.status == "Chưa xác nhận";
+                              return appointment.status == "Chưa xác nhận" && DateTime.now().isBefore(appointmentEndTime);
                             case FilterStatus.cancel:
-                              return appointment.status == "Từ chối";
+                              return appointment.status == "Từ chối" && DateTime.now().isBefore(appointmentEndTime);
                             default:
                               return false;
                           }

@@ -7,7 +7,7 @@ import '../view/feature/appointment/appointment_screen.dart';
 double height = 812.h;
 double width = 375.w;
 // 
-final url='http://192.168.19.100:3000';
+final url='http://192.168.1.9:3000';
 
 
 
@@ -39,6 +39,11 @@ final getDepartmentDoctor = url+'/api/departments/getDoctorsByDepartment';
 
 //notification
 final getnotification= url+'/notification';
+
+//Meeting
+final userJoinMeeting=url+'/api/meeting/join';
+final userGetMeeting=url+'/api/meeting';
+
 
 class AppColor {
   static final Color mainColor= Color(0xff4285F4);
@@ -91,8 +96,7 @@ extension FilterTypeExtension on FilterType {
         return "assets/icons/videoCall.svg";
       case FilterType.Messaging:
         return "assets/icons/mess.svg";
-      case FilterType.Offline:
-        return "assets/icons/mess.svg";
+      
       default:
         return "assets/icons/mess.svg";
     }

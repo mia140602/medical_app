@@ -64,7 +64,7 @@ class _SignInState extends State<SignIn> {
                       SizedBox(height: 20.25.h,),
                       SvgPicture.asset(logo,width: 120.w,color: AppColor.mainColor,),
                       SizedBox(height: 20.25.h,),
-                      Text( "Login To Your Account", style: appstyle(30, AppColor.textColor1, FontWeight.w700),textAlign: TextAlign.center,),
+                      Text( "Đăng nhập vài tài khoản của bạn", style: appstyle(30, AppColor.textColor1, FontWeight.w700),textAlign: TextAlign.center,),
                       SizedBox(height: 20.25.h,),
                       
                       CustomTextField(controller: email , 
@@ -83,7 +83,7 @@ class _SignInState extends State<SignIn> {
                         obscureText: true,
                         controller: password ,
                         keyboardType: TextInputType.visiblePassword,
-                        hintText: "Password",
+                        hintText: "Mật khẩu",
                 
                         suffixIcon: GestureDetector(
                           onTap: (() {      
@@ -103,7 +103,7 @@ class _SignInState extends State<SignIn> {
                           SignInController(context: context).handleSignIn("email");
                           
                         },
-                        child: CustomButton(text: "Sign in", width: 300, height: 50,
+                        child: CustomButton(text: "Đăng nhập", width: 300, height: 50,
                               outlineBtnColor: AppColor.mainColor, textColor: Colors.white,color: AppColor.mainColor,
                              ),
                       ),
@@ -114,9 +114,9 @@ class _SignInState extends State<SignIn> {
                         children: [
                           GestureDetector(
                             onTap: () => Navigator.of(context).pushNamed("/forgotPassword"),
-                            child: ReusableText(text: "Forgot the password?", style: appstyle(14, AppColor.mainColor, FontWeight.normal))),
+                            child: ReusableText(text: "Quên mật khẩu?", style: appstyle(14, AppColor.mainColor, FontWeight.normal))),
                           SizedBox(height: 20.h,),
-                          ReusableText(text: "-Or continue with- ", style: appstyle(14, Colors.grey, FontWeight.normal)),
+                          ReusableText(text: "-Hoặc đăng nhập bằng- ", style: appstyle(14, Colors.grey, FontWeight.normal)),
                          
                         ],
                        ),
@@ -134,7 +134,7 @@ class _SignInState extends State<SignIn> {
                         mainAxisAlignment: MainAxisAlignment.center,
                 
                         children: [
-                          ReusableText(text: "Don't have account? ", style: appstyle(14, Colors.grey, FontWeight.normal)),
+                          ReusableText(text: "Chưa có tài khoản? ", style: appstyle(14, Colors.grey, FontWeight.normal)),
                           GestureDetector(
                             onTap: () {
                               //sử lý chuyển trang đơn giản ko yêu cầu quản lý trạng thái phức tạp
@@ -143,7 +143,7 @@ class _SignInState extends State<SignIn> {
                               //   builder:(context)=> SignUp()));
                               Navigator.of(context).pushNamed("/signup");
                             },
-                            child: ReusableText(text: "Sign Up",style: appstyle(14, AppColor.mainColor, FontWeight.normal),))
+                            child: ReusableText(text: "Đăng ký",style: appstyle(14, AppColor.mainColor, FontWeight.normal),))
                         ],
                        )
                        

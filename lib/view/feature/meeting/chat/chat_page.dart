@@ -166,23 +166,23 @@ void fetchMessages() async {
                   itemBuilder: (BuildContext contesxt) {
                     return [
                     const  PopupMenuItem(
-                        child: Text("View Contact"),
+                        child: Text("Xem thông tin liên lạc"),
                         value: "View Contact",
                       ),
                     const  PopupMenuItem(
-                        child: Text("Media, links, and docs"),
+                        child: Text("phương tiện, liên kết, tài liệu"),
                         value: "Media, links, and docs",
                       ),
                      const PopupMenuItem(
-                        child: Text("Whatsapp Web"),
+                        child: Text("Medica"),
                         value: "Whatsapp Web",
                       ),
                       const PopupMenuItem(
-                        child: Text("Search"),
+                        child: Text("Tìm kiếm"),
                         value: "Search",
                       ),
                       const PopupMenuItem(
-                        child: Text("Mute Notification"),
+                        child: Text("Tắt tiếng thông báo"),
                         value: "Mute Notification",
                       ),
                      const PopupMenuItem(
@@ -307,7 +307,7 @@ void fetchMessages() async {
                                     },
                                     decoration: InputDecoration(
                                       border: InputBorder.none,
-                                      hintText: "Type a message",
+                                      hintText: "Nhập tin nhắn",
                                       hintStyle: TextStyle(color: Colors.grey),
                                       prefixIcon: IconButton(
                                         icon: Icon(
@@ -431,7 +431,7 @@ void fetchMessages() async {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   iconCreation(
-                      Icons.insert_drive_file, Colors.indigo, "Document"),
+                      Icons.insert_drive_file, Colors.indigo, "Tài liệu"),
                   SizedBox(
                     width: 40,
                   ),
@@ -439,7 +439,7 @@ void fetchMessages() async {
                   SizedBox(
                     width: 40,
                   ),
-                  iconCreation(Icons.insert_photo, Colors.purple, "Gallery"),
+                  iconCreation(Icons.insert_photo, Colors.purple, "Thư viện"),
                 ],
               ),
               SizedBox(
@@ -452,11 +452,11 @@ void fetchMessages() async {
                   SizedBox(
                     width: 40,
                   ),
-                  iconCreation(Icons.location_pin, Colors.teal, "Location"),
+                  iconCreation(Icons.location_pin, Colors.teal, "Vị trí"),
                   SizedBox(
                     width: 40,
                   ),
-                  iconCreation(Icons.person, Colors.blue, "Contact"),
+                  iconCreation(Icons.person, Colors.blue, "Liên hệ"),
                 ],
               ),
             ],

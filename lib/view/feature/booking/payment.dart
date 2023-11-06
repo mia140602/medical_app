@@ -41,7 +41,7 @@ class _PaymentState extends State<Payment> {
               ),
               child: Row(
                 children: [
-                  SvgPicture.asset("assets/icons/zalopay.svg")
+                  SvgPicture.asset("assets/icons/zalopay.svg",width: 100.w,)
                 ],
 
               ),
@@ -56,7 +56,7 @@ class _PaymentState extends State<Payment> {
                   toastInfo(msg: "Đặt lịch thành công");
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const ApplicationPage()),
+                    MaterialPageRoute(builder: (context) => const ApplicationPage())
                   );
                                   
                 },

@@ -23,7 +23,7 @@ class _FavoriteState extends State<Favorite> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              TitleSection(text: "My Favorite Doctor", imagePaths: ["more.svg"],),
+              TitleSection(text: "Yêu thích", imagePaths: ["more.svg"],),
               SizedBox(height: 20.h,),
               Column(
                 children:List.generate(10, (index)  {

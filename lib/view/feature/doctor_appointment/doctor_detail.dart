@@ -26,10 +26,10 @@ class DoctorDetail extends StatefulWidget {
 
 class _DoctorDetailState extends State<DoctorDetail> {
   List<Detail> detail =[
-    Detail(svgPath: "assets/icons/patients.svg", number: "5000+", st: "patients"),
-    Detail(svgPath: "assets/icons/experience.svg", number: "10+", st: "year-experience"),
+    Detail(svgPath: "assets/icons/patients.svg", number: "5000+", st: "Bệnh nhân"),
+    Detail(svgPath: "assets/icons/experience.svg", number: "10+", st: "năm kinh nhiệm"),
     Detail(svgPath: "assets/icons/rating.svg", number: "4.8", st: "rating"),
-    Detail(svgPath: "assets/icons/mess.svg", number: "4.942", st: "review"),
+    Detail(svgPath: "assets/icons/mess.svg", number: "4.942", st: "đánh giá"),
     
 
   ];
@@ -87,7 +87,7 @@ class _DoctorDetailState extends State<DoctorDetail> {
           
                   ),),
                   SizedBox(height: 24.h,),
-                  Text("About Me", style: appstyle(20.sp, AppColor.textColor1, FontWeight.bold),),
+                  Text("Giới thiệu", style: appstyle(20.sp, AppColor.textColor1, FontWeight.bold),),
                   SizedBox(height: 16.h,),
                   Container(
                     width: double.maxFinite,
@@ -102,16 +102,16 @@ class _DoctorDetailState extends State<DoctorDetail> {
                     ),
                   ),
                   SizedBox(height: 24.h,),
-                  Text("Working Time", style: appstyle(20.sp, AppColor.textColor1, FontWeight.bold),),
+                  Text("Thời gian làm việc", style: appstyle(20.sp, AppColor.textColor1, FontWeight.bold),),
                   SizedBox(height: 16.h,),
-                  Text("Monday - Friday, 08.00 AM - 20.00 PM",style: appstyle(14.sp, AppColor.textColor1, FontWeight.normal),),
+                  Text("Thứ 2 - Thứ 6, 08.00 AM - 20.00 PM",style: appstyle(14.sp, AppColor.textColor1, FontWeight.normal),),
           
                   SizedBox(height: 24.h,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Reviews", style: appstyle(20.sp, AppColor.textColor1, FontWeight.bold),),
-                      Text("See all",style: appstyle(16.sp, AppColor.mainColor, FontWeight.bold,)),
+                      Text("Đánh giá", style: appstyle(20.sp, AppColor.textColor1, FontWeight.bold),),
+                      Text("Xem tất cả",style: appstyle(16.sp, AppColor.mainColor, FontWeight.bold,)),
                     ],
                   ),
                   SizedBox(height: 16.h,),
@@ -133,7 +133,7 @@ class _DoctorDetailState extends State<DoctorDetail> {
                       left: 20,
                       child: GestureDetector(
                         onTap: () => Navigator.pushNamed(context, "/booking"),
-                        child: CustomButton(text: "Book Appointment", width: double.maxFinite, height: 50,
+                        child: CustomButton(text: "Đặt lịch khám", width: double.maxFinite, height: 50,
                         outlineBtnColor: AppColor.mainColor, textColor: Colors.white,color: AppColor.mainColor,
                         ),
                       )

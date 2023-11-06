@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:medical_app/config/app_constant.dart';
 import 'package:medical_app/view/common/app_style.dart';
-import 'package:medical_app/view/common/avt.dart';
 import 'package:medical_app/view/common/title_section.dart';
 import 'package:medical_app/view/feature/onboarding/onboarding_screen.dart';
 import 'package:medical_app/view/feature/profile.dart/bloc/profile_bloc.dart';
@@ -41,7 +40,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              TitleSection(text: "Profile", imagePaths: ["more.svg"],),
+              TitleSection(text: "Hồ sơ", imagePaths: ["more.svg"],),
               SizedBox(height: 209.h,
                 child: Column(
                   children: [
@@ -69,14 +68,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
               SizedBox(height: 24.h,),
                GestureDetector(
                 onTap: () => Navigator.pushNamed(context, "/fillProfile"),
-                child: _listProfile("Edit Profile", Ionicons.person_outline)),
-               _listProfile("Notification", Ionicons.notifications_outline),
-               _listProfile("Payment", Icons.payment_rounded),
-               _listProfile("Securiry", Icons.security),
-               _listProfile("Language", Ionicons.language_outline),
-               _listProfile("Dart mode", Ionicons.eye_outline),
-               _listProfile("Help Center", Ionicons.help_circle_outline),
-               _listProfile("Invite Friend", Ionicons.person_add_outline),
+                child: _listProfile("Chỉnh sửa hồ sơ", Ionicons.person_outline)),
+               _listProfile("Thông báo", Ionicons.notifications_outline),
+               _listProfile("Thanh toán", Icons.payment_rounded),
+               _listProfile("Bảo mật", Icons.security),
+               _listProfile("Ngôn ngữ", Ionicons.language_outline),
+               _listProfile("Chế độ tối", Ionicons.eye_outline),
+               _listProfile("Trung tâm hỗ trợ", Ionicons.help_circle_outline),
+               _listProfile("Mời bạn bè", Ionicons.person_add_outline),
                
                SizedBox(height: 10.h,),
                GestureDetector(
@@ -85,7 +84,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   children: [
                     Icon(Ionicons.exit_outline,color: Colors.red,),
                     SizedBox(width: 15.w,),
-                    Expanded(child: Text("Logout",style: appstyle(18.sp, Colors.red, FontWeight.normal),)),
+                    Expanded(child: Text("Đăng xuất",style: appstyle(18.sp, Colors.red, FontWeight.normal),)),
                     
                   ],
                  ),

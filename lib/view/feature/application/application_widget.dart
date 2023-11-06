@@ -4,7 +4,7 @@ import 'package:ionicons/ionicons.dart';
 import 'package:medical_app/view/feature/appointment/appointment_screen.dart';
 import 'package:medical_app/view/feature/appointment/bloc/appointment_bloc.dart';
 import 'package:medical_app/view/feature/home/home_screen.dart';
-import 'package:medical_app/view/feature/meeting/chat/chat_page.dart';
+
 import 'package:medical_app/view/feature/profile.dart/bloc/profile_bloc.dart';
 import 'package:medical_app/view/feature/profile.dart/profile.dart';
 
@@ -25,11 +25,11 @@ Widget buildPage(int index){
     
     //  ChatPage(),
     
-    Center(child: Text("History"),),
+    Center(child: Text("Chức năng chưa được triển khai"),),
     
     
-    Center(child: Text("Articles"),),
-    // Chatscreen(chatmodels: chatmodels, sourchat: sourceChat[index]),
+    Center(child: Text("Chức năng chưa được triển khai"),),
+    
     BlocProvider(
       create: (context) => ProfileBloc(controller: FillProfileController()),
       child: ProfileScreen(),
@@ -41,24 +41,24 @@ Widget buildPage(int index){
 var bottomTabs=[
  const BottomNavigationBarItem(
             icon: Icon(Ionicons.home_outline),
-            label: "Home",
+            label: "Trang chủ",
             ),
   const          BottomNavigationBarItem(
             icon: Icon(Ionicons.calendar_outline),
-            label: "Appointm..",
+            label: "Lịch hẹn",
             ),
   const          BottomNavigationBarItem(
             icon: Icon(Ionicons.reader_outline),
-            label: "History",
+            label: "Lịch sử",
             ),
    const         BottomNavigationBarItem(
             icon: Icon(Ionicons.document_text_outline),
-            label: "Articles",
+            label: "Bài báo",
             ),
             
    const         BottomNavigationBarItem(
             icon: Icon(Ionicons.person_outline),
-            label: "Profile",
+            label: "Hồ sơ",
             ),
 
 ];
