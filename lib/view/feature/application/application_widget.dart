@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:medical_app/view/feature/appointment/appointment_screen.dart';
 import 'package:medical_app/view/feature/appointment/bloc/appointment_bloc.dart';
+import 'package:medical_app/view/feature/appointment/history.dart';
 import 'package:medical_app/view/feature/home/home_screen.dart';
 
 import 'package:medical_app/view/feature/profile.dart/bloc/profile_bloc.dart';
@@ -25,7 +26,10 @@ Widget buildPage(int index){
     
     //  ChatPage(),
     
-    Center(child: Text("Chức năng chưa được triển khai"),),
+    BlocProvider(
+      create: (context) => AppointmentBloc(),
+      child: HistoryScreen(),
+    ),
     
     
     Center(child: Text("Chức năng chưa được triển khai"),),

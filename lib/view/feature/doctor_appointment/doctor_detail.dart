@@ -11,8 +11,9 @@ import 'package:medical_app/config/app_constant.dart';
 import 'package:medical_app/view/common/app_style.dart';
 import 'package:medical_app/view/common/custom_btn.dart';
 import 'package:medical_app/view/common/doctor_cart.dart';
-import 'package:medical_app/view/common/review_cart.dart';
+
 import 'package:medical_app/view/common/title_section.dart';
+import 'package:medical_app/view/feature/doctor_appointment/doctor_review.dart';
 
 import '../../../model/doctor_model.dart';
 
@@ -111,11 +112,16 @@ class _DoctorDetailState extends State<DoctorDetail> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text("Đánh giá", style: appstyle(20.sp, AppColor.textColor1, FontWeight.bold),),
-                      Text("Xem tất cả",style: appstyle(16.sp, AppColor.mainColor, FontWeight.bold,)),
+                      GestureDetector(
+                        onTap: () =>  Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => DoctorReview(doctorId: doctor!.id,)),
+                        ),
+                        child: Text("Xem tất cả",style: appstyle(16.sp, AppColor.mainColor, FontWeight.bold,))),
                     ],
                   ),
-                  SizedBox(height: 16.h,),
-                  ReviewCard(),
+                  SizedBox(height: 50.h,),
+                 
                   
                 
                   

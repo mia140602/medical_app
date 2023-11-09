@@ -43,11 +43,11 @@ abstract class FillProfileState {
 
 class FillProfileInitial extends FillProfileState {}
 
-class FillProfileLoaded extends FillProfileState {
-  final String email;
+// class FillProfileLoaded extends FillProfileState {
+//   final String email;
 
-  FillProfileLoaded({required this.email});
-}
+//   FillProfileLoaded({required this.email});
+// }
 
 class ProfileUpdated extends FillProfileState {}
 
@@ -58,13 +58,20 @@ class ProfileUpdateError extends FillProfileState {
 
   ProfileUpdateError(this.error);
 }
-class UserInfoLoaded extends FillProfileState {
-  final UserModel userInfo;
+// class UserInfoLoaded extends FillProfileState {
+//   final UserModel userInfo;
 
-  UserInfoLoaded({required this.userInfo});
-}
+//   UserInfoLoaded({required this.userInfo});
+// }
 // class UserInfoLoaded extends FillProfileState {
 //   final Map<String, dynamic> userInfo;
 
 //   UserInfoLoaded({required this.userInfo});
 // }
+
+
+class UserInfoFetched extends FillProfileState {
+  final UserModel userInfo;
+
+  UserInfoFetched({required this.userInfo});
+}

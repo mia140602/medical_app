@@ -3,7 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_bubble/chat_bubble.dart';
-import 'package:flutter_svg/svg.dart';
+
 import 'package:medical_app/config/app_constant.dart';
 import 'package:medical_app/model/response/messaging/messaging_res.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;

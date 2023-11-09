@@ -51,7 +51,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       height: 140.h,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        image: const DecorationImage(image: AssetImage("assets/img/avt1.png"))
+                        image: const DecorationImage(image: AssetImage("assets/img/emtyAvatar.png"))
                       ),
                       child: Image(
                         width: 35.w,

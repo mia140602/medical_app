@@ -4,8 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medical_app/config/app_constant.dart';
-import 'package:medical_app/global.dart';
-import 'package:medical_app/view/feature/application/application_page.dart';
 import 'package:medical_app/widgets/flutter_toast.dart';
 import 'package:medical_app/view/feature/auth/signin/bloc/signin_bloc.dart';
 import 'package:http/http.dart' as http;
@@ -60,7 +58,7 @@ class SignInController {
           final user = UserModel.fromJson(jsonResponse['data']);
           final userJson = jsonEncode(user.toJson());
           await prefs.setString('user', userJson);
-          await prefs.setString('userId', user.id); // Lưu trữ id của người dùng
+          await prefs.setString('userId', user.id??''); // Lưu trữ id của người dùng
           print('Response from server: $jsonResponse');
           
             print('User data: ${user.toString()}');

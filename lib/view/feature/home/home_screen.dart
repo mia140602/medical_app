@@ -60,7 +60,7 @@ void initState() {
                
                 GestureDetector(
                   onTap: () => Navigator.pushNamed(context, "/profile"),
-                  child: Avatar(size: 48, img: "avt1.png")), 
+                  child: Avatar(size: 48, img: "emtyAvatar.png")), 
                 SizedBox(width: 10.w,),
                 SizedBox(
                   height: 60.h,

@@ -7,7 +7,7 @@ import '../view/feature/appointment/appointment_screen.dart';
 double height = 812.h;
 double width = 375.w;
 // 
-final url='http://192.168.1.9:3000';
+final url='http://192.168.19.103:3000';
 
 
 
@@ -43,6 +43,9 @@ final getnotification= url+'/notification';
 //Meeting
 final userJoinMeeting=url+'/api/meeting/join';
 final userGetMeeting=url+'/api/meeting';
+
+//review
+final userpostReview= url+'/api/reviews';
 
 
 class AppColor {

@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:medical_app/config/app_constant.dart';
-import 'package:flutter/material.dart';
+
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:medical_app/widgets/flutter_toast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -17,6 +17,9 @@ class FillProfileController {
   void initSharedPref() async {
     prefs = await SharedPreferences.getInstance();
   }
+
+
+  
   Future<String> getEmailFromToken() async {
     
     final token = prefs.getString('token') ?? '';

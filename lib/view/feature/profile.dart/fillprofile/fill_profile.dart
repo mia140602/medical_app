@@ -9,6 +9,7 @@ import 'package:medical_app/view/common/title_section.dart';
 import 'package:medical_app/view/feature/profile.dart/fillprofile/bloc/fill_bloc.dart';
 import 'package:medical_app/view/feature/profile.dart/fillprofile/bloc/fill_event.dart';
 import 'package:medical_app/view/feature/profile.dart/fillprofile/bloc/fill_state.dart';
+import '../../../common/app_style.dart';
 
 class FillProfile extends StatefulWidget {
   const FillProfile({super.key});
@@ -21,7 +22,9 @@ class _FillProfileState extends State<FillProfile> {
 @override
   void initState() {
     super.initState();
-    context.read<FillProfileBloc>().add(GetUserInfo());
+    context.read<FillProfileBloc>().add(FetchUserInfo());
+
+     
   }
   String? genderValue;
   final TextEditingController name = TextEditingController();
@@ -44,11 +47,11 @@ class _FillProfileState extends State<FillProfile> {
     String nickNameHintText = "Biệt danh";
     String genderHintText = "Giới tính";
     String birthdayHintText = "Ngày sinh";
-    if (state is FillProfileLoaded){
-      emailHintText = state.email;
-    }
+    // if (state is FillProfileLoaded){
+    //   emailHintText = state.email;
+    // }
     
-    if (state is UserInfoLoaded) {
+    if (state is UserInfoFetched) {
       emailHintText = state.userInfo.email;
       nameHintText =state.userInfo.name?? "Tên";
       nickNameHintText= state.userInfo.nickName?? "Biệt Danh";
@@ -61,7 +64,9 @@ class _FillProfileState extends State<FillProfile> {
         child: Container(
             margin: EdgeInsets.only(
                 top: 40.h, left: 20.w, right: 20.w, bottom: 60.h),
-            child: Column(children: [
+            child: Column(
+              
+              children: [
               TitleSection(
                 text: "Cập nhật hồ sơ",
               ),
@@ -73,7 +78,7 @@ class _FillProfileState extends State<FillProfile> {
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(100),
                         child:
-                            Image.asset("assets/img/avt1.png")),
+                            Image.asset("assets/img/emtyAvatar.png")),
                   ),
                   SizedBox(
                     height: 24.h,
@@ -94,6 +99,11 @@ class _FillProfileState extends State<FillProfile> {
                   SizedBox(
                     height: 24.h,
                   ),
+                  Row(
+                    children: [
+                      Text("Tên đầy đủ",style: appstyle(18.sp, AppColor.textColor1, FontWeight.normal),),
+                    ],
+                  ),
                   CustomTextField(
                       controller: name,
                       hintText: nameHintText,
@@ -101,12 +111,22 @@ class _FillProfileState extends State<FillProfile> {
                   SizedBox(
                     height: 24.h,
                   ),
+                   Row(
+                    children: [
+                      Text("Biệt danh",style: appstyle(18.sp, AppColor.textColor1, FontWeight.normal),),
+                    ],
+                  ),
                   CustomTextField(
                       controller: nickName,
                       hintText: nickNameHintText,
                       keyboardType: TextInputType.name),
                   SizedBox(
                     height: 24.h,
+                  ),
+                   Row(
+                    children: [
+                      Text("Ngày sinh",style: appstyle(18.sp, AppColor.textColor1, FontWeight.normal),),
+                    ],
                   ),
                   CustomTextField(
                     controller: dateBirthday,
@@ -119,6 +139,11 @@ class _FillProfileState extends State<FillProfile> {
                   ),
                   SizedBox(
                     height: 24.h,
+                  ),
+                   Row(
+                    children: [
+                      Text("email",style: appstyle(18.sp, AppColor.textColor1, FontWeight.normal),),
+                    ],
                   ),
                   CustomTextField(
                     enable: false,
@@ -134,6 +159,11 @@ class _FillProfileState extends State<FillProfile> {
                     height: 24.h,
                   ),
                   //DropDownField(productSizeList: ["Male", "Female", "Others"])
+                   Row(
+                    children: [
+                      Text("Giới tính",style: appstyle(18.sp, AppColor.textColor1, FontWeight.normal),),
+                    ],
+                  ),
                   Container(
                     padding: EdgeInsets.only(left: 10,right: 10),
                     decoration:  BoxDecoration(

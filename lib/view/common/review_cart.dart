@@ -1,31 +1,39 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:medical_app/config/app_constant.dart';
 import 'package:medical_app/view/common/app_style.dart';
-import 'package:medical_app/view/common/avt.dart';
 import 'package:medical_app/view/common/star_rate.dart';
 
 class ReviewCard extends StatelessWidget {
-  const ReviewCard({super.key});
+  final String name;
+  final String review;
+  final String rate;
+  const ReviewCard({super.key, required this.name, required this.review, required this.rate});
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(top: 10),
+      padding: EdgeInsets.all( 10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: AppColor.kTextField,
+      ),
+      
       child: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-             CircleAvatar(backgroundImage: AssetImage("assets/img/avt1.png"),),
-             Text("Tui La bup be than yeu",style: appstyle(13.sp, AppColor.textColor1, FontWeight.bold),
+             CircleAvatar(backgroundImage: AssetImage("assets/img/emtyAvatar.png"),),
+             Text(name,style: appstyle(13.sp, AppColor.textColor1, FontWeight.bold),
              
              ),
-             StarRate(star: "5"),
+             StarRate(star: rate),
              SvgPicture.asset("assets/icons/more.svg")
             ],
           ),
@@ -33,7 +41,7 @@ class ReviewCard extends StatelessWidget {
           Container(
             width: double.maxFinite,
             height: 40.h,
-            child: Text("Dr. Jenny is very professional in her work and responsive. I have consulted and my problem is solved. 😍",
+            child: Text(review,
               textAlign: TextAlign.justify,
               maxLines: 2,
             ),

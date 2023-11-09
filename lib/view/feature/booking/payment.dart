@@ -46,7 +46,10 @@ class _PaymentState extends State<Payment> {
 
               ),
             ),
-            SizedBox(height: 400.h,),
+            SizedBox(height: 200,
+            child: Text("Chức năng này đang trong quá trình triển khai"),
+            ),
+            SizedBox(height: 200.h,),
             Align(
               alignment: Alignment.bottomCenter,
               child:  GestureDetector(

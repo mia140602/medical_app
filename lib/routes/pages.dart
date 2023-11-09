@@ -24,12 +24,14 @@ import 'package:medical_app/view/feature/booking/patien_detail/patien_detail.dar
 import 'package:medical_app/view/feature/booking/payment.dart';
 import 'package:medical_app/view/feature/booking/selectType.dart';
 import 'package:medical_app/view/feature/doctor_appointment/doctor_detail.dart';
+import 'package:medical_app/view/feature/doctor_appointment/doctor_review.dart';
 
 import 'package:medical_app/view/feature/onboarding/bloc/onb_blocs.dart';
 import 'package:medical_app/view/feature/onboarding/onboarding_screen.dart';
 import 'package:medical_app/view/feature/profile.dart/fillprofile/bloc/fill_bloc.dart';
 import 'package:medical_app/view/feature/profile.dart/fillprofile/fillProfile_controller.dart';
 import 'package:medical_app/view/feature/profile.dart/profile.dart';
+import 'package:medical_app/view/feature/appointment/reviewScreen.dart';
 import 'package:medical_app/view/feature/search/search_screen.dart';
 
 import '../view/feature/profile.dart/bloc/profile_bloc.dart';
@@ -72,10 +74,7 @@ class AppPages{
               page: const ForgotPassword(), 
               // bloc: BlocProvider(create: (_)=> AppBlocs(),)
               ),
-    // PageEntity(route: AppRoutes.TOPDOCTOR, 
-    //           page: const TopDoctor(), 
-    //           bloc: BlocProvider(create: (_)=> TopDoctorBloc(),)
-    //           ),
+ 
     PageEntity(
                 route: AppRoutes.TOPDOCTOR, 
                 page: Builder(
@@ -141,6 +140,8 @@ class AppPages{
               page: const AppNotification(), 
               // bloc: BlocProvider(create: (_)=> AppBlocs(),)
               ),
+      
+   
             
               
   ];

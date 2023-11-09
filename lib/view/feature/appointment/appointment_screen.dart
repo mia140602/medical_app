@@ -184,8 +184,17 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                  Expanded(
                     child: ListView.builder(
                       itemCount: appointments.where((appointment) {
-                         DateFormat format = DateFormat("yyyy-MM-dd h:mm a");
-                          DateTime appointmentStartTime = format.parse('${appointment.date} ${appointment.time}');
+                       
+
+                        DateFormat dateFormat = DateFormat("yyyy-MM-dd");
+                        DateTime date = dateFormat.parse(appointment.date);
+
+                        DateFormat timeFormat = DateFormat("h:mm a");
+                        DateTime time = timeFormat.parse(appointment.time);
+
+                        DateTime appointmentStartTime = DateTime(date.year, date.month, date.day, time.hour, time.minute);
+
+                       
                           DateTime appointmentEndTime = appointmentStartTime.add(Duration(minutes: 30));
                         switch (status) {
                           case FilterStatus.upcoming:
@@ -200,10 +209,23 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                       }).toList().length,
                       itemBuilder: ((context, index) {
                         var appointment = appointments.where((appointment) {
-                          DateFormat format = DateFormat("yyyy-MM-dd h:mm a");
-                          DateTime appointmentStartTime = format.parse('${appointment.date} ${appointment.time}');
-                          DateTime appointmentEndTime = appointmentStartTime.add(Duration(minutes: 30));
+                          // DateFormat format = DateFormat("yyyy-MM-dd h:mm a");
+                          // DateTime appointmentStartTimeUTC = format.parse('${appointment.date} ${appointment.time}');
+                          // DateTime appointmentStartTime = appointmentStartTimeUTC.toLocal();
+                          // DateTime appointmentEndTime = appointmentStartTime.add(Duration(minutes: 30));
+                          
+                          DateFormat dateFormat = DateFormat("yyyy-MM-dd");
+                        DateTime date = dateFormat.parse(appointment.date);
 
+                        DateFormat timeFormat = DateFormat("h:mm a");
+                        DateTime time = timeFormat.parse(appointment.time);
+
+                        DateTime appointmentStartTime = DateTime(date.year, date.month, date.day, time.hour, time.minute);
+                        DateTime appointmentEndTime = appointmentStartTime.add(Duration(minutes: 30));
+                       
+
+                       
+                       
                           switch (status) {
                             case FilterStatus.upcoming:
                               return appointment.status == "Xác nhận" && DateTime.now().isBefore(appointmentEndTime);

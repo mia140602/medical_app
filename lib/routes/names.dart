@@ -39,4 +39,8 @@ class AppRoutes{
   static const PAYMENT='/payment';
 
   static const NOTIFICATION ='/notification';
+
+  static const DOCTORREVIEW='/doctorReview';
+
+  static const REVIEW='/review';
 }

@@ -30,11 +30,15 @@ class AppointmentService {
 static Future<List<AppointmentModel>> fetchAppointments() async {
   final SharedPreferences prefs= await SharedPreferences.getInstance();
     String? userId= prefs.getString('userId');
+    print("userId: $userId");
+
+
 
     final response = await http.get(Uri.parse("$usergetAppointment/$userId"));
-    print("Các cuộc hẹn từ server: ");
-    print(jsonDecode(response.body));
-
+    // print("Các cuộc hẹn từ server: ");
+    // print(jsonDecode(response.body));
+    // print('Response status: ${response.statusCode}');
+// print('Response body: ${response.body}');
     if (response.statusCode == 200) {
       List jsonResponse = json.decode(response.body);
 
