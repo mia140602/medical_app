@@ -41,6 +41,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
               minRating: 1,
               direction: Axis.horizontal,
               allowHalfRating: false,
+              
               itemCount: 5,
               itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
               itemBuilder: (context, _) => Icon(

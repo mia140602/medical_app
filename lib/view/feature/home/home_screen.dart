@@ -198,13 +198,16 @@ void initState() {
                       scrollDirection: Axis.horizontal,
                       itemCount: snapshot.data!.length,
                       itemBuilder: (context, index) {
-                        return CustomButton(
-                          text: snapshot.data![index].departmentName,
-                          width: 100,
-                          wrapContentWidth: true,
-                          height: 50.h,
-                          outlineBtnColor: AppColor.mainColor,
-                          textColor: AppColor.mainColor,
+                        return GestureDetector(
+                          onTap: () => Navigator.pushNamed(context, '/topDoctor'),
+                          child: CustomButton(
+                            text: snapshot.data![index].departmentName,
+                            width: 100,
+                            wrapContentWidth: true,
+                            height: 50.h,
+                            outlineBtnColor: AppColor.mainColor,
+                            textColor: AppColor.mainColor,
+                          ),
                         );
                       },
                     );

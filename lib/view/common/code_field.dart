@@ -55,7 +55,7 @@ class _CodeFieldState extends State<CodeField> {
           }
           widget.oldValue = value;
         },
-        style: Theme.of(context).textTheme.headline6,
+        style: Theme.of(context).textTheme.labelMedium,
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
           border: InputBorder.none,

@@ -26,16 +26,19 @@ class DoctorSpeciality extends StatelessWidget {
             alignment: WrapAlignment.start,
             crossAxisAlignment: WrapCrossAlignment.start,
             children: List.generate(snapshot.data!.length, (index) {
-              return Column(
-                children: [
-                  Image.network(
-                    "${snapshot.data![index].imgPath}",
-                    color: AppColor.mainColor,
-                    width: 60.w,
-                  ),
-                  SizedBox(height: 6.h),
-                  Text(snapshot.data![index].departmentName),
-                ],
+              return GestureDetector(
+                onTap: () => Navigator.pushNamed(context, '/topDoctor'),
+                child: Column(
+                  children: [
+                    Image.network(
+                      "${snapshot.data![index].imgPath}",
+                      color: AppColor.mainColor,
+                      width: 60.w,
+                    ),
+                    SizedBox(height: 6.h),
+                    Text(snapshot.data![index].departmentName),
+                  ],
+                ),
               );
             }),
           );
